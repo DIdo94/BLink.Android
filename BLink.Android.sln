@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLink.Droid", "BLink.Android\BLink.Droid.csproj", "{F2387564-BEE0-4FB9-A300-42EE98920511}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLink.Business", "BLink.Business\BLink.Business.csproj", "{61DE4230-3A45-4C3B-982F-BA212E6A16A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2387564-BEE0-4FB9-A300-42EE98920511}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2387564-BEE0-4FB9-A300-42EE98920511}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2387564-BEE0-4FB9-A300-42EE98920511}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F2387564-BEE0-4FB9-A300-42EE98920511}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2387564-BEE0-4FB9-A300-42EE98920511}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2387564-BEE0-4FB9-A300-42EE98920511}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{61DE4230-3A45-4C3B-982F-BA212E6A16A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DE4230-3A45-4C3B-982F-BA212E6A16A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DE4230-3A45-4C3B-982F-BA212E6A16A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DE4230-3A45-4C3B-982F-BA212E6A16A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC0C39CE-7B00-4959-A134-C047BB18EF4E}
+	EndGlobalSection
+EndGlobal

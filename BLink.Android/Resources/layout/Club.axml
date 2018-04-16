@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_club_clubDetails"
+        android:visibility="gone"
+        android:layout_marginBottom="31.5dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_club_clubDetails1"
+            android:layout_marginBottom="31.5dp">
+            <TextView
+                android:text="Име на отбора"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="158.0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/lbl_club_clubName"
+                android:layout_marginRight="25.0dp" />
+            <TextView
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="195.0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/tv_club_clubName"
+                android:layout_marginRight="163.5dp"
+                android:layout_marginLeft="0.0dp" />
+        </LinearLayout>
+        <Button
+            android:text="Търси играчи"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_club_searchPlayers" />
+        <TextView
+            android:text="Играчи"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="195.0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/lbl_club_clubPlayers"
+            android:layout_marginRight="163.5dp"
+            android:layout_marginLeft="0.0dp" />
+        <android.support.v7.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_club_clubPlayers" />
+    </LinearLayout>
+    <Button
+        android:visibility="gone"
+        android:text="Създай клуб"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_club_createClub" />
+</LinearLayout>

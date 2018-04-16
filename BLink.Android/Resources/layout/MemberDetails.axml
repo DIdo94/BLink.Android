@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/locSection">
+    <TextView
+        android:text="Име"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:gravity="left"
+        android:id="@+id/lbl_memberDetails_firstName" />
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="left"
+        android:id="@+id/tv_memberDetails_firstName" />
+  </LinearLayout>
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/locSection1">
+    <TextView
+        android:text="Фамилия"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:gravity="left"
+        android:id="@+id/lbl_memberDetails_lastName" />
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="left"
+        android:id="@+id/tv_memberDetails_lastName" />
+  </LinearLayout>
+  <LinearLayout
+      android:orientation="horizontal"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/locSection2">
+    <TextView
+        android:text="Височина"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:gravity="left"
+        android:id="@+id/lbl_memberDetails_height" />
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="left"
+        android:id="@+id/tv_memberDetails_height" />
+  </LinearLayout>
+  <LinearLayout
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/locSection3">
+    <TextView
+        android:text="Тегло"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:gravity="left"
+        android:id="@+id/lbl_memberDetails_weight" />
+    <TextView
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="left"
+        android:id="@+id/tv_memberDetails_weight" />
+  </LinearLayout>
+  <Button
+    android:text="Излез от профила"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:id="@+id/btn_memberDetails_logout" />
+</LinearLayout>

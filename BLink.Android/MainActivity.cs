@@ -8,6 +8,7 @@ using BLink.Business.Managers;
 using System.Net.Http;
 using Xamarin.Auth;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace BLink.Droid
 {
@@ -22,6 +23,18 @@ namespace BLink.Droid
             registerButton.Click += RegisterButton_Click;
             Button loginButton = FindViewById<Button>(Resource.Id.btnLogin);
             loginButton.Click += LoginButton_Click;
+
+            // Cleanup for accounts TODO Better cleanup
+            string appName = GetString(Resource.String.app_name);
+            Account account = AccountStore
+              .Create(this)
+              .FindAccountsForService(appName)
+              .FirstOrDefault();
+            if (account != null)
+            {
+                AccountStore.Create(this).Delete(account, appName);
+            }
+            
             // Set our view from the "main" layout resource
         }
 

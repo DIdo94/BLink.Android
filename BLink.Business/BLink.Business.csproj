@@ -50,9 +50,11 @@
   <ItemGroup>
     <Compile Include="Common\ApiConstants.cs" />
     <Compile Include="Common\AppConstants.cs" />
+    <Compile Include="Enums\InvitationStatus.cs" />
     <Compile Include="Enums\Role.cs" />
     <Compile Include="Models\ClubDetails.cs" />
     <Compile Include="Models\CreateClub.cs" />
+    <Compile Include="Models\InvitationResponse.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\MemberDetails.cs" />
     <Compile Include="Models\RegisterUser.cs" />

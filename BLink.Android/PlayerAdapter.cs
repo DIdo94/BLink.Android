@@ -2,19 +2,23 @@
 using Android.Views;
 using Android.Support.V7.Widget;
 using BLink.Business.Models;
+using BLink.Business.Managers;
+using System.Net.Http;
+using Android.Widget;
 
 namespace BLink.Droid
 {
     public class PlayerAdapter : RecyclerView.Adapter
     {
+        private MemberDetails[] _players;
+        private Activity _activity;
+        private ClubDetails _clubDetails;
 
-        MemberDetails[] players;
-        Activity _activity;
-
-        public PlayerAdapter(Activity activity, MemberDetails[] images)
+        public PlayerAdapter(Activity activity, MemberDetails[] players, ClubDetails clubDetails)
         {
-            players = images;
+            _players = players;
             _activity = activity;
+            _clubDetails = clubDetails;
         }
 
         // Create new views (invoked by the layout manager)
@@ -30,13 +34,27 @@ namespace BLink.Droid
         // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position)
         {
-            var item = players[position];
+            var player = _players[position];
 
             // Replace the contents of the view with that element
             var holder = viewHolder as PlayerAdapterViewHolder;
-            holder.Caption.Text = $"{item.FirstName} {item.LastName}";
+            holder.Caption.Text = $"{player.FirstName} {player.LastName}";
+            holder.Height.Text = player.Height.HasValue ? player.Height.Value.ToString() : "0";
+            holder.Weight.Text = player.Height.HasValue ? player.Weight.Value.ToString() : "0";
+            holder.InvitePlayer.Click += (sender, eventArgs) => 
+                InvitePlayer_Click(sender, eventArgs, player.Id, _clubDetails.Id);
         }
 
-        public override int ItemCount => players.Length;
+        private async void InvitePlayer_Click(object sender, System.EventArgs e, int playerId, int clubId)
+        {
+            HttpResponseMessage invitePlayerHttpResponse = await RestManager.InvitePlayer(playerId, clubId);
+
+            if (invitePlayerHttpResponse.IsSuccessStatusCode)
+            {
+                Toast.MakeText(_activity, "Играчът е поканен!", ToastLength.Short).Show();
+            }
+        }
+
+        public override int ItemCount => _players.Length;
     }
 }

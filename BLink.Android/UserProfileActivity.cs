@@ -19,11 +19,12 @@ namespace BLink.Droid
     [Activity(MainLauncher = true)]
     public class UserProfileActivity : AppCompatActivity
     {
-        private string fullName = "Full Name";
-        private TabLayout tabLayout;
-        private ViewPager viewPager;
-        private MemberDetailsFragment detailsFragment;
-        private ClubFragment clubFragment;
+        private TabLayout _tabLayout;
+        private ViewPager _viewPager;
+        private MemberDetailsFragment _detailsFragment;
+        private ClubFragment _clubFragment;
+        private InvitationsFragment _invitationsFragment;
+        private Account _account;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,39 +32,41 @@ namespace BLink.Droid
 
             // Create your application here
             SetContentView(Resource.Layout.UserProfile);
-            Account account = AccountStore
+            _account = AccountStore
                .Create(this)
                .FindAccountsForService(GetString(Resource.String.app_name))
                .FirstOrDefault();
-            if (account == null)
+            if (_account == null)
             {
                 Intent intent = new Intent(this, typeof(MainActivity));
                 StartActivity(intent);
             }
             else
             {
-                RestManager.SetAccessToken(account.Properties["token"]);
+                RestManager.SetAccessToken(_account.Properties["token"]);
 
-                viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
-                SetupViewPager(viewPager);
+                _viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
+                SetupViewPager(_viewPager);
 
-                tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
-                tabLayout.SetupWithViewPager(viewPager);
+                _tabLayout = FindViewById<TabLayout>(Resource.Id.sliding_tabs);
+                _tabLayout.SetupWithViewPager(_viewPager);
             }
         }
 
         private void InitialFragment()
         {
-            detailsFragment = new MemberDetailsFragment();
-            clubFragment = new ClubFragment();
+            _detailsFragment = new MemberDetailsFragment();
+            _clubFragment = new ClubFragment();
+            _invitationsFragment = new InvitationsFragment(_account);
         }
 
         public void SetupViewPager(ViewPager viewPager)
         {
             InitialFragment();
             ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
-            adapter.AddFragment(detailsFragment, "Детайли");
-            adapter.AddFragment(clubFragment, "Моят клуб");
+            adapter.AddFragment(_detailsFragment, "Детайли");
+            adapter.AddFragment(_clubFragment, "Моят клуб");
+            adapter.AddFragment(_invitationsFragment, "Моите покани");
             viewPager.Adapter = adapter;
         }
     }

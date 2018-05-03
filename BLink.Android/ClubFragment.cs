@@ -67,29 +67,35 @@ namespace BLink.Droid
             {
                 ClubDetails clubDetails = JsonConvert.DeserializeObject<ClubDetails>(response);
                 TextView clubNameText = View.FindViewById<TextView>(Resource.Id.tv_club_clubName);
-                LinearLayout clubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_clubDetails);
-                Button searchPlayersButton = View.FindViewById<Button>(Resource.Id.btn_club_searchPlayers);
-
                 clubNameText.Text = clubDetails.Name;
-                searchPlayersButton.Click += SearchPlayersButton_Click;
-
-                HttpResponseMessage getPlayersHttpResponse = await RestManager.GetClubPlayers(clubDetails.Id);
-                string getPlayersResponse = await getPlayersHttpResponse.Content.ReadAsStringAsync();
-
-                if (!string.IsNullOrWhiteSpace(getPlayersResponse) && getPlayersResponse != "null")
-                {
-                    _memberDetails = JsonConvert.DeserializeObject<IEnumerable<MemberDetails>>(getPlayersResponse);
-                    if (_memberDetails.Any())
-                    {
-                        _adapter = new PlayerAdapter(Activity, _memberDetails.ToArray());
-                        _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_club_clubPlayers);
-                        _recyclerView.SetAdapter(_adapter);
-                        _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
-                        _recyclerView.SetLayoutManager(_layoutManager);
-                    }
-                }
-
+                LinearLayout clubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_clubDetails);
                 clubDetailsLayout.Visibility = ViewStates.Visible;
+
+                if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
+                {
+                    Button searchPlayersButton = View.FindViewById<Button>(Resource.Id.btn_club_searchPlayers);
+                    LinearLayout coachClubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_coachClubDetails);
+
+                    searchPlayersButton.Click += SearchPlayersButton_Click;
+
+                    HttpResponseMessage getPlayersHttpResponse = await RestManager.GetClubPlayers(clubDetails.Id);
+                    string getPlayersResponse = await getPlayersHttpResponse.Content.ReadAsStringAsync();
+
+                    if (!string.IsNullOrWhiteSpace(getPlayersResponse) && getPlayersResponse != "null")
+                    {
+                        _memberDetails = JsonConvert.DeserializeObject<IEnumerable<MemberDetails>>(getPlayersResponse);
+                        if (_memberDetails.Any())
+                        {
+                            _adapter = new PlayerAdapter(Activity, _memberDetails.ToArray(), clubDetails);
+                            _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_club_clubPlayers);
+                            _recyclerView.SetAdapter(_adapter);
+                            _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
+                            _recyclerView.SetLayoutManager(_layoutManager);
+                        }
+                    }
+
+                    coachClubDetailsLayout.Visibility = ViewStates.Visible;
+                }
             }
         }
 

@@ -108,6 +108,9 @@
   <ItemGroup>
     <Compile Include="ClubFragment.cs" />
     <Compile Include="CreateClubActivity.cs" />
+    <Compile Include="InvitationAdapter.cs" />
+    <Compile Include="InvitationAdapterViewHolder.cs" />
+    <Compile Include="InvitationsFragment.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MemberDetailsFragment.cs" />
     <Compile Include="PlayerAdapter.cs" />
@@ -144,6 +147,12 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\SearchPlayers.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Invitations.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\InvitationCard.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

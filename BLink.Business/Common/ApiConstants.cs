@@ -17,5 +17,11 @@
         public static readonly string GetClubPlayersEndpoint = ApiUrl + "/Clubs/{0}/Players";
 
         public static readonly string GetAvailablePlayersEndpoint = $"{ApiUrl}/Players";
+
+        public static readonly string InvitePlayerEndpoint = ApiUrl + "/Clubs/{0}/invite-player";
+
+        public static readonly string RespondInvitationEndpoint = ApiUrl + "/Members/{0}/invitations/{1}/respond";
+
+        public static readonly string GetMemberInvitationsEndpoint = ApiUrl + "/Members/{0}/Invitations";
     }
 }

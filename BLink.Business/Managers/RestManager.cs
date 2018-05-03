@@ -1,4 +1,5 @@
 ﻿using BLink.Business.Common;
+using BLink.Business.Enums;
 using BLink.Business.Models;
 using Newtonsoft.Json;
 using System;
@@ -69,6 +70,33 @@ namespace BLink.Business.Managers
         public static async Task<HttpResponseMessage> GetAvailablePlayers()
         {
             return await _httpClient.GetAsync(ApiConstants.GetAvailablePlayersEndpoint);
+        }
+
+        public static async Task<HttpResponseMessage> InvitePlayer(int playerId, int clubId)
+        {
+            var jsonObject = JsonConvert.SerializeObject(new { playerId = playerId, Description = "Hello" }); // TODO Description from coach input
+            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+            return await _httpClient.PostAsync(
+                string.Format(ApiConstants.InvitePlayerEndpoint, clubId), 
+                content);
+        }
+
+        public static async Task<HttpResponseMessage> RespondInvitation(
+            string email, 
+            int invitationId, 
+            InvitationStatus invitationStatus)
+        {
+            var jsonObject = JsonConvert.SerializeObject(new { invitationStatus = invitationStatus });
+            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+            return await _httpClient.PostAsync(
+                string.Format(ApiConstants.RespondInvitationEndpoint, email, invitationId),
+                content);
+        }
+
+        public static async Task<HttpResponseMessage> GetMemberInvitations(string email)
+        {
+            var fullEndpoint = string.Format(ApiConstants.GetMemberInvitationsEndpoint, email);
+            return await _httpClient.GetAsync(fullEndpoint);
         }
     }
 }

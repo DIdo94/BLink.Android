@@ -10,5 +10,7 @@ namespace BLink.Business.Models
         public string Id { get; set; }
 
         public string Roles { get; set; }
+
+        public int MemberId { get; set; }
     }
 }

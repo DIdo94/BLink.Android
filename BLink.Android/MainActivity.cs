@@ -79,6 +79,7 @@ namespace BLink.Droid
 
                     account.Properties.Add("token", userCredentials.AccessToken);
                     account.Properties.Add("roles", userCredentials.Roles);
+                    account.Properties.Add("memberId", userCredentials.MemberId.ToString());
 
                     string appName = GetString(Resource.String.app_name);
                     AccountStore.Create(this).Save(account, appName);

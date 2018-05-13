@@ -55,10 +55,11 @@ namespace BLink.Business.Managers
 
         public static async Task<HttpResponseMessage> GetMemberDetails(string email)
         {
-            var builder = new UriBuilder(ApiConstants.GetMembersEndpoint);
-            builder.Query = "email=" + email;
+            var builder = new UriBuilder(ApiConstants.GetMembersEndpoint)
+            {
+                Query = "email=" + email
+            };
 
-            var uriString = builder.ToString();
             return await _httpClient.GetAsync(builder.ToString());
         }
 
@@ -97,6 +98,26 @@ namespace BLink.Business.Managers
         {
             var fullEndpoint = string.Format(ApiConstants.GetMemberInvitationsEndpoint, email);
             return await _httpClient.GetAsync(fullEndpoint);
+        }
+
+        public static async Task<HttpResponseMessage> CreateClubEvent(
+           ClubEventCreateRequest clubEventCreateRequest)
+        {
+            var jsonObject = JsonConvert.SerializeObject(clubEventCreateRequest);
+            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+            return await _httpClient.PostAsync(
+                ApiConstants.CreateClubEventEndpoint,
+                content);
+        }
+
+        public static async Task<HttpResponseMessage> GetClubEvents(ClubEventFilterRequest clubEventFilterRequest)
+        {
+            var builder = new UriBuilder(ApiConstants.GetClubEventsEndpoint)
+            {
+                Query = $"clubId={clubEventFilterRequest.ClubId}&memberId={clubEventFilterRequest.MemberId}"
+            };
+
+            return await _httpClient.GetAsync(builder.ToString());
         }
     }
 }

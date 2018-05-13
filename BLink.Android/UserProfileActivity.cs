@@ -24,6 +24,7 @@ namespace BLink.Droid
         private MemberDetailsFragment _detailsFragment;
         private ClubFragment _clubFragment;
         private InvitationsFragment _invitationsFragment;
+        private ClubEventsFragment _clubEventsFragment;
         private Account _account;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -58,6 +59,7 @@ namespace BLink.Droid
             _detailsFragment = new MemberDetailsFragment();
             _clubFragment = new ClubFragment();
             _invitationsFragment = new InvitationsFragment(_account);
+            _clubEventsFragment = new ClubEventsFragment(_account);
         }
 
         public void SetupViewPager(ViewPager viewPager)
@@ -67,6 +69,7 @@ namespace BLink.Droid
             adapter.AddFragment(_detailsFragment, "Детайли");
             adapter.AddFragment(_clubFragment, "Моят клуб");
             adapter.AddFragment(_invitationsFragment, "Моите покани");
+            adapter.AddFragment(_clubEventsFragment, "Моите събития");
             viewPager.Adapter = adapter;
         }
     }

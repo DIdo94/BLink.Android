@@ -21,6 +21,7 @@ namespace BLink.Droid
         private RecyclerView.LayoutManager _layoutManager;
         private PlayerAdapter _adapter;
         private IEnumerable<MemberDetails> _memberDetails;
+        private ClubDetails _clubDetails;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -65,9 +66,9 @@ namespace BLink.Droid
             }
             else
             {
-                ClubDetails clubDetails = JsonConvert.DeserializeObject<ClubDetails>(response);
+                _clubDetails = JsonConvert.DeserializeObject<ClubDetails>(response);
                 TextView clubNameText = View.FindViewById<TextView>(Resource.Id.tv_club_clubName);
-                clubNameText.Text = clubDetails.Name;
+                clubNameText.Text = _clubDetails.Name;
                 LinearLayout clubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_clubDetails);
                 clubDetailsLayout.Visibility = ViewStates.Visible;
 
@@ -78,7 +79,7 @@ namespace BLink.Droid
 
                     searchPlayersButton.Click += SearchPlayersButton_Click;
 
-                    HttpResponseMessage getPlayersHttpResponse = await RestManager.GetClubPlayers(clubDetails.Id);
+                    HttpResponseMessage getPlayersHttpResponse = await RestManager.GetClubPlayers(_clubDetails.Id);
                     string getPlayersResponse = await getPlayersHttpResponse.Content.ReadAsStringAsync();
 
                     if (!string.IsNullOrWhiteSpace(getPlayersResponse) && getPlayersResponse != "null")
@@ -86,7 +87,7 @@ namespace BLink.Droid
                         _memberDetails = JsonConvert.DeserializeObject<IEnumerable<MemberDetails>>(getPlayersResponse);
                         if (_memberDetails.Any())
                         {
-                            _adapter = new PlayerAdapter(Activity, _memberDetails.ToArray(), clubDetails);
+                            _adapter = new PlayerAdapter(Activity, _memberDetails.ToArray(), _clubDetails);
                             _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_club_clubPlayers);
                             _recyclerView.SetAdapter(_adapter);
                             _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
@@ -94,9 +95,18 @@ namespace BLink.Droid
                         }
                     }
 
+                    Button goToCreateClubEventButton = View.FindViewById<Button>(Resource.Id.btn_club_goToCreateClubEvent);
+                    goToCreateClubEventButton.Click += GoToCreateClubEventButton_Click;
                     coachClubDetailsLayout.Visibility = ViewStates.Visible;
                 }
             }
+        }
+
+        private void GoToCreateClubEventButton_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(Context, typeof(CreateClubEventActivity));
+            intent.PutExtra("clubId", _clubDetails.Id);
+            StartActivity(intent);
         }
 
         private void SearchPlayersButton_Click(object sender, System.EventArgs e)

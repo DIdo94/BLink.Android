@@ -23,5 +23,9 @@
         public static readonly string RespondInvitationEndpoint = ApiUrl + "/Members/{0}/invitations/{1}/respond";
 
         public static readonly string GetMemberInvitationsEndpoint = ApiUrl + "/Members/{0}/Invitations";
+
+        public static readonly string CreateClubEventEndpoint = ApiUrl + "/ClubEvents";
+
+        public static readonly string GetClubEventsEndpoint = ApiUrl + "/ClubEvents";
     }
 }

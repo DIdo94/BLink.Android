@@ -28,7 +28,6 @@ namespace BLink.Droid
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             // Create your fragment here
         }
 
@@ -49,26 +48,29 @@ namespace BLink.Droid
 
             HttpResponseMessage clubHttpResponse = await RestManager.GetMemberClub(_account.Username);
             string clubResponse = await clubHttpResponse.Content.ReadAsStringAsync();
-            _clubDetails = JsonConvert.DeserializeObject<ClubDetails>(clubResponse);
-
-            ClubEventFilterRequest clubEventFilterRequest = new ClubEventFilterRequest
+            if (clubResponse != "null")
             {
-                MemberId = int.Parse(_account.Properties["memberId"]),
-                ClubId = _clubDetails.Id
-            };
+                _clubDetails = JsonConvert.DeserializeObject<ClubDetails>(clubResponse);
 
-            HttpResponseMessage httpResponse = await RestManager.GetClubEvents(clubEventFilterRequest);
-            string response = await httpResponse.Content.ReadAsStringAsync();
+                ClubEventFilterRequest clubEventFilterRequest = new ClubEventFilterRequest
+                {
+                    MemberId = int.Parse(_account.Properties["memberId"]),
+                    ClubId = _clubDetails.Id
+                };
 
-            _clubEvents = JsonConvert.DeserializeObject<IEnumerable<ClubEventFilterResult>>(response);
+                HttpResponseMessage httpResponse = await RestManager.GetClubEvents(clubEventFilterRequest);
+                string response = await httpResponse.Content.ReadAsStringAsync();
 
-            if (_clubEvents.Any())
-            {
-                _adapter = new ClubEventAdapter(Activity, _clubEvents.ToArray(), _clubDetails);
-                _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_clubEvent_clubEvents);
-                _recyclerView.SetAdapter(_adapter);
-                _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
-                _recyclerView.SetLayoutManager(_layoutManager);
+                _clubEvents = JsonConvert.DeserializeObject<IEnumerable<ClubEventFilterResult>>(response);
+
+                if (_clubEvents.Any())
+                {
+                    _adapter = new ClubEventAdapter(Activity, _clubEvents.ToArray(), _clubDetails);
+                    _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_clubEvent_clubEvents);
+                    _recyclerView.SetAdapter(_adapter);
+                    _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
+                    _recyclerView.SetLayoutManager(_layoutManager);
+                }
             }
         }
     }

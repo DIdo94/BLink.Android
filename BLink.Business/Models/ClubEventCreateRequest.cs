@@ -17,6 +17,8 @@ namespace BLink.Business.Models
 
         public DateTime StartTime { get; set; }
 
+        public  Coordinates Coordinates { get; set; }
+
         //public PlayerStatus IncludePlayerStatuses { get; set; }
     }
 }

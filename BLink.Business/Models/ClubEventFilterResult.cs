@@ -14,5 +14,7 @@ namespace BLink.Business.Models
         public string Description { get; set; }
 
         public DateTime StartTime { get; set; }
+
+        public Coordinates Coordinates { get; set; }
     }
 }

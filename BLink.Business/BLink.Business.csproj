@@ -50,8 +50,14 @@
   <ItemGroup>
     <Compile Include="Common\ApiConstants.cs" />
     <Compile Include="Common\AppConstants.cs" />
+    <Compile Include="Common\Literals.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Literals.resx</DependentUpon>
+    </Compile>
     <Compile Include="Enums\EventType.cs" />
     <Compile Include="Enums\InvitationStatus.cs" />
+    <Compile Include="Enums\Position.cs" />
     <Compile Include="Enums\Role.cs" />
     <Compile Include="Models\ClubDetails.cs" />
     <Compile Include="Models\ClubEventCreateRequest.cs" />
@@ -71,6 +77,12 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Common\Literals.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Literals.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

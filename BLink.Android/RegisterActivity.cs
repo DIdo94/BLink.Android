@@ -14,55 +14,185 @@ using BLink.Business.Models;
 using BLink.Business.Enums;
 using Newtonsoft.Json;
 using Xamarin.Auth;
+using Android.Support.V7.App;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
+using System.Text.RegularExpressions;
+using AndroidHUD;
+using System.Resources;
+using BLink.Business.Common;
 
 namespace BLink.Droid
 {
-    [Activity(Label = "Register")]
-    public class RegisterActivity : Activity
+    [Activity(Label = "Регистрация")]
+    public class RegisterActivity : AppCompatActivity
     {
+        private static readonly int PickImageId = 1000;
+        private Regex _emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+
+        private Toolbar _toolbar;
+        private EditText _email;
+        private EditText _password;
+        private EditText _confirmPassword;
+        private EditText _firstName;
+        private EditText _lastName;
+        private Spinner _rolesSpinner;
+        private EditText _height;
+        private EditText _weight;
+        private ImageView _userImage;
+        private Button _pickImage;
+        private LinearLayout _playerSection;
+        private Spinner _positionsSpinner;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Register);
-            // Create your application here
+
+            _email = FindViewById<EditText>(Resource.Id.et_registerEmail);
+            _password = FindViewById<EditText>(Resource.Id.et_registerPassword);
+            _confirmPassword = FindViewById<EditText>(Resource.Id.et_registerConfirmPassword);
+            _firstName = FindViewById<EditText>(Resource.Id.et_registerFirstName);
+            _lastName = FindViewById<EditText>(Resource.Id.et_registerLastName);
+            _rolesSpinner = FindViewById<Spinner>(Resource.Id.spn_registerRoles);
+            _height = FindViewById<EditText>(Resource.Id.et_register_height);
+            _weight = FindViewById<EditText>(Resource.Id.et_register_weight);
+            _toolbar = FindViewById<Toolbar>(Resource.Id.tbr_register_toolbar);
+            _userImage = FindViewById<ImageView>(Resource.Id.iv_register_userImage);
+            _pickImage = FindViewById<Button>(Resource.Id.btn_register_pickImage);
+            _playerSection = FindViewById<LinearLayout>(Resource.Id.ll_register_playerSection);
+            _positionsSpinner = FindViewById<Spinner>(Resource.Id.spn_register_preferedPosition);
+
+            SetSupportActionBar(_toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
 
             Button registerButton = FindViewById<Button>(Resource.Id.btn_Register);
-            Spinner rolesSpinner = FindViewById<Spinner>(Resource.Id.spn_registerRoles);
 
-            string[] roles = Enum.GetNames(typeof(Role));
-            rolesSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, roles);
+            string[] roles = Enum
+                .GetNames(typeof(Role))
+                .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
+            _rolesSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, roles);
+
+            string[] positions = Enum
+                .GetNames(typeof(Position))
+                .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
+            _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, positions);
+
+            _rolesSpinner.ItemSelected += _rolesSpinner_ItemSelected;
             registerButton.Click += RegisterButton_Click;
+            _pickImage.Click += PickImage_Click;
+        }
+
+        private void _rolesSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            if ((e.Position + 1) == (int)Role.Player)
+            {
+                _playerSection.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                _playerSection.Visibility = ViewStates.Gone;
+            }
+        }
+
+        private void PickImage_Click(object sender, EventArgs e)
+        {
+            var intent = new Intent();
+            Intent.SetType("image/*");
+            Intent.SetAction(Intent.ActionSend);
+            StartActivityForResult(Intent.CreateChooser(Intent, "Select Picture"), PickImageId);
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            if ((requestCode == PickImageId) && (resultCode == Result.Ok) && (data != null))
+            {
+                Android.Net.Uri uri = data.Data;
+                _userImage.SetImageURI(uri);
+                var imageStream = ContentResolver.OpenInputStream(uri);
+            }
         }
 
         private async void RegisterButton_Click(object sender, EventArgs e)
         {
-            EditText email = FindViewById<EditText>(Resource.Id.et_registerEmail);
-            EditText password = FindViewById<EditText>(Resource.Id.et_registerPassword);
-            EditText confirmPassword = FindViewById<EditText>(Resource.Id.et_registerConfirmPassword);
-            EditText firstName = FindViewById<EditText>(Resource.Id.et_registerFirstName);
-            EditText lastName = FindViewById<EditText>(Resource.Id.et_registerLastName);
-            Spinner rolesSpinner = FindViewById<Spinner>(Resource.Id.spn_registerRoles);
-            EditText height = FindViewById<EditText>(Resource.Id.et_register_height);
-            EditText weight = FindViewById<EditText>(Resource.Id.et_register_weight);
-            double.TryParse(weight.Text, out double weightValue);
-            double.TryParse(height.Text, out double heightValue);
 
+            bool hasError = false;
+
+            if (string.IsNullOrWhiteSpace(_email.Text) || !_emailRegex.IsMatch(_email.Text))
+            {
+                _email.Error = "Въведете валиден имейл";
+                hasError = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(_password.Text))
+            {
+                _password.Error = "Въведете парола";
+                hasError = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(_confirmPassword.Text) || _confirmPassword.Text != _password.Text)
+            {
+                _confirmPassword.Error = "Паролите трябва да съвпадат";
+                hasError = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(_firstName.Text))
+            {
+                _firstName.Error = "Въведете Вашето име";
+                hasError = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(_lastName.Text))
+            {
+                _lastName.Error = "Въведете Вашата фамилия";
+                hasError = true;
+            }
+
+            double.TryParse(_weight.Text, out double weightValue);
+            double.TryParse(_height.Text, out double heightValue);
+            var rolePosition = _rolesSpinner.SelectedItemPosition + 1;
+            var role = (Role)rolePosition;
+
+            if (weightValue == 0 && role == Role.Player)
+            {
+                _weight.Error = "Това поле е задължително за играчи";
+                hasError = true;
+            }
+
+            if (heightValue == 0 && role == Role.Player)
+            {
+                _height.Error = "Това поле е задължително за играчи";
+                hasError = true;
+            }
+
+            if (hasError)
+            {
+                return;
+            }
+
+            int selectedPosition = _positionsSpinner.SelectedItemPosition + 1;
+            Position? position = role == Role.Player ?
+                (Position)selectedPosition :
+                default(Position?);
             var registerUser = new RegisterUser
             {
-                Email = email.Text,
-                Password = password.Text,
-                ConfirmPassword = confirmPassword.Text,
-                FirstName = firstName.Text,
-                LastName = lastName.Text,
-                Role = (Role)Enum.Parse(typeof(Role),rolesSpinner.SelectedItem.ToString()),
-                Weight = weightValue,
-                Height = heightValue
+                Email = _email.Text,
+                Password = _password.Text,
+                ConfirmPassword = _confirmPassword.Text,
+                FirstName = _firstName.Text,
+                LastName = _lastName.Text,
+                Role = role,
+                PreferedPosition = position,
+                Weight = position.HasValue ? weightValue : default(double?),
+                Height = position.HasValue ? heightValue : default(double?),
+                File = Assets.Open("person-placeholder.jpg") // TODO This should come from gallery
             };
+
+            AndHUD.Shared.Show(this, "Регистрация…");
             HttpResponseMessage httpResponse = await RestManager.RegisterUser(registerUser);
+            string response = await httpResponse.Content.ReadAsStringAsync();
             if (httpResponse.IsSuccessStatusCode)
             {
-                string response = await httpResponse.Content.ReadAsStringAsync();
                 UserCredentials userCredentials = JsonConvert.DeserializeObject<UserCredentials>(response);
                 Account account = new Account
                 {
@@ -76,12 +206,24 @@ namespace BLink.Droid
                 AccountStore.Create(this).Save(account, appName);
                 RestManager.SetAccessToken(userCredentials.AccessToken);
                 Intent intent = new Intent(this, typeof(UserProfileActivity));
+                AndHUD.Shared.Dismiss(this);
                 StartActivity(intent);
             }
             else
             {
-                Toast.MakeText(this, "Неуспешна регистрация!", ToastLength.Short).Show();
+                AndHUD.Shared.Dismiss(this);
+                Toast.MakeText(this, response, ToastLength.Long).Show();
             }
+
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            //Back button pressed -> toggle event
+            if (item.ItemId == Android.Resource.Id.Home)
+                OnBackPressed();
+
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

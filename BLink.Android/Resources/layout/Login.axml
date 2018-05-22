@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#eeeeee"
+    android:padding="10dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Email"
+        android:text="@string/email"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,9 +15,9 @@
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editLoginEmail" />
+        android:id="@+id/et_login_email" />
     <TextView
-        android:text="Password"
+        android:text="@string/password"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,15 +26,19 @@
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editLoginPassword" />
+        android:id="@+id/et_login_password" />
     <Button
-        android:text="Login"
+        android:background="@drawable/stylishButton"
+        android:textColor="#eeeeee"
+        android:text="@string/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnLogin" />
+        android:id="@+id/btn_login_login" />
     <Button
-        android:text="Register"
+        android:background="@drawable/transparentButton"
+        android:textColor="#455a64"
+        android:text="@string/goToRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_LinkRegister" />
+        android:id="@+id/btn_login_linkRegister" />
 </LinearLayout>

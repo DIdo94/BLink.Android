@@ -70,7 +70,7 @@ namespace BLink.Droid
         private void Logout_Click(object sender, EventArgs e)
         {
             AccountStore.Create().Delete(_account, GetString(Resource.String.app_name));
-            Intent intent = new Intent(Context, typeof(MainActivity));
+            Intent intent = new Intent(Context, typeof(LoginActivity));
             StartActivity(intent);
         }
     }

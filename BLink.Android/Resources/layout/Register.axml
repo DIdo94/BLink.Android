@@ -1,110 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-  <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content">
-    <TextView
-        android:text="Email"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbr_register_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_registerEmail" />
-    <EditText
-        android:inputType="textEmailAddress"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <ScrollView
+        android:padding="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_registerEmail" />
-    <TextView
-        android:text="Password"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_registerPassword" />
-    <EditText
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_registerPassword" />
-    <TextView
-        android:text="Confirm Password"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_registerConfirmPassword" />
-    <EditText
-        android:inputType="textPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_registerConfirmPassword" />
-    <TextView
-        android:text="First Name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_registerFirstName"
-        android:layout_marginBottom="15.0dp" />
-    <EditText
-        android:inputType="textPersonName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_registerFirstName" />
-    <TextView
-        android:text="Last name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_registerLastName"
-        android:layout_marginBottom="5.5dp" />
-    <EditText
-        android:inputType="textPersonName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_registerLastName" />
-    <TextView
-        android:text="I am a:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_registerRoles" />
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="32.5dp"
-        android:id="@+id/spn_registerRoles" />
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ll_register_playerSection">
-      <TextView
-          android:text="Височина (см.)"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/tv_register_height" />
-      <EditText
-          android:inputType="number"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/et_register_height" />
-      <TextView
-          android:text="Тегло (кг.)"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/tv_register_weight" />
-      <EditText
-          android:inputType="number"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:id="@+id/et_register_weight" />
-    </LinearLayout>
-    <Button
-        android:text="Register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_Register" />
-  </LinearLayout>
-</ScrollView>
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/email"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_registerEmail" />
+            <EditText
+                android:inputType="textEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_registerEmail" />
+            <TextView
+                android:text="@string/password"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_registerPassword" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_registerPassword" />
+            <TextView
+                android:text="@string/confirmPassword"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_registerConfirmPassword" />
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_registerConfirmPassword" />
+            <TextView
+                android:text="@string/firstName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_registerFirstName"
+                android:layout_marginBottom="15.0dp" />
+            <EditText
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_registerFirstName" />
+            <TextView
+                android:text="@string/lastName"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_registerLastName"
+                android:layout_marginBottom="5.5dp" />
+            <EditText
+                android:inputType="textPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_registerLastName" />
+            <TextView
+                android:text="@string/iam"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_registerRoles" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="32.5dp"
+                android:id="@+id/spn_registerRoles" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_register_playerSection">
+                <TextView
+                    android:text="@string/heightCm"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_register_height" />
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_register_height" />
+                <TextView
+                    android:text="@string/weightCm"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_register_weight" />
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_register_weight" />
+                <TextView
+                    android:text="@string/preferedPosition"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_register_" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="32.5dp"
+                    android:id="@+id/spn_register_preferedPosition" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_register_pickImage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pickImage" />
+            <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/iv_register_userImage" />
+            <Button
+                android:background="@drawable/stylishButton"
+                android:textColor="#eeeeee"
+                android:text="@string/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_Register" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

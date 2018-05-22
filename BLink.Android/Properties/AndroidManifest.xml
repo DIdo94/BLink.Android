@@ -9,6 +9,8 @@
 	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 	<!-- Google Maps for Android v2 will cache map tiles on external storage -->
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  
 	<!-- Google Maps for Android v2 needs this permission so that it may check the connection state as it must download data -->
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<!-- Permission to receive remote notifications from Google Play Services -->
@@ -17,7 +19,7 @@
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<permission android:name="com.blink.android.blink.android.permission.MAPS_RECEIVE" android:protectionLevel="signature" />
-	<application android:allowBackup="true" android:label="@string/app_name" android:theme="@style/PrimaryThemes">
+	<application android:allowBackup="true" android:label="@string/app_name" android:theme="@style/PrimaryTheme">
     <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAvLJhq_KOFV2G6j69AS73-42SgH7AT2Qk"/>
 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
 	</application>

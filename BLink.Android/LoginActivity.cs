@@ -9,19 +9,21 @@ using System.Net.Http;
 using Xamarin.Auth;
 using Newtonsoft.Json;
 using System.Linq;
+using Android.Support.V7.App;
+using AndroidHUD;
 
 namespace BLink.Droid
 {
-    [Activity(Label = "Login", MainLauncher = false)]
-    public class MainActivity : Activity
+    [Activity(Label = "Вход", Theme = "@style/ActionBarTheme")]
+    public class LoginActivity : AppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.Main);
-            Button registerButton = FindViewById<Button>(Resource.Id.btn_LinkRegister);
+            SetContentView(Resource.Layout.Login);
+            Button registerButton = FindViewById<Button>(Resource.Id.btn_login_linkRegister);
             registerButton.Click += RegisterButton_Click;
-            Button loginButton = FindViewById<Button>(Resource.Id.btnLogin);
+            Button loginButton = FindViewById<Button>(Resource.Id.btn_login_login);
             loginButton.Click += LoginButton_Click;
 
             // Cleanup for accounts TODO Better cleanup
@@ -34,14 +36,12 @@ namespace BLink.Droid
             {
                 AccountStore.Create(this).Delete(account, appName);
             }
-            
-            // Set our view from the "main" layout resource
         }
 
         private async void LoginButton_Click(object sender, System.EventArgs e)
         {
-            EditText email = FindViewById<EditText>(Resource.Id.editLoginEmail);
-            EditText password = FindViewById<EditText>(Resource.Id.editLoginPassword);
+            EditText email = FindViewById<EditText>(Resource.Id.et_login_email);
+            EditText password = FindViewById<EditText>(Resource.Id.et_login_password);
             Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             if (string.IsNullOrEmpty(email.Text))
             {
@@ -67,6 +67,7 @@ namespace BLink.Droid
                     Password = password.Text
                 };
 
+                AndHUD.Shared.Show(this, "Влизане…");
                 HttpResponseMessage httpResponse = await RestManager.LoginUser(loginUser);
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -91,6 +92,8 @@ namespace BLink.Droid
                 {
                     Toast.MakeText(ApplicationContext, "Грешен имейл и/или парола", ToastLength.Long).Show();
                 }
+
+                AndHUD.Shared.Dismiss(this);
             }
         }
 

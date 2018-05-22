@@ -3,7 +3,11 @@ using BLink.Business.Enums;
 using BLink.Business.Models;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,8 +32,13 @@ namespace BLink.Business.Managers
 
         public static async Task<HttpResponseMessage> RegisterUser(RegisterUser registerUser)
         {
-            var jsonObject = JsonConvert.SerializeObject(registerUser);
-            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+            var content = new MultipartFormDataContent();
+            HttpContent fileStreamContent = new StreamContent(registerUser.File);
+            fileStreamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data") { Name = "userImage", FileName = "person-placeholder.jpg" };
+            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
+            content.Add(fileStreamContent, "userImage");
+            AddStringContent(content, registerUser);
+
             return await _httpClient.PostAsync(ApiConstants.RegisterEndpoint, content);
         }
 
@@ -118,6 +127,23 @@ namespace BLink.Business.Managers
             };
 
             return await _httpClient.GetAsync(builder.ToString());
+        }
+
+        private static void AddStringContent(MultipartFormDataContent content, RegisterUser data)
+        {
+            var props = data.GetType().GetProperties();
+            foreach (var prop in props)
+            {
+                if (prop.GetType() != typeof(Stream))
+                {
+                    var value = prop.GetValue(data)?.ToString();
+                    if (value != null)
+                    {
+                        var propName = prop.Name;
+                        content.Add(new StringContent(value), propName);
+                    }
+                }
+            }
         }
     }
 }

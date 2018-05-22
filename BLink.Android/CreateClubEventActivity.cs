@@ -1,25 +1,23 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Gms.Location;
-using Android.Gms.Location.Places.UI;
-using Android.Gms.Maps;
-using Android.Gms.Maps.Model;
-using Android.Locations;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Views;
 using Android.Widget;
 using BLink.Business.Enums;
 using BLink.Business.Managers;
 using BLink.Business.Models;
 using Newtonsoft.Json;
 using System;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace BLink.Droid
 {
-    [Activity(Label = "CreateClubEventActivity")]
+    [Activity(Label = "Създайте събитие")]
     public class CreateClubEventActivity : AppCompatActivity
     {
         private Coordinates _markerPosition;
+        private Toolbar _toolbar;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -27,6 +25,13 @@ namespace BLink.Droid
             // Create your application here
 
             SetContentView(Resource.Layout.CreateClubEvent);
+
+            // ... OnCreate method
+            _toolbar = FindViewById<Toolbar>(Resource.Id.tv_createClubEvent_toolbar);
+            SetSupportActionBar(_toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeButtonEnabled(true);
+
             var placeInfo = FindViewById<TextView>(Resource.Id.tv_createClubEvent_eventInfo);
             var place = Intent.GetStringExtra("place");
             if (!string.IsNullOrWhiteSpace(place))
@@ -89,6 +94,15 @@ namespace BLink.Droid
             {
                 Toast.MakeText(this, "Неуспешно създадено събитие!", ToastLength.Short).Show();
             }
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            //Back button pressed -> toggle event
+            if (item.ItemId == Android.Resource.Id.Home)
+                OnBackPressed();
+
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

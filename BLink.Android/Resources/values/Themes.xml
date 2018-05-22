@@ -1,12 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-  <style name="PrimaryThemes" parent="Theme.AppCompat.Light">
-
+  <style name="ActionBarTheme" parent="Theme.AppCompat.Light">
+    <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="windowNoTitle">false</item>
+    <item name="windowActionBar">true</item>
+    <item name="colorPrimary">@color/primaryColor</item>
+    <!--<item name="colorPrimaryLight">@color/primaryColorLight</item>-->
+    <item name="colorPrimaryDark">@color/primaryColor</item>
+    <item name="android:textColor">#455a64</item>
+    <item name="android:colorControlActivated">#455a64</item>
+    <!--<item name="colorSecondary">@color/secondaryColor</item>
+    <item name="colorSecondaryLight">@color/secondaryLightColor</item>
+    <item name="colorSecondaryDark">@color/secondaryDarkColor</item>-->
+  </style>
+  <style name="PrimaryTheme" parent="Theme.AppCompat.Light">
+    <item name="android:fontFamily">sans-serif-medium</item>
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
-    <item name="colorPrimary">#E53935</item>
-    <item name="colorPrimaryDark">#D32F2F</item>
-
+    <item name="colorPrimary">@color/primaryColor</item>
+    <!--<item name="colorPrimaryLight">@color/primaryColorLight</item>-->
+    <item name="colorPrimaryDark">@color/primaryColor</item>
+    <item name="android:textColor">#455a64</item>
+    <item name="android:colorControlActivated">#455a64</item>
+    <!--<item name="colorSecondary">@color/secondaryColor</item>
+    <item name="colorSecondaryLight">@color/secondaryLightColor</item>
+    <item name="colorSecondaryDark">@color/secondaryDarkColor</item>-->
   </style>
   <!--TabLayout Theme-->
 

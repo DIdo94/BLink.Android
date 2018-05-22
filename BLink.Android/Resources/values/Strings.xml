@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">BLink.Droid</string>
-<string name="user_details">Данни за потребителя</string>
+  <string name="user_details">Данни за потребителя</string>
+  <string name="email">Имейл</string>
+  <string name="password">Парола</string>
+  <string name="confirmPassword">Потвърди парола</string>
+  <string name="login">Вход</string>
+  <string name="register">Регистрация</string>
+  <string name="goToRegister">Отидете към регистрация</string>
+  <string name="pickImage">Изберете снимка</string>
+  <string name="firstName">Име</string>
+  <string name="lastName">Фамилия</string>
+  <string name="iam">Аз съм</string>
+  <string name="heightCm">Височина (см.)</string>
+  <string name="weightCm">Тегло (кг.)</string>
+  <string name="preferedPosition">Предпочитана позиция</string>
 </resources>

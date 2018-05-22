@@ -1,4 +1,5 @@
 ﻿using BLink.Business.Enums;
+using System.IO;
 
 namespace BLink.Business.Models
 {
@@ -19,5 +20,9 @@ namespace BLink.Business.Models
         public double? Weight { get; set; }
 
         public double? Height { get; set; }
+
+        public Position? PreferedPosition { get; set; }
+
+        public Stream File { get; set; }
     }
 }

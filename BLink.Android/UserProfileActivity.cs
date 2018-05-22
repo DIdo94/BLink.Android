@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using BLink.Business.Managers;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
@@ -39,7 +33,7 @@ namespace BLink.Droid
                .FirstOrDefault();
             if (_account == null)
             {
-                Intent intent = new Intent(this, typeof(MainActivity));
+                Intent intent = new Intent(this, typeof(LoginActivity));
                 StartActivity(intent);
             }
             else

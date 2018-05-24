@@ -29,8 +29,8 @@
   <!--TabLayout Theme-->
 
   <style name="TabLayoutThemes" parent="Widget.Design.TabLayout">
-    <item name="tabIndicatorColor">#FFFFFF</item>
-        <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabSelectedTextColor">#212121</item>
-    </style>
+    <item name="tabIndicatorColor">#455a64</item>
+    <item name="tabIndicatorHeight">2dp</item>
+    <item name="tabSelectedTextColor">#f9fdff</item>
+   </style>
 </resources>

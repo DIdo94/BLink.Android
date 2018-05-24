@@ -5,14 +5,15 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
-using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
 namespace BLink.Business.Common
 {
-    class AppConstants
+    public static class AppConstants
     {
+        public static string UserImagesPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+        public static string MainPhotoFormat = "main_Photo.jpeg";
     }
 }

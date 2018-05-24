@@ -3,11 +3,9 @@ using BLink.Business.Enums;
 using BLink.Business.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,13 +85,13 @@ namespace BLink.Business.Managers
             var jsonObject = JsonConvert.SerializeObject(new { playerId = playerId, Description = "Hello" }); // TODO Description from coach input
             var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
             return await _httpClient.PostAsync(
-                string.Format(ApiConstants.InvitePlayerEndpoint, clubId), 
+                string.Format(ApiConstants.InvitePlayerEndpoint, clubId),
                 content);
         }
 
         public static async Task<HttpResponseMessage> RespondInvitation(
-            string email, 
-            int invitationId, 
+            string email,
+            int invitationId,
             InvitationStatus invitationStatus)
         {
             var jsonObject = JsonConvert.SerializeObject(new { invitationStatus = invitationStatus });
@@ -129,7 +127,35 @@ namespace BLink.Business.Managers
             return await _httpClient.GetAsync(builder.ToString());
         }
 
-        private static void AddStringContent(MultipartFormDataContent content, RegisterUser data)
+        public static async Task<string> GetMemberPhoto(string email)
+        {
+            var url = new Uri(string.Format(ApiConstants.GetMemberPhotoEndpoint, email));
+            var imageStream = await _httpClient.GetStreamAsync(url);
+            var imagePath = Path.Combine(AppConstants.UserImagesPath, AppConstants.MainPhotoFormat);
+            using (var streamWriter = new FileStream(imagePath, FileMode.Create))
+            {
+                imageStream.CopyTo(streamWriter);
+            }
+
+            return imagePath;
+        }
+
+        public static async Task<HttpResponseMessage> EditMemberDetails(EditMemberDetails editMemberDetails)
+        {
+            var content = new MultipartFormDataContent();
+            HttpContent fileStreamContent = new StreamContent(editMemberDetails.File);
+            fileStreamContent.Headers.ContentDisposition = 
+                new ContentDispositionHeaderValue("form-data") { Name = "userImage", FileName = "person-placeholder.jpg" };
+            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
+            content.Add(fileStreamContent, "userImage");
+            AddStringContent(content, editMemberDetails);
+
+            return await _httpClient.PostAsync(
+                string.Format(ApiConstants.EditMemberDetailsEndpoint, editMemberDetails.Email), 
+                content);
+        }
+
+        private static void AddStringContent<T>(MultipartFormDataContent content, T data)
         {
             var props = data.GetType().GetProperties();
             foreach (var prop in props)

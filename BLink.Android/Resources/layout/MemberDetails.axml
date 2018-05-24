@@ -1,107 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px">
-  <LinearLayout
-      android:orientation="horizontal"
-      android:layout_marginTop="10dp"
-      android:layout_marginLeft="30dp"
-      android:layout_marginRight="30dp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/locSection">
-    <TextView
-        android:text="Име"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:gravity="left"
-        android:id="@+id/lbl_memberDetails_firstName" />
-    <TextView
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:gravity="left"
-        android:id="@+id/tv_memberDetails_firstName" />
-  </LinearLayout>
-  <LinearLayout
-      android:orientation="horizontal"
-      android:layout_marginTop="10dp"
-      android:layout_marginLeft="30dp"
-      android:layout_marginRight="30dp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/locSection1">
-    <TextView
-        android:text="Фамилия"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:gravity="left"
-        android:id="@+id/lbl_memberDetails_lastName" />
-    <TextView
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:gravity="left"
-        android:id="@+id/tv_memberDetails_lastName" />
-  </LinearLayout>
-  <LinearLayout
-      android:orientation="horizontal"
-      android:layout_marginTop="10dp"
-      android:layout_marginLeft="30dp"
-      android:layout_marginRight="30dp"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/locSection2">
-    <TextView
-        android:text="Височина"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:gravity="left"
-        android:id="@+id/lbl_memberDetails_height" />
-    <TextView
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:gravity="left"
-        android:id="@+id/tv_memberDetails_height" />
-  </LinearLayout>
-  <LinearLayout
-    android:orientation="horizontal"
-    android:layout_marginTop="10dp"
-    android:layout_marginLeft="30dp"
-    android:layout_marginRight="30dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/locSection3">
-    <TextView
-        android:text="Тегло"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="120dp"
-        android:layout_height="30dp"
-        android:gravity="left"
-        android:id="@+id/lbl_memberDetails_weight" />
-    <TextView
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:gravity="left"
-        android:id="@+id/tv_memberDetails_weight" />
-  </LinearLayout>
-  <Button
-    android:text="Излез от профила"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:visibility="gone"
-    android:id="@+id/btn_memberDetails_logout" />
-</LinearLayout>
+    android:layout_height="wrap_content">
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:background="#eeeeee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="25px"
+        android:minHeight="25px">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:background="#ccc9c9"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <refractored.controls.CircleImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#FF000000"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:id="@+id/iv_memberDetails_mainPhoto" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locSection">
+            <TextView
+                android:text="Име"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:id="@+id/lbl_memberDetails_firstName" />
+            <TextView
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:gravity="left"
+                android:id="@+id/tv_memberDetails_firstName" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/locSection1">
+            <TextView
+                android:text="Фамилия"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:gravity="left"
+                android:id="@+id/lbl_memberDetails_lastName" />
+            <TextView
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:gravity="left"
+                android:id="@+id/tv_memberDetails_lastName" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/ll_memberDetails_playerSection"
+            android:visibility="gone">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locSection2">
+                <TextView
+                    android:text="Височина"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:gravity="left"
+                    android:id="@+id/lbl_memberDetails_height" />
+                <TextView
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="left"
+                    android:id="@+id/tv_memberDetails_height" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locSection3">
+                <TextView
+                    android:text="Тегло"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:gravity="left"
+                    android:id="@+id/lbl_memberDetails_weight" />
+                <TextView
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="left"
+                    android:id="@+id/tv_memberDetails_weight" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locSection4">
+                <TextView
+                    android:text="Позиция"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:gravity="left"
+                    android:id="@+id/lbl_memberDetails_preferedPosition" />
+                <TextView
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="left"
+                    android:id="@+id/tv_memberDetails_preferedPosition" />
+            </LinearLayout>
+        </LinearLayout>
+        <Button
+            android:background="@drawable/stylishButton"
+            android:textColor="#eeeeee"
+            android:text="Редактиране на профила"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_memberDetails_edit" />
+        <Button
+            android:text="Излез от профила"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/btn_memberDetails_logout" />
+    </LinearLayout>
+</ScrollView>

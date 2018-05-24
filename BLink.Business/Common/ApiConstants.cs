@@ -27,5 +27,9 @@
         public static readonly string CreateClubEventEndpoint = ApiUrl + "/ClubEvents";
 
         public static readonly string GetClubEventsEndpoint = ApiUrl + "/ClubEvents";
+
+        public static readonly string GetMemberPhotoEndpoint = ApiUrl + "/Members/{0}/mainPhoto";
+
+        public static readonly string EditMemberDetailsEndpoint = ApiUrl + "/Members/{0}";
     }
 }

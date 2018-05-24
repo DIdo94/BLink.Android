@@ -15,4 +15,5 @@
   <string name="heightCm">Височина (см.)</string>
   <string name="weightCm">Тегло (кг.)</string>
   <string name="preferedPosition">Предпочитана позиция</string>
+  <string name="editDetails">Променете детайлите</string>
 </resources>

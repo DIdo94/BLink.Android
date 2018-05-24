@@ -214,7 +214,6 @@ namespace BLink.Droid
                 AndHUD.Shared.Dismiss(this);
                 Toast.MakeText(this, response, ToastLength.Long).Show();
             }
-
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

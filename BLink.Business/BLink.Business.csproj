@@ -65,6 +65,7 @@
     <Compile Include="Models\ClubEventFilterResult.cs" />
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\CreateClub.cs" />
+    <Compile Include="Models\EditMemberDetails.cs" />
     <Compile Include="Models\InvitationResponse.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\MemberDetails.cs" />

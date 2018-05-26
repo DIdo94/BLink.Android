@@ -16,4 +16,11 @@
   <string name="weightCm">Тегло (кг.)</string>
   <string name="preferedPosition">Предпочитана позиция</string>
   <string name="editDetails">Променете детайлите</string>
+  <string name="iconChevronUp">&#xf077;</string>
+  <string name="iconChevronDown">&#xf078;</string>
+  <string name="iconRuler">&#xf548;</string>
+  <string name="iconWeight">&#xf496;</string>
+  <string name="iconMale">&#xf183;</string>
+  <string name="noPlayersFound">Няма намерени играчи</string>
+  <string name="resetFilters">Изчисти филтрите</string>
 </resources>

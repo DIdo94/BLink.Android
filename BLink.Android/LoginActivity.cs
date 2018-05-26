@@ -55,9 +55,9 @@ namespace BLink.Droid
             {
                 password.Error = "Въведете парола";
             }
-            else if (password.Text.Length < 5 && password.Text.Length > 15)
+            else if (password.Text.Length < 6 && password.Text.Length > 15)
             {
-                password.Error = "Парола трябва да е между 5 и 15 символа";
+                password.Error = "Парола трябва да е между 6 и 15 символа";
             }
             else
             {

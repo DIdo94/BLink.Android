@@ -120,11 +120,29 @@
   <data name="Center" xml:space="preserve">
     <value>Център</value>
   </data>
+  <data name="Club" xml:space="preserve">
+    <value>Клуб</value>
+  </data>
   <data name="Coach" xml:space="preserve">
     <value>Треньор</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детайли</value>
+  </data>
+  <data name="Events" xml:space="preserve">
+    <value>Събития</value>
+  </data>
   <data name="Guard" xml:space="preserve">
     <value>Плеймейкър</value>
+  </data>
+  <data name="HeightCmFormat" xml:space="preserve">
+    <value>{0} {1} см.</value>
+  </data>
+  <data name="Invitations" xml:space="preserve">
+    <value>Покани</value>
+  </data>
+  <data name="NoClubMessage" xml:space="preserve">
+    <value>Нямате клуб</value>
   </data>
   <data name="Player" xml:space="preserve">
     <value>Играч</value>
@@ -137,5 +155,8 @@
   </data>
   <data name="SmallForward" xml:space="preserve">
     <value>Леко крило</value>
+  </data>
+  <data name="WeightKgFormat" xml:space="preserve">
+    <value>{0} {1} кг.</value>
   </data>
 </root>

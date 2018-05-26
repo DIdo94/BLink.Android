@@ -70,6 +70,15 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Клуб.
+        /// </summary>
+        public static string Club {
+            get {
+                return ResourceManager.GetString("Club", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Треньор.
         /// </summary>
         public static string Coach {
@@ -79,11 +88,56 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Детайли.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Събития.
+        /// </summary>
+        public static string Events {
+            get {
+                return ResourceManager.GetString("Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Плеймейкър.
         /// </summary>
         public static string Guard {
             get {
                 return ResourceManager.GetString("Guard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} см..
+        /// </summary>
+        public static string HeightCmFormat {
+            get {
+                return ResourceManager.GetString("HeightCmFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Покани.
+        /// </summary>
+        public static string Invitations {
+            get {
+                return ResourceManager.GetString("Invitations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нямате клуб.
+        /// </summary>
+        public static string NoClubMessage {
+            get {
+                return ResourceManager.GetString("NoClubMessage", resourceCulture);
             }
         }
         
@@ -120,6 +174,15 @@ namespace BLink.Business.Common {
         public static string SmallForward {
             get {
                 return ResourceManager.GetString("SmallForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1} кг..
+        /// </summary>
+        public static string WeightKgFormat {
+            get {
+                return ResourceManager.GetString("WeightKgFormat", resourceCulture);
             }
         }
     }

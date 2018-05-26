@@ -55,9 +55,49 @@ namespace BLink.Business.Managers
 
         public static async Task<HttpResponseMessage> CreateClub(CreateClub createClub)
         {
-            var jsonObject = JsonConvert.SerializeObject(createClub);
-            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+            var content = new MultipartFormDataContent();
+            HttpContent fileStreamContent = new StreamContent(createClub.ClubPhoto);
+            fileStreamContent.Headers.ContentDisposition =
+                new ContentDispositionHeaderValue("form-data") { Name = "clubImage", FileName = "club-main-photo.jpg" };
+            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
+            content.Add(fileStreamContent, "clubImage");
+            AddStringContent(content, createClub);
+
             return await _httpClient.PostAsync(ApiConstants.CreateClubEndpoint, content);
+        }
+
+        public static async Task<HttpResponseMessage> EditClub(EditClub editClub)
+        {
+            var content = new MultipartFormDataContent();
+            HttpContent fileStreamContent = new StreamContent(editClub.ClubPhoto);
+            fileStreamContent.Headers.ContentDisposition =
+                new ContentDispositionHeaderValue("form-data") { Name = "clubImage", FileName = "club-main-photo.jpg" };
+            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
+            content.Add(fileStreamContent, "clubImage");
+
+            AddStringContent(content, editClub);
+
+            return await _httpClient.PostAsync(string.Format(ApiConstants.EditClubEndpoint, editClub.ClubId), content);
+        }
+
+        public static async Task<HttpResponseMessage> KickPlayer(KickPlayerRequest kickPlayerRequest)
+        {
+            return await _httpClient.PostAsync(
+                string.Format(ApiConstants.KickPlayerEndpoint, kickPlayerRequest.ClubId, kickPlayerRequest.PlayerId),
+                new StringContent(string.Empty));
+        }
+
+        public static async Task<string> GetClubPhoto(int cludId)
+        {
+            var url = new Uri(string.Format(ApiConstants.GetClubPhotoEndpoint, cludId));
+            var imageStream = await _httpClient.GetStreamAsync(url);
+            var imagePath = Path.Combine(AppConstants.UserImagesPath, AppConstants.MainClubPhotoFormat);
+            using (var streamWriter = new FileStream(imagePath, FileMode.Create))
+            {
+                imageStream.CopyTo(streamWriter);
+            }
+
+            return imagePath;
         }
 
         public static async Task<HttpResponseMessage> GetMemberDetails(string email)
@@ -75,9 +115,26 @@ namespace BLink.Business.Managers
             return await _httpClient.GetAsync(string.Format(ApiConstants.GetClubPlayersEndpoint, clubId));
         }
 
-        public static async Task<HttpResponseMessage> GetAvailablePlayers()
+        public static async Task<HttpResponseMessage> GetClubPlayers(SearchPlayersCritera searchPlayersCritera)
         {
-            return await _httpClient.GetAsync(ApiConstants.GetAvailablePlayersEndpoint);
+            var query = BuildQueryString(searchPlayersCritera);
+            var builder = new UriBuilder(string.Format(ApiConstants.GetClubPlayersEndpoint, searchPlayersCritera.ClubId.Value))
+            {
+                Query = query
+            };
+
+            return await _httpClient.GetAsync(builder.ToString());
+        }
+
+        public static async Task<HttpResponseMessage> GetAvailablePlayers(SearchPlayersCritera searchPlayersCritera)
+        {
+            var query = BuildQueryString(searchPlayersCritera);
+            var builder = new UriBuilder(ApiConstants.GetAvailablePlayersEndpoint)
+            {
+                Query = query
+            };
+
+            return await _httpClient.GetAsync(builder.ToString());
         }
 
         public static async Task<HttpResponseMessage> InvitePlayer(int playerId, int clubId)
@@ -144,14 +201,14 @@ namespace BLink.Business.Managers
         {
             var content = new MultipartFormDataContent();
             HttpContent fileStreamContent = new StreamContent(editMemberDetails.File);
-            fileStreamContent.Headers.ContentDisposition = 
+            fileStreamContent.Headers.ContentDisposition =
                 new ContentDispositionHeaderValue("form-data") { Name = "userImage", FileName = "person-placeholder.jpg" };
             fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
             content.Add(fileStreamContent, "userImage");
             AddStringContent(content, editMemberDetails);
 
             return await _httpClient.PostAsync(
-                string.Format(ApiConstants.EditMemberDetailsEndpoint, editMemberDetails.Email), 
+                string.Format(ApiConstants.EditMemberDetailsEndpoint, editMemberDetails.Email),
                 content);
         }
 
@@ -170,6 +227,22 @@ namespace BLink.Business.Managers
                     }
                 }
             }
+        }
+
+        private static string BuildQueryString<T>(T data)
+        {
+            var queryString = new StringBuilder();
+            var props = data.GetType().GetProperties();
+            foreach (var prop in props)
+            {
+                var value = prop.GetValue(data)?.ToString();
+                if (value != null)
+                {
+                    queryString.Append($"{prop.Name}={value}&");
+                }
+            }
+
+            return queryString.ToString();
         }
     }
 }

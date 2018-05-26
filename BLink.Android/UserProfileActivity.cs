@@ -7,6 +7,7 @@ using Android.Support.V4.View;
 using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using Xamarin.Auth;
+using BLink.Business.Common;
 
 namespace BLink.Droid
 {
@@ -50,8 +51,8 @@ namespace BLink.Droid
 
         private void InitialFragment()
         {
-            _detailsFragment = new MemberDetailsFragment();
-            _clubFragment = new ClubFragment();
+            _detailsFragment = new MemberDetailsFragment(_account);
+            _clubFragment = new ClubFragment(_account);
             _invitationsFragment = new InvitationsFragment(_account);
             _clubEventsFragment = new ClubEventsFragment(_account);
         }
@@ -60,10 +61,10 @@ namespace BLink.Droid
         {
             InitialFragment();
             ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
-            adapter.AddFragment(_detailsFragment, "Детайли");
-            adapter.AddFragment(_clubFragment, "Моят клуб");
-            adapter.AddFragment(_invitationsFragment, "Моите покани");
-            adapter.AddFragment(_clubEventsFragment, "Моите събития");
+            adapter.AddFragment(_detailsFragment, Literals.Details);
+            adapter.AddFragment(_clubFragment, Literals.Club);
+            adapter.AddFragment(_invitationsFragment, Literals.Invitations);
+            adapter.AddFragment(_clubEventsFragment, Literals.Events);
             viewPager.Adapter = adapter;
         }
     }

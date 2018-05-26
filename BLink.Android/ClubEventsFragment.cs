@@ -8,6 +8,8 @@ using BLink.Business.Managers;
 using Xamarin.Auth;
 using System.Linq;
 using Newtonsoft.Json;
+using Android.Widget;
+using Android.Content;
 
 namespace BLink.Droid
 {
@@ -46,6 +48,8 @@ namespace BLink.Droid
         {
             base.OnActivityCreated(savedInstanceState);
 
+            Button goToCreateClubEventButton = View.FindViewById<Button>(Resource.Id.btn_clubEvent_goToCreateClubEvent);
+            goToCreateClubEventButton.Click += GoToCreateClubEventButton_Click;
             HttpResponseMessage clubHttpResponse = await RestManager.GetMemberClub(_account.Username);
             string clubResponse = await clubHttpResponse.Content.ReadAsStringAsync();
             if (clubResponse != "null")
@@ -72,6 +76,13 @@ namespace BLink.Droid
                     _recyclerView.SetLayoutManager(_layoutManager);
                 }
             }
+        }
+
+        private void GoToCreateClubEventButton_Click(object sender, System.EventArgs e)
+        {
+            Intent intent = new Intent(Context, typeof(CreateClubEventActivity));
+            intent.PutExtra("clubId", _clubDetails.Id);
+            StartActivity(intent);
         }
     }
 }

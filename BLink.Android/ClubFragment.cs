@@ -1,8 +1,10 @@
 ﻿using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using BLink.Business.Common;
 using BLink.Business.Enums;
 using BLink.Business.Managers;
 using BLink.Business.Models;
@@ -22,12 +24,26 @@ namespace BLink.Droid
         private PlayerAdapter _adapter;
         private IEnumerable<MemberDetails> _memberDetails;
         private ClubDetails _clubDetails;
+        private ImageView _mainPhoto;
+        private SearchPlayersCritera _searchPlayersCritera;
+
+        public ClubFragment(Account account)
+        {
+            _account = account;
+            _searchPlayersCritera = new SearchPlayersCritera
+            {
+                MaxHeight = int.MaxValue,
+                MaxWeight = int.MaxValue
+            };
+        }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
+            _account = AccountStore
+               .Create()
+               .FindAccountsForService(GetString(Resource.String.app_name))
+               .FirstOrDefault();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -44,22 +60,18 @@ namespace BLink.Droid
         {
             base.OnActivityCreated(OnActivityCreated);
 
-            _account = AccountStore
-                   .Create()
-                   .FindAccountsForService(GetString(Resource.String.app_name))
-                   .FirstOrDefault();
-
             HttpResponseMessage httpResponse = await RestManager.GetMemberClub(_account.Username);
             string response = await httpResponse.Content.ReadAsStringAsync();
 
             if (string.IsNullOrWhiteSpace(response) || response == "null")
             {
-                Button createClubButton = View.FindViewById<Button>(Resource.Id.btn_club_createClub);
-                TextView clubNameLabel = View.FindViewById<TextView>(Resource.Id.lbl_club_clubName);
-                clubNameLabel.Text = "Нямате клуб";
+                TextView noClubMessage = View.FindViewById<TextView>(Resource.Id.tv_club_noClubMessage);
+                noClubMessage.Text = Literals.NoClubMessage;
+                noClubMessage.Visibility = ViewStates.Visible;
 
                 if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
                 {
+                    Button createClubButton = View.FindViewById<Button>(Resource.Id.btn_club_createClub);
                     createClubButton.Visibility = ViewStates.Visible;
                     createClubButton.Click += CreateClubButton_Click;
                 }
@@ -67,45 +79,50 @@ namespace BLink.Droid
             else
             {
                 _clubDetails = JsonConvert.DeserializeObject<ClubDetails>(response);
+                string imagePath = await RestManager.GetClubPhoto(_clubDetails.Id);
+                _mainPhoto = View.FindViewById<ImageView>(Resource.Id.iv_club_mainPhoto);
+                var bitmap = BitmapFactory.DecodeFile(imagePath);
+                _mainPhoto.SetImageBitmap(bitmap);
+
                 TextView clubNameText = View.FindViewById<TextView>(Resource.Id.tv_club_clubName);
                 clubNameText.Text = _clubDetails.Name;
                 LinearLayout clubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_clubDetails);
                 clubDetailsLayout.Visibility = ViewStates.Visible;
 
-                if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
+                Button searchPlayersButton = View.FindViewById<Button>(Resource.Id.btn_club_searchPlayers);
+                searchPlayersButton.Click += SearchPlayersButton_Click;
+
+                Button editClub = View.FindViewById<Button>(Resource.Id.btn_club_editClubDetails);
+                editClub.Click += EditClub_Click;
+
+
+                LinearLayout coachClubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_coachClubDetails);
+                coachClubDetailsLayout.Visibility = ViewStates.Visible;
+
+                _searchPlayersCritera.ClubId = _clubDetails.Id;
+                HttpResponseMessage getPlayersHttpResponse = await RestManager.GetClubPlayers(_searchPlayersCritera);
+                string getPlayersResponse = await getPlayersHttpResponse.Content.ReadAsStringAsync();
+
+                if (!string.IsNullOrWhiteSpace(getPlayersResponse) && getPlayersResponse != "null")
                 {
-                    Button searchPlayersButton = View.FindViewById<Button>(Resource.Id.btn_club_searchPlayers);
-                    LinearLayout coachClubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_coachClubDetails);
-
-                    searchPlayersButton.Click += SearchPlayersButton_Click;
-
-                    HttpResponseMessage getPlayersHttpResponse = await RestManager.GetClubPlayers(_clubDetails.Id);
-                    string getPlayersResponse = await getPlayersHttpResponse.Content.ReadAsStringAsync();
-
-                    if (!string.IsNullOrWhiteSpace(getPlayersResponse) && getPlayersResponse != "null")
+                    _memberDetails = JsonConvert.DeserializeObject<IEnumerable<MemberDetails>>(getPlayersResponse);
+                    if (_memberDetails.Any())
                     {
-                        _memberDetails = JsonConvert.DeserializeObject<IEnumerable<MemberDetails>>(getPlayersResponse);
-                        if (_memberDetails.Any())
-                        {
-                            _adapter = new PlayerAdapter(Activity, _memberDetails.ToArray(), _clubDetails);
-                            _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_club_clubPlayers);
-                            _recyclerView.SetAdapter(_adapter);
-                            _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
-                            _recyclerView.SetLayoutManager(_layoutManager);
-                        }
+                        _adapter = new PlayerAdapter(Activity, _memberDetails.ToArray(), _clubDetails, _account);
+                        _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_club_clubPlayers);
+                        _recyclerView.SetAdapter(_adapter);
+                        _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
+                        _recyclerView.SetLayoutManager(_layoutManager);
                     }
-
-                    Button goToCreateClubEventButton = View.FindViewById<Button>(Resource.Id.btn_club_goToCreateClubEvent);
-                    goToCreateClubEventButton.Click += GoToCreateClubEventButton_Click;
-                    coachClubDetailsLayout.Visibility = ViewStates.Visible;
                 }
             }
         }
 
-        private void GoToCreateClubEventButton_Click(object sender, System.EventArgs e)
+        private void EditClub_Click(object sender, System.EventArgs e)
         {
-            Intent intent = new Intent(Context, typeof(CreateClubEventActivity));
-            intent.PutExtra("clubId", _clubDetails.Id);
+            Intent intent = new Intent(Context, typeof(EditClubActivity));
+            intent.PutExtra("club", JsonConvert.SerializeObject(_clubDetails));
+            intent.PutExtra("email", _account.Username);
             StartActivity(intent);
         }
 

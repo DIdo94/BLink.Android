@@ -30,6 +30,12 @@
 
         public static readonly string GetMemberPhotoEndpoint = ApiUrl + "/Members/{0}/mainPhoto";
 
+        public static readonly string GetClubPhotoEndpoint = ApiUrl + "/Clubs/{0}/mainPhoto";
+
         public static readonly string EditMemberDetailsEndpoint = ApiUrl + "/Members/{0}";
+
+        public static readonly string EditClubEndpoint = ApiUrl + "/Clubs/{0}";
+
+        public static readonly string KickPlayerEndpoint = ApiUrl + "/Clubs/{0}/kickPlayer/{1}";
     }
 }

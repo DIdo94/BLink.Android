@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using BLink.Business.Managers;
@@ -18,8 +15,8 @@ using Android.Support.V7.App;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 using System.Text.RegularExpressions;
 using AndroidHUD;
-using System.Resources;
 using BLink.Business.Common;
+using System.IO;
 
 namespace BLink.Droid
 {
@@ -109,7 +106,7 @@ namespace BLink.Droid
             {
                 Android.Net.Uri uri = data.Data;
                 _userImage.SetImageURI(uri);
-                var imageStream = ContentResolver.OpenInputStream(uri);
+                Stream imageStream = ContentResolver.OpenInputStream(uri);
             }
         }
 

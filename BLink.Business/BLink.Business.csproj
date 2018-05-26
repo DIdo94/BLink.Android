@@ -65,12 +65,15 @@
     <Compile Include="Models\ClubEventFilterResult.cs" />
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\CreateClub.cs" />
+    <Compile Include="Models\EditClub.cs" />
     <Compile Include="Models\EditMemberDetails.cs" />
     <Compile Include="Models\InvitationResponse.cs" />
+    <Compile Include="Models\KickPlayerRequest.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\MemberDetails.cs" />
     <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Managers\RestManager.cs" />
+    <Compile Include="Models\SearchPlayersCritera.cs" />
     <Compile Include="Models\UserCredentials.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

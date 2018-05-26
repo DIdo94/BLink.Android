@@ -21,6 +21,12 @@ namespace BLink.Droid
         private MemberDetails _memberDetails;
         private Account _account;
         private ImageView _mainPhoto;
+
+        public MemberDetailsFragment(Account account)
+        {
+            _account = account;
+        }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -42,10 +48,6 @@ namespace BLink.Droid
         {
             base.OnActivityCreated(savedInstanceState);
 
-            _account = AccountStore
-               .Create()
-               .FindAccountsForService(GetString(Resource.String.app_name))
-               .FirstOrDefault();
             HttpResponseMessage httpResponse = await RestManager.GetMemberDetails(_account.Username);
             string response = await httpResponse.Content.ReadAsStringAsync();
 
@@ -54,16 +56,17 @@ namespace BLink.Droid
                 var imagePath = await RestManager.GetMemberPhoto(_account.Username);
 
                 _memberDetails = JsonConvert.DeserializeObject<MemberDetails>(response);
+
                 TextView firstName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_firstName);
                 TextView lastName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_lastName);
                 TextView height = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_height);
                 TextView weight = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_weight);
                 TextView preferedPosition = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_preferedPosition);
                 LinearLayout playerSection = View.FindViewById<LinearLayout>(Resource.Id.ll_memberDetails_playerSection);
+
                 _mainPhoto = View.FindViewById<ImageView>(Resource.Id.iv_memberDetails_mainPhoto);
                 var bitmap = BitmapFactory.DecodeFile(imagePath);
                 _mainPhoto.SetImageBitmap(bitmap);
-
 
                 firstName.Text = _memberDetails.FirstName;
                 lastName.Text = _memberDetails.LastName;

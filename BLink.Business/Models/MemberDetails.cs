@@ -16,6 +16,8 @@ namespace BLink.Business.Models
 
         public double? Height { get; set; }
 
+        public int? ClubId { get; set; }
+
         public Position? PreferedPosition { get; set; }
     }
 }

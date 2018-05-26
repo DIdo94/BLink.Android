@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/tbr_register_toolbar"
+        android:id="@+id/tbr_editClub_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -20,27 +20,27 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_createClub_clubName" />
+            android:id="@+id/tv_editClub_clubName" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et_createClub_clubName" />
+            android:id="@+id/et_editClub_clubName" />
         <Button
             android:text="Избери емблема"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_createClub_pickPhoto" />
+            android:id="@+id/btn_editClub_pickPhoto" />
         <ImageView
             android:src="@android:drawable/ic_menu_gallery"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/iv_createClub_clubPhoto" />
+            android:id="@+id/iv_editClub_clubPhoto" />
         <Button
-            android:text="Създай отбор"
+            android:text="Промени отбор"
             android:background="@drawable/stylishbutton"
             android:textColor="#eeeeee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_createClub_createClub" />
+            android:id="@+id/btn_editClub_editClub" />
     </LinearLayout>
 </LinearLayout>

@@ -1,43 +1,55 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Text;
+
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using BLink.Business.Managers;
 using BLink.Business.Models;
+using Newtonsoft.Json;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace BLink.Droid
 {
-    [Activity(Label = "Създай клуб")]
-    public class CreateClubActivity : AppCompatActivity
+    [Activity(Label = "Промени клуб")]
+    public class EditClubActivity : AppCompatActivity
     {
         private static readonly int PickImageId = 1000;
+
+        private ClubDetails _club;
         private Button _pickImage;
         private ImageView _clubImage;
+        private EditText _clubName;
         private Toolbar _toolbar;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.CreateClub);
+            SetContentView(Resource.Layout.EditClub);
 
-            _toolbar = FindViewById<Toolbar>(Resource.Id.tbr_register_toolbar);
+            _club = JsonConvert.DeserializeObject<ClubDetails>(Intent.GetStringExtra("club"));
+            _toolbar = FindViewById<Toolbar>(Resource.Id.tbr_editClub_toolbar);
 
             SetSupportActionBar(_toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetHomeButtonEnabled(true);
 
-            _pickImage = FindViewById<Button>(Resource.Id.btn_createClub_pickPhoto);
+            _pickImage = FindViewById<Button>(Resource.Id.btn_editClub_pickPhoto);
             _pickImage.Click += PickImage_Click;
 
-            _clubImage = FindViewById<ImageView>(Resource.Id.iv_createClub_clubPhoto);
+            _clubImage = FindViewById<ImageView>(Resource.Id.iv_editClub_clubPhoto);
+            _clubName = FindViewById<EditText>(Resource.Id.et_editClub_clubName);
+            _clubName.Text = _club.Name;
 
-            Button createClub = FindViewById<Button>(Resource.Id.btn_createClub_createClub);
-            createClub.Click += CreateClub_Click;
+            Button editClub = FindViewById<Button>(Resource.Id.btn_editClub_editClub);
+            editClub.Click += EditClub_Click;
             // Create your application here
         }
 
@@ -59,20 +71,20 @@ namespace BLink.Droid
             }
         }
 
-        private async void CreateClub_Click(object sender, System.EventArgs e)
+        private async void EditClub_Click(object sender, EventArgs e)
         {
-            EditText clubName = FindViewById<EditText>(Resource.Id.et_createClub_clubName);
-            if (string.IsNullOrWhiteSpace(clubName.Text))
+            
+            if (string.IsNullOrWhiteSpace(_clubName.Text))
             {
-                clubName.Error = "Въведете име";
+                _clubName.Error = "Въведете име";
             }
             else
             {
-                string email = Intent.GetStringExtra("email");
-                HttpResponseMessage response =  await RestManager.CreateClub(new CreateClub
+                HttpResponseMessage response = await RestManager.EditClub(new EditClub
                 {
-                    Email = email,
-                    Name = clubName.Text,
+                    ClubId = _club.Id,
+                    Email = Intent.GetStringExtra("email"),
+                    Name = _clubName.Text,
                     ClubPhoto = Assets.Open("club-main-photo.jpg") // TODO This should be user-picked 
                 });
 

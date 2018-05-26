@@ -18,6 +18,7 @@ namespace BLink.Droid
         private InvitationAdapter _adapter;
         private IEnumerable<InvitationResponse> _invitationResponses;
         private Account _account;
+
         public InvitationsFragment(Account account)
         {
             _account = account;

@@ -68,6 +68,7 @@
     <Compile Include="Models\EditClub.cs" />
     <Compile Include="Models\EditMemberDetails.cs" />
     <Compile Include="Models\InvitationResponse.cs" />
+    <Compile Include="Models\InvitePlayerRequest.cs" />
     <Compile Include="Models\KickPlayerRequest.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\MemberDetails.cs" />

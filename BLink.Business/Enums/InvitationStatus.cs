@@ -4,6 +4,7 @@
     {
         NotReplied = 0,
         Accepted = 1,
-        Refused = 2
+        RefusedFromPlayer = 2,
+        RefusedFromClub = 3
     }
 }

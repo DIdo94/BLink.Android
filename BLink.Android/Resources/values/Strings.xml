@@ -23,4 +23,5 @@
   <string name="iconMale">&#xf183;</string>
   <string name="noPlayersFound">Няма намерени играчи</string>
   <string name="resetFilters">Изчисти филтрите</string>
+  <string name="noInvitationsMessage">Няма намерени покани</string>
 </resources>

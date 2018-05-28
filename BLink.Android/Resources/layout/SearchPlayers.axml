@@ -4,9 +4,7 @@
     android:animateLayoutChanges="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px">
+    android:layout_height="match_parent">
     <android.support.v7.widget.Toolbar
         android:id="@+id/tbr_searchPlayers_toolbar"
         android:layout_width="match_parent"

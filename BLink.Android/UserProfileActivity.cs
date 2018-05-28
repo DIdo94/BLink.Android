@@ -8,6 +8,10 @@ using Android.Support.V7.App;
 using Android.Support.Design.Widget;
 using Xamarin.Auth;
 using BLink.Business.Common;
+using System.Net.Http;
+using BLink.Business.Models;
+using Newtonsoft.Json;
+using BLink.Business.Enums;
 
 namespace BLink.Droid
 {
@@ -21,8 +25,9 @@ namespace BLink.Droid
         private InvitationsFragment _invitationsFragment;
         private ClubEventsFragment _clubEventsFragment;
         private Account _account;
+        private MemberDetails _memberDetails;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -40,6 +45,12 @@ namespace BLink.Droid
             else
             {
                 RestManager.SetAccessToken(_account.Properties["token"]);
+                HttpResponseMessage httpResponse = await RestManager.GetMemberDetails(_account.Username);
+                string response = await httpResponse.Content.ReadAsStringAsync();
+                if (!string.IsNullOrWhiteSpace(response) && response != "null")
+                {
+                    _memberDetails = JsonConvert.DeserializeObject<MemberDetails>(response);
+                }
 
                 _viewPager = FindViewById<ViewPager>(Resource.Id.viewpager);
                 SetupViewPager(_viewPager);
@@ -51,9 +62,13 @@ namespace BLink.Droid
 
         private void InitialFragment()
         {
-            _detailsFragment = new MemberDetailsFragment(_account);
+            _detailsFragment = new MemberDetailsFragment(_account, _memberDetails);
             _clubFragment = new ClubFragment(_account);
-            _invitationsFragment = new InvitationsFragment(_account);
+            if (!_memberDetails.ClubId.HasValue || _account.Properties["roles"].Contains(Role.Coach.ToString()))
+            {
+                _invitationsFragment = new InvitationsFragment(_account);
+            }
+
             _clubEventsFragment = new ClubEventsFragment(_account);
         }
 
@@ -63,7 +78,11 @@ namespace BLink.Droid
             ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
             adapter.AddFragment(_detailsFragment, Literals.Details);
             adapter.AddFragment(_clubFragment, Literals.Club);
-            adapter.AddFragment(_invitationsFragment, Literals.Invitations);
+            if (!_memberDetails.ClubId.HasValue || _account.Properties["roles"].Contains(Role.Coach.ToString()))
+            {
+                adapter.AddFragment(_invitationsFragment, Literals.Invitations);
+            }
+
             adapter.AddFragment(_clubEventsFragment, Literals.Events);
             viewPager.Adapter = adapter;
         }

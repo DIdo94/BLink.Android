@@ -38,12 +38,12 @@
             android:orientation="vertical"
             android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ll_club_coachClubDetails"
-            android:visibility="gone">
+            android:layout_height="wrap_content">
             <LinearLayout
                 android:orientation="horizontal"
                 android:padding="10dp"
+                android:id="@+id/ll_club_coachActions"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
@@ -58,6 +58,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_club_searchPlayers" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:id="@+id/ll_club_playerActions"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:text="Напусни клуба"
+                    android:textSize="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btn_club_leaveClub" />
             </LinearLayout>
             <TextView
                 android:text="Играчи"

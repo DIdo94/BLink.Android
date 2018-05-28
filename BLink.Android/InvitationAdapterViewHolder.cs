@@ -8,7 +8,7 @@ namespace BLink.Droid
     {
         public TextView Description { get; set; }
 
-        public TextView ClubName { get; set; }
+        public TextView Header { get; set; }
 
         public Button AcceptInvitation { get; set; }
 
@@ -17,7 +17,7 @@ namespace BLink.Droid
         public InvitationAdapterViewHolder(View itemView) : base(itemView)
         {
             Description = itemView.FindViewById<TextView>(Resource.Id.tv_ic_description);
-            ClubName = itemView.FindViewById<TextView>(Resource.Id.tv_ic_clubName);
+            Header = itemView.FindViewById<TextView>(Resource.Id.tv_ic_header);
             AcceptInvitation = itemView.FindViewById<Button>(Resource.Id.btn_ic_acceptInvitation);
             RefuseInvitation = itemView.FindViewById<Button>(Resource.Id.btn_ic_refuseInvitation);
         }

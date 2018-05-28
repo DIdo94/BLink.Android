@@ -22,9 +22,10 @@ namespace BLink.Droid
         private Account _account;
         private ImageView _mainPhoto;
 
-        public MemberDetailsFragment(Account account)
+        public MemberDetailsFragment(Account account, MemberDetails memberDetails)
         {
             _account = account;
+            _memberDetails = memberDetails;
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -48,47 +49,39 @@ namespace BLink.Droid
         {
             base.OnActivityCreated(savedInstanceState);
 
-            HttpResponseMessage httpResponse = await RestManager.GetMemberDetails(_account.Username);
-            string response = await httpResponse.Content.ReadAsStringAsync();
+            var imagePath = await RestManager.GetMemberPhoto(_account.Username);
 
-            if (!string.IsNullOrWhiteSpace(response) && response != "null")
+            TextView firstName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_firstName);
+            TextView lastName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_lastName);
+            TextView height = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_height);
+            TextView weight = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_weight);
+            TextView preferedPosition = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_preferedPosition);
+            LinearLayout playerSection = View.FindViewById<LinearLayout>(Resource.Id.ll_memberDetails_playerSection);
+
+            _mainPhoto = View.FindViewById<ImageView>(Resource.Id.iv_memberDetails_mainPhoto);
+            var bitmap = BitmapFactory.DecodeFile(imagePath);
+            _mainPhoto.SetImageBitmap(bitmap);
+
+            firstName.Text = _memberDetails.FirstName;
+            lastName.Text = _memberDetails.LastName;
+            if (string.Compare(_account.Properties["roles"], Role.Player.ToString(), true) == 0)
             {
-                var imagePath = await RestManager.GetMemberPhoto(_account.Username);
-
-                _memberDetails = JsonConvert.DeserializeObject<MemberDetails>(response);
-
-                TextView firstName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_firstName);
-                TextView lastName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_lastName);
-                TextView height = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_height);
-                TextView weight = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_weight);
-                TextView preferedPosition = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_preferedPosition);
-                LinearLayout playerSection = View.FindViewById<LinearLayout>(Resource.Id.ll_memberDetails_playerSection);
-
-                _mainPhoto = View.FindViewById<ImageView>(Resource.Id.iv_memberDetails_mainPhoto);
-                var bitmap = BitmapFactory.DecodeFile(imagePath);
-                _mainPhoto.SetImageBitmap(bitmap);
-
-                firstName.Text = _memberDetails.FirstName;
-                lastName.Text = _memberDetails.LastName;
-                if (string.Compare(_account.Properties["roles"], Role.Player.ToString(), true) == 0)
-                {
-                    height.Text = _memberDetails.Height.HasValue ?
-                        _memberDetails.Height.Value.ToString() :
-                        "0";
-                    weight.Text = _memberDetails.Weight.HasValue ?
-                        _memberDetails.Weight.Value.ToString() :
-                        "0";
-                    preferedPosition.Text = Literals.ResourceManager.GetString(_memberDetails.PreferedPosition.Value.ToString());
-                    playerSection.Visibility = ViewStates.Visible;
-                }
-
-                Button logout = View.FindViewById<Button>(Resource.Id.btn_memberDetails_logout);
-                logout.Click += Logout_Click;
-                logout.Visibility = ViewStates.Visible;
-
-                Button editMemberDetails = View.FindViewById<Button>(Resource.Id.btn_memberDetails_edit);
-                editMemberDetails.Click += EditMemberDetails_Click;
+                height.Text = _memberDetails.Height.HasValue ?
+                    _memberDetails.Height.Value.ToString() :
+                    "0";
+                weight.Text = _memberDetails.Weight.HasValue ?
+                    _memberDetails.Weight.Value.ToString() :
+                    "0";
+                preferedPosition.Text = Literals.ResourceManager.GetString(_memberDetails.PreferedPosition.Value.ToString());
+                playerSection.Visibility = ViewStates.Visible;
             }
+
+            Button logout = View.FindViewById<Button>(Resource.Id.btn_memberDetails_logout);
+            logout.Click += Logout_Click;
+            logout.Visibility = ViewStates.Visible;
+
+            Button editMemberDetails = View.FindViewById<Button>(Resource.Id.btn_memberDetails_edit);
+            editMemberDetails.Click += EditMemberDetails_Click;
         }
 
         private void EditMemberDetails_Click(object sender, EventArgs e)
@@ -105,13 +98,15 @@ namespace BLink.Droid
             AlertDialog.Builder alert = new AlertDialog.Builder(Context);
             alert.SetTitle("Излизане от профила");
             alert.SetMessage("Сигурни ли сте, че искате да излезете от профила?");
-            alert.SetPositiveButton("Да", (senderAlert, args) => {
+            alert.SetPositiveButton("Да", (senderAlert, args) =>
+            {
                 AccountStore.Create().Delete(_account, GetString(Resource.String.app_name));
                 Intent intent = new Intent(Context, typeof(LoginActivity));
                 StartActivity(intent);
             });
 
-            alert.SetNegativeButton("Не", (senderAlert, args) => {
+            alert.SetNegativeButton("Не", (senderAlert, args) =>
+            {
                 return;
             });
 

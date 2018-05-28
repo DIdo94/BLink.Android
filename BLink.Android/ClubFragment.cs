@@ -1,4 +1,5 @@
-﻿using Android.Content;
+﻿using Android.App;
+using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.Widget;
@@ -40,10 +41,6 @@ namespace BLink.Droid
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            _account = AccountStore
-               .Create()
-               .FindAccountsForService(GetString(Resource.String.app_name))
-               .FirstOrDefault();
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -62,14 +59,14 @@ namespace BLink.Droid
 
             HttpResponseMessage httpResponse = await RestManager.GetMemberClub(_account.Username);
             string response = await httpResponse.Content.ReadAsStringAsync();
-
+            bool isCoach = _account.Properties["roles"].Contains(Role.Coach.ToString());
             if (string.IsNullOrWhiteSpace(response) || response == "null")
             {
                 TextView noClubMessage = View.FindViewById<TextView>(Resource.Id.tv_club_noClubMessage);
                 noClubMessage.Text = Literals.NoClubMessage;
                 noClubMessage.Visibility = ViewStates.Visible;
 
-                if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
+                if (isCoach)
                 {
                     Button createClubButton = View.FindViewById<Button>(Resource.Id.btn_club_createClub);
                     createClubButton.Visibility = ViewStates.Visible;
@@ -88,16 +85,24 @@ namespace BLink.Droid
                 clubNameText.Text = _clubDetails.Name;
                 LinearLayout clubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_clubDetails);
                 clubDetailsLayout.Visibility = ViewStates.Visible;
+                if (isCoach)
+                {
+                    Button searchPlayersButton = View.FindViewById<Button>(Resource.Id.btn_club_searchPlayers);
+                    searchPlayersButton.Click += SearchPlayersButton_Click;
 
-                Button searchPlayersButton = View.FindViewById<Button>(Resource.Id.btn_club_searchPlayers);
-                searchPlayersButton.Click += SearchPlayersButton_Click;
+                    Button editClub = View.FindViewById<Button>(Resource.Id.btn_club_editClubDetails);
+                    editClub.Click += EditClub_Click;
 
-                Button editClub = View.FindViewById<Button>(Resource.Id.btn_club_editClubDetails);
-                editClub.Click += EditClub_Click;
-
-
-                LinearLayout coachClubDetailsLayout = View.FindViewById<LinearLayout>(Resource.Id.ll_club_coachClubDetails);
-                coachClubDetailsLayout.Visibility = ViewStates.Visible;
+                    LinearLayout coachActions = View.FindViewById<LinearLayout>(Resource.Id.ll_club_coachActions);
+                    coachActions.Visibility = ViewStates.Visible;
+                }
+                else
+                {
+                    Button leaveClub = View.FindViewById<Button>(Resource.Id.btn_club_leaveClub);
+                    leaveClub.Click += LeaveClub_Click;
+                    LinearLayout playerActions = View.FindViewById<LinearLayout>(Resource.Id.ll_club_playerActions);
+                    playerActions.Visibility = ViewStates.Visible;
+                }
 
                 _searchPlayersCritera.ClubId = _clubDetails.Id;
                 HttpResponseMessage getPlayersHttpResponse = await RestManager.GetClubPlayers(_searchPlayersCritera);
@@ -116,6 +121,30 @@ namespace BLink.Droid
                     }
                 }
             }
+        }
+
+        private void LeaveClub_Click(object sender, System.EventArgs e)
+        {
+            AlertDialog.Builder alert = new AlertDialog.Builder(Activity);
+            alert.SetTitle("Напускане");
+            alert.SetMessage("Сигурни ли сте, че искате да напуснете клуба?");
+            alert.SetPositiveButton("Да", async (senderAlert, args) =>
+            {
+                var response = await RestManager.LeaveClub(_account.Username);
+                if (response.IsSuccessStatusCode)
+                {
+                    Intent intent = new Intent(Activity, typeof(UserProfileActivity));
+                    StartActivity(intent);
+                }
+            });
+
+            alert.SetNegativeButton("Не", (senderAlert, args) =>
+            {
+                return;
+            });
+
+            Dialog dialog = alert.Create();
+            dialog.Show();
         }
 
         private void EditClub_Click(object sender, System.EventArgs e)

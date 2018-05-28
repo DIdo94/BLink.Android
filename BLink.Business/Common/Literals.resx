@@ -141,6 +141,12 @@
   <data name="Invitations" xml:space="preserve">
     <value>Покани</value>
   </data>
+  <data name="InvitationsFromClubs" xml:space="preserve">
+    <value>Покани от клубове</value>
+  </data>
+  <data name="InvitationsToPlayers" xml:space="preserve">
+    <value>Покани към играчи</value>
+  </data>
   <data name="NoClubMessage" xml:space="preserve">
     <value>Нямате клуб</value>
   </data>

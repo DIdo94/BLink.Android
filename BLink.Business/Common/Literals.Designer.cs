@@ -133,6 +133,24 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Покани от клубове.
+        /// </summary>
+        public static string InvitationsFromClubs {
+            get {
+                return ResourceManager.GetString("InvitationsFromClubs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Покани към играчи.
+        /// </summary>
+        public static string InvitationsToPlayers {
+            get {
+                return ResourceManager.GetString("InvitationsToPlayers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нямате клуб.
         /// </summary>
         public static string NoClubMessage {

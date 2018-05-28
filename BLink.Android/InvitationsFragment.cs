@@ -8,6 +8,9 @@ using BLink.Business.Models;
 using BLink.Business.Managers;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Android.Widget;
+using BLink.Business.Enums;
+using BLink.Business.Common;
 
 namespace BLink.Droid
 {
@@ -18,6 +21,8 @@ namespace BLink.Droid
         private InvitationAdapter _adapter;
         private IEnumerable<InvitationResponse> _invitationResponses;
         private Account _account;
+        private TextView _header;
+        private TextView _noInvitations;
 
         public InvitationsFragment(Account account)
         {
@@ -44,6 +49,16 @@ namespace BLink.Droid
         {
             base.OnActivityCreated(savedInstanceState);
             HttpResponseMessage httpResponse = await RestManager.GetMemberInvitations(_account.Username);
+            _header = View.FindViewById<TextView>(Resource.Id.tv_invitations_header);
+            _noInvitations = View.FindViewById<TextView>(Resource.Id.tv_invitations_noInvitations);
+            if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
+            {
+                _header.Text = Literals.InvitationsToPlayers;
+            }
+            else
+            {
+                _header.Text = Literals.InvitationsFromClubs;
+            }
 
             if (httpResponse.IsSuccessStatusCode)
             {
@@ -56,6 +71,10 @@ namespace BLink.Droid
                     _recyclerView.SetAdapter(_adapter);
                     _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
                     _recyclerView.SetLayoutManager(_layoutManager);
+                    if (!_invitationResponses.Any())
+                    {
+                        _noInvitations.Visibility = ViewStates.Visible;
+                    }
                 }
             }
         }

@@ -137,13 +137,20 @@ namespace BLink.Business.Managers
             return await _httpClient.GetAsync(builder.ToString());
         }
 
-        public static async Task<HttpResponseMessage> InvitePlayer(int playerId, int clubId)
+        public static async Task<HttpResponseMessage> InvitePlayer(InvitePlayerRequest invitePlayer)
         {
-            var jsonObject = JsonConvert.SerializeObject(new { playerId = playerId, Description = "Hello" }); // TODO Description from coach input
+            var jsonObject = JsonConvert.SerializeObject(invitePlayer);
             var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
             return await _httpClient.PostAsync(
-                string.Format(ApiConstants.InvitePlayerEndpoint, clubId),
+                string.Format(ApiConstants.InvitePlayerEndpoint, invitePlayer.ClubId),
                 content);
+        }
+
+        public static async Task<HttpResponseMessage> LeaveClub(string email)
+        {
+            return await _httpClient.PostAsync(
+                string.Format(ApiConstants.LeaveClubEndpoint, email),
+                new StringContent(string.Empty));
         }
 
         public static async Task<HttpResponseMessage> RespondInvitation(

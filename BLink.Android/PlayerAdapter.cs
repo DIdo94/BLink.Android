@@ -98,7 +98,7 @@ namespace BLink.Droid
                 });
                 if (response.IsSuccessStatusCode)
                 {
-                    _players = RemoteItem(position);
+                    _players = RemoveItem(position);
                     NotifyItemRemoved(position);
                     if (ItemCount > 0)
                     {
@@ -118,19 +118,48 @@ namespace BLink.Droid
             dialog.Show();
         }
 
-        private async void InvitePlayer_Click(object sender, System.EventArgs e, int playerId, int clubId)
+        private void InvitePlayer_Click(object sender, System.EventArgs e, int playerId, int clubId)
         {
-            HttpResponseMessage invitePlayerHttpResponse = await RestManager.InvitePlayer(playerId, clubId);
+            AlertDialog.Builder alert = new AlertDialog.Builder(_activity);
+            EditText description = new EditText(_activity);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, 
+                LinearLayout.LayoutParams.WrapContent);
 
-            if (invitePlayerHttpResponse.IsSuccessStatusCode)
+            lp.LeftMargin = 60;
+            lp.RightMargin = 60;
+            description.LayoutParameters = lp;
+            alert.SetView(description);
+            alert.SetTitle("Покана на играч");
+            alert.SetMessage("Добавете описание към поканата");
+            alert.SetPositiveButton("Покани", async (senderAlert, args) =>
             {
-                Toast.MakeText(_activity, "Играчът е поканен!", ToastLength.Short).Show();
-            }
+                InvitePlayerRequest invitePlayer = new InvitePlayerRequest
+                {
+                    PlayerId = playerId,
+                    ClubId = clubId,
+                    Description = description.Text
+                };
+
+                HttpResponseMessage invitePlayerHttpResponse = await RestManager.InvitePlayer(invitePlayer);
+
+                if (invitePlayerHttpResponse.IsSuccessStatusCode)
+                {
+                    Toast.MakeText(_activity, "Играчът е поканен!", ToastLength.Short).Show();
+                }
+            });
+
+            alert.SetNegativeButton("Отказ", (senderAlert, args) =>
+            {
+                return;
+            });
+
+            Dialog dialog = alert.Create();
+            dialog.Show();
         }
 
         public override int ItemCount => _players.Length;
 
-        private MemberDetails[] RemoteItem(int itemPosition)
+        private MemberDetails[] RemoveItem(int itemPosition)
         {
             var list = new List<MemberDetails>(_players);
             list.RemoveAt(itemPosition);

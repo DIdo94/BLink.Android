@@ -23,11 +23,14 @@ namespace BLink.Droid
         private InvitationResponse[] _invitationResponses;
         private Account _account;
         private Activity _activity;
+        private bool _isCoach;
+
         public InvitationAdapter(Activity activity, InvitationResponse[] invitationResponses, Account account)
         {
             _invitationResponses = invitationResponses;
             _activity = activity;
             _account = account;
+            _isCoach = _account.Properties["roles"].Contains(Role.Coach.ToString());
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -44,22 +47,73 @@ namespace BLink.Droid
 
             // Replace the contents of the view with that element
             var holder = viewHolder as InvitationAdapterViewHolder;
-            holder.ClubName.Text = invitation.ClubName;
+            holder.Header.Text = _isCoach ? invitation.PlayerName : invitation.ClubName;
             holder.Description.Text = invitation.Description;
-            holder.AcceptInvitation.Click += (sender, eventArgs) =>
-                RespondInvitation_Click(sender, eventArgs, invitation.Id, _account.Username, InvitationStatus.Accepted);
+            if (_isCoach)
+            {
+                holder.AcceptInvitation.Visibility = ViewStates.Gone;
+            }
+            else
+            {
+                holder.AcceptInvitation.Click += (sender, eventArgs) =>
+                    RespondInvitation_Click(sender, eventArgs, invitation.Id, _account.Username, InvitationStatus.Accepted, position);
+            }
+
+            var refusedStatus = _isCoach ? InvitationStatus.RefusedFromClub : InvitationStatus.RefusedFromPlayer;
             holder.RefuseInvitation.Click += (sender, eventArgs) =>
-                RespondInvitation_Click(sender, eventArgs, invitation.Id, _account.Username, InvitationStatus.Refused);
+                RespondInvitation_Click(sender, eventArgs, invitation.Id, _account.Username, refusedStatus, position);
         }
 
-        private async void RespondInvitation_Click(object sender, EventArgs eventArgs, int invitationId, string email, InvitationStatus invitationStatus)
+        private void RespondInvitation_Click(
+            object sender,
+            EventArgs eventArgs,
+            int invitationId,
+            string email,
+            InvitationStatus invitationStatus,
+            int position)
         {
-            HttpResponseMessage respondInvitationHttpResponse = await RestManager.RespondInvitation(email, invitationId, invitationStatus);
-
-            if (respondInvitationHttpResponse.IsSuccessStatusCode)
+            AlertDialog.Builder alert = new AlertDialog.Builder(_activity);
+            alert.SetTitle("Отговор на покана");
+            alert.SetMessage("Сигурни ли сте, че искате да извършите това действие?");
+            alert.SetPositiveButton("Да", async (senderAlert, args) =>
             {
-                Toast.MakeText(_activity, "Успешен отговор на поканата!", ToastLength.Short).Show();
-            }
+                HttpResponseMessage respondInvitationHttpResponse = await RestManager.RespondInvitation(email, invitationId, invitationStatus);
+
+                if (respondInvitationHttpResponse.IsSuccessStatusCode)
+                {
+                    if (invitationStatus == InvitationStatus.Accepted)
+                    {
+                        Intent intent = new Intent(_activity, typeof(UserProfileActivity));
+                        _activity.StartActivity(intent);
+                    }
+                    else
+                    {
+                        _invitationResponses = RemoveItem(position);
+                        NotifyItemRemoved(position);
+                        if (ItemCount > 0)
+                        {
+                            NotifyItemRangeChanged(position, ItemCount);
+                        }
+
+                        Toast.MakeText(_activity, "Успешен отговор на поканата!", ToastLength.Short).Show();
+                    }
+                }
+            });
+
+            alert.SetNegativeButton("Не", (senderAlert, args) =>
+            {
+                return;
+            });
+
+            Dialog dialog = alert.Create();
+            dialog.Show();
+        }
+
+        private InvitationResponse[] RemoveItem(int itemPosition)
+        {
+            var list = new List<InvitationResponse>(_invitationResponses);
+            list.RemoveAt(itemPosition);
+            return list.ToArray();
         }
 
         public override int ItemCount => _invitationResponses.Length;

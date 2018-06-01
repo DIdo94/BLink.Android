@@ -168,6 +168,7 @@
     <Compile Include="CreateClubActivity.cs" />
     <Compile Include="CreateClubEventActivity.cs" />
     <Compile Include="EditClubActivity.cs" />
+    <Compile Include="EditClubEventActivity.cs" />
     <Compile Include="EditMemberDetailsActivity.cs" />
     <Compile Include="GoogleMapActivity.cs" />
     <Compile Include="InvitationAdapter.cs" />
@@ -282,6 +283,17 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\EditClub.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\baseline_add_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\outline_add_white_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\EditClubEvent.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="All" xml:space="preserve">
+    <value>Всички</value>
+  </data>
   <data name="Center" xml:space="preserve">
     <value>Център</value>
   </data>
@@ -131,6 +134,18 @@
   </data>
   <data name="Events" xml:space="preserve">
     <value>Събития</value>
+  </data>
+  <data name="ForTheMonth" xml:space="preserve">
+    <value>За този месец</value>
+  </data>
+  <data name="ForTheWeek" xml:space="preserve">
+    <value>За тази седмица</value>
+  </data>
+  <data name="ForToday" xml:space="preserve">
+    <value>За днес</value>
+  </data>
+  <data name="Game" xml:space="preserve">
+    <value>Мач</value>
   </data>
   <data name="Guard" xml:space="preserve">
     <value>Плеймейкър</value>
@@ -150,17 +165,35 @@
   <data name="NoClubMessage" xml:space="preserve">
     <value>Нямате клуб</value>
   </data>
+  <data name="Other" xml:space="preserve">
+    <value>Друг</value>
+  </data>
   <data name="Player" xml:space="preserve">
     <value>Играч</value>
   </data>
+  <data name="PleaseEnterDescription" xml:space="preserve">
+    <value>Моля, въведете описание</value>
+  </data>
+  <data name="PleaseEnterLocation" xml:space="preserve">
+    <value>Моля, въведете локация</value>
+  </data>
+  <data name="PleaseEnterTitle" xml:space="preserve">
+    <value>Моля, въведете заглавие</value>
+  </data>
   <data name="PowerForward" xml:space="preserve">
     <value>Тежко крило</value>
+  </data>
+  <data name="SelectPicture" xml:space="preserve">
+    <value>Избери снимка</value>
   </data>
   <data name="ShootingGuard" xml:space="preserve">
     <value>Атакуващ гард</value>
   </data>
   <data name="SmallForward" xml:space="preserve">
     <value>Леко крило</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Тренировка</value>
   </data>
   <data name="WeightKgFormat" xml:space="preserve">
     <value>{0} {1} кг.</value>

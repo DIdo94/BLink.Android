@@ -75,12 +75,12 @@ namespace BLink.Droid
                 .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
             _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, positions);
 
-            _rolesSpinner.ItemSelected += _rolesSpinner_ItemSelected;
+            _rolesSpinner.ItemSelected += RolesSpinner_ItemSelected;
             registerButton.Click += RegisterButton_Click;
             _pickImage.Click += PickImage_Click;
         }
 
-        private void _rolesSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        private void RolesSpinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             if ((e.Position + 1) == (int)Role.Player)
             {

@@ -10,17 +10,26 @@ using System.Linq;
 using Newtonsoft.Json;
 using Android.Widget;
 using Android.Content;
+using BLink.Business.Enums;
+using Android.Support.Design.Widget;
+using System;
+using BLink.Business.Common;
+using AndroidHUD;
 
 namespace BLink.Droid
 {
     public class ClubEventsFragment : Android.Support.V4.App.Fragment
     {
         private RecyclerView _recyclerView;
+        private Spinner _timeSpans;
         private RecyclerView.LayoutManager _layoutManager;
         private ClubEventAdapter _adapter;
         private IEnumerable<ClubEventFilterResult> _clubEvents;
         private Account _account;
         private ClubDetails _clubDetails;
+        private ClubEventFilterRequest _clubEventFilterRequest;
+        private TextView _noClubEvents;
+        private LinearLayout _eventsFilter;
 
         public ClubEventsFragment(Account account)
         {
@@ -30,14 +39,10 @@ namespace BLink.Droid
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Create your fragment here
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
-
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.ClubEvent, null);
 
@@ -47,34 +52,75 @@ namespace BLink.Droid
         public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
+            if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
+            {
+                FloatingActionButton goToCreateClubEventButton = View.FindViewById<FloatingActionButton>(Resource.Id.btn_clubEvent_goToCreateClubEvent);
+                goToCreateClubEventButton.BringToFront();
+                goToCreateClubEventButton.Click += GoToCreateClubEventButton_Click;
+                goToCreateClubEventButton.Visibility = ViewStates.Visible;
+            }
 
-            Button goToCreateClubEventButton = View.FindViewById<Button>(Resource.Id.btn_clubEvent_goToCreateClubEvent);
-            goToCreateClubEventButton.Click += GoToCreateClubEventButton_Click;
             HttpResponseMessage clubHttpResponse = await RestManager.GetMemberClub(_account.Username);
             string clubResponse = await clubHttpResponse.Content.ReadAsStringAsync();
             if (clubResponse != "null")
             {
                 _clubDetails = JsonConvert.DeserializeObject<ClubDetails>(clubResponse);
 
-                ClubEventFilterRequest clubEventFilterRequest = new ClubEventFilterRequest
+                _clubEventFilterRequest = new ClubEventFilterRequest
                 {
                     MemberId = int.Parse(_account.Properties["memberId"]),
                     ClubId = _clubDetails.Id
                 };
 
-                HttpResponseMessage httpResponse = await RestManager.GetClubEvents(clubEventFilterRequest);
+                HttpResponseMessage httpResponse = await RestManager.GetClubEvents(_clubEventFilterRequest);
                 string response = await httpResponse.Content.ReadAsStringAsync();
 
                 _clubEvents = JsonConvert.DeserializeObject<IEnumerable<ClubEventFilterResult>>(response);
 
                 if (_clubEvents.Any())
                 {
-                    _adapter = new ClubEventAdapter(Activity, _clubEvents.ToArray(), _clubDetails);
+                    _timeSpans = View.FindViewById<Spinner>(Resource.Id.spn_clubEvent_timeSpan);
+                    var timeSpans = Enum.GetNames(typeof(EventTimeSpan))
+                        .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
+                    _timeSpans.Adapter = new ArrayAdapter<string>(Context, Android.Resource.Layout.SimpleSpinnerDropDownItem, timeSpans);
+                    _timeSpans.ItemSelected += TimeSpans_ItemSelected;
+
+                    _eventsFilter = View.FindViewById<LinearLayout>(Resource.Id.ll_clubEvent_clubEventsFilter);
+                    _eventsFilter.Visibility = ViewStates.Visible;
+
+                    _adapter = new ClubEventAdapter(Activity, _clubEvents.ToArray(), _clubDetails, _account);
                     _recyclerView = View.FindViewById<RecyclerView>(Resource.Id.rv_clubEvent_clubEvents);
                     _recyclerView.SetAdapter(_adapter);
                     _layoutManager = new LinearLayoutManager(Activity, LinearLayoutManager.Vertical, false);
                     _recyclerView.SetLayoutManager(_layoutManager);
                 }
+                else
+                {
+                    _noClubEvents = View.FindViewById<TextView>(Resource.Id.tv_clubEvent_noClubEvents);
+                    _noClubEvents.Visibility = ViewStates.Visible;
+                }
+            }
+        }
+
+        private async void TimeSpans_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            var timeSpan = (EventTimeSpan)e.Position;
+            _clubEventFilterRequest.EventTimeSpan = timeSpan;
+
+            AndHUD.Shared.Show(Context, "Търсене…");
+
+            HttpResponseMessage httpResponse = await RestManager.GetClubEvents(_clubEventFilterRequest);
+            string response = await httpResponse.Content.ReadAsStringAsync();
+            _clubEvents = JsonConvert.DeserializeObject<IEnumerable<ClubEventFilterResult>>(response);
+
+            AndHUD.Shared.Dismiss(Context);
+            _adapter = new ClubEventAdapter(Activity, _clubEvents.ToArray(), _clubDetails, _account);
+            _recyclerView.SwapAdapter(_adapter, true);
+
+            if (!_clubEvents.Any())
+            {
+                _noClubEvents = View.FindViewById<TextView>(Resource.Id.tv_clubEvent_noClubEvents);
+                _noClubEvents.Visibility = ViewStates.Visible;
             }
         }
 

@@ -80,6 +80,11 @@ namespace BLink.Business.Managers
             return await _httpClient.PostAsync(string.Format(ApiConstants.EditClubEndpoint, editClub.ClubId), content);
         }
 
+        public static async Task<HttpResponseMessage> RemoveEvent(int eventId)
+        {
+            return await _httpClient.DeleteAsync(string.Format(ApiConstants.RemoveEventEndpoint, eventId));
+        }
+
         public static async Task<HttpResponseMessage> KickPlayer(KickPlayerRequest kickPlayerRequest)
         {
             return await _httpClient.PostAsync(
@@ -108,11 +113,6 @@ namespace BLink.Business.Managers
             };
 
             return await _httpClient.GetAsync(builder.ToString());
-        }
-
-        public static async Task<HttpResponseMessage> GetClubPlayers(int clubId)
-        {
-            return await _httpClient.GetAsync(string.Format(ApiConstants.GetClubPlayersEndpoint, clubId));
         }
 
         public static async Task<HttpResponseMessage> GetClubPlayers(SearchPlayersCritera searchPlayersCritera)
@@ -181,11 +181,20 @@ namespace BLink.Business.Managers
                 content);
         }
 
+        public static async Task<HttpResponseMessage> EditClubEvent(ClubEventCreateRequest clubEventCreateRequest)
+        {
+            var jsonObject = JsonConvert.SerializeObject(clubEventCreateRequest);
+            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
+            return await _httpClient.PostAsync(
+                string.Format(ApiConstants.EditClubEventEndpoint, clubEventCreateRequest.EventId),
+                content);
+        }
+
         public static async Task<HttpResponseMessage> GetClubEvents(ClubEventFilterRequest clubEventFilterRequest)
         {
             var builder = new UriBuilder(ApiConstants.GetClubEventsEndpoint)
             {
-                Query = $"clubId={clubEventFilterRequest.ClubId}&memberId={clubEventFilterRequest.MemberId}"
+                Query = BuildQueryString(clubEventFilterRequest)
             };
 
             return await _httpClient.GetAsync(builder.ToString());

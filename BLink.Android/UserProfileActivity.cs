@@ -60,7 +60,7 @@ namespace BLink.Droid
             }
         }
 
-        private void InitialFragment()
+        private void InitializeFragments()
         {
             _detailsFragment = new MemberDetailsFragment(_account, _memberDetails);
             _clubFragment = new ClubFragment(_account);
@@ -74,7 +74,7 @@ namespace BLink.Droid
 
         public void SetupViewPager(ViewPager viewPager)
         {
-            InitialFragment();
+            InitializeFragments();
             ViewPagerAdapter adapter = new ViewPagerAdapter(SupportFragmentManager);
             adapter.AddFragment(_detailsFragment, Literals.Details);
             adapter.AddFragment(_clubFragment, Literals.Club);

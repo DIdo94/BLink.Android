@@ -39,5 +39,9 @@
         public static readonly string KickPlayerEndpoint = ApiUrl + "/Clubs/{0}/kickPlayer/{1}";
 
         public static readonly string LeaveClubEndpoint = ApiUrl + "/Members/{0}/leaveClub";
+
+        public static readonly string EditClubEventEndpoint = ApiUrl + "/ClubEvents/{0}";
+
+        public static readonly string RemoveEventEndpoint = ApiUrl + "/ClubEvents/{0}";
     }
 }

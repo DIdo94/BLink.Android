@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Linq;
 using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Auth;
 using BLink.Business.Managers;
-using System.Net.Http;
 using Newtonsoft.Json;
 using BLink.Business.Models;
 using Android.Graphics;

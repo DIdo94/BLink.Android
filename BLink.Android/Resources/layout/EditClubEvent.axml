@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/tv_createClubEvent_toolbar"
+        android:id="@+id/tv_editClubEvent_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -23,72 +23,72 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_createClubEvent_clubEventTitle" />
+                android:id="@+id/tv_editClubEvent_clubEventTitle" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_createClubEvent_clubEventTitle" />
+                android:id="@+id/et_editClubEvent_clubEventTitle" />
             <TextView
                 android:text="Описание"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_createClubEvent_clubEventDescription" />
+                android:id="@+id/tv_editClubEvent_clubEventDescription" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_createClubEvent_clubEventDescription" />
+                android:id="@+id/et_editClubEvent_clubEventDescription" />
             <TextView
                 android:text="Тип събитие"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_createClubEvent_eventType" />
+                android:id="@+id/tv_editClubEvent_eventType" />
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spn_createClubEvent_eventType" />
+                android:id="@+id/spn_editClubEvent_eventType" />
             <TextView
                 android:text="Ден"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:paddingBottom="10dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_createClubEvent_clubEventStartTimeDay" />
+                android:id="@+id/tv_editClubEvent_clubEventStartTimeDay" />
             <DatePicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:headerBackground="@color/stylishColor"
-                android:id="@+id/dp_createClubEvent_clubEventStartTimeDay" />
+                android:id="@+id/dp_editClubEvent_clubEventStartTimeDay" />
             <TextView
                 android:text="Начален час"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_createClubEvent_clubEventStartTimeHour" />
+                android:id="@+id/tv_editClubEvent_clubEventStartTimeHour" />
             <TimePicker
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:timePickerMode="clock"
                 android:headerBackground="@color/stylishColor"
                 android:descendantFocusability="blocksDescendants"
-                android:id="@+id/tp_createClubEvent_clubEventStartTimeHour" />
+                android:id="@+id/tp_editClubEvent_clubEventStartTimeHour" />
             <TextView
                 android:text="Няма зададено събитие"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_createClubEvent_eventInfo" />
+                android:id="@+id/tv_editClubEvent_eventInfo" />
             <Button
                 android:text="Задай място на събитието"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_createClubEvent_setEventPlace" />
+                android:id="@+id/btn_editClubEvent_setEventPlace" />
             <Button
-                android:text="Създай събитие"
+                android:text="Редактирай събитие"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_createClubEvent_createClubEvent" />
+                android:id="@+id/btn_editClubEvent_editClubEvent" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -6,60 +6,104 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:contentPaddingTop="10dp"
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true"
         card_view:cardCornerRadius="5dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp">
+            android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#333333"
+                android:gravity="center"
+                android:background="@color/stylishColor"
+                android:textColor="#eeeeee"
                 android:singleLine="true"
                 android:text="Caption"
-                android:id="@+id/tv_cec_clubEventType"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="4dp" />
-            <TextView
+                android:id="@+id/tv_cec_clubEventHeading"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center_horizontal" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#333333"
-                android:singleLine="true"
-                android:text="Caption"
-                android:id="@+id/tv_cec_clubEventTitle"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="4dp" />
-            <TextView
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#333333"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:text="Caption"
+                    android:id="@+id/tv_cec_clubEventDescriptionIcon"
+                    android:layout_marginLeft="4dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#333333"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:text="Caption"
+                    android:id="@+id/tv_cec_clubEventDescription"
+                    android:layout_marginLeft="4dp" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#333333"
-                android:singleLine="true"
-                android:text="Caption"
-                android:id="@+id/tv_cec_clubEventDescription"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="4dp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#333333"
-                android:singleLine="true"
-                android:text="Caption"
-                android:id="@+id/tv_cec_clubEventStartTime"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="4dp" />
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#333333"
+                    android:singleLine="true"
+                    android:text="Caption"
+                    android:textSize="15dp"
+                    android:id="@+id/tv_cec_clubEventStartTimeIcon"
+                    android:layout_marginLeft="4dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="#333333"
+                    android:singleLine="true"
+                    android:text="Caption"
+                    android:textSize="15dp"
+                    android:id="@+id/tv_cec_clubEventStartTime"
+                    android:layout_marginLeft="4dp" />
+            </LinearLayout>
             <Button
+                android:textSize="10dp"
+                android:layout_margin="1dp"
+                android:layout_height="40dp"
+                android:layout_width="match_parent"
                 android:text="Виж на картата"
+                android:id="@+id/btn_cec_viewOnMap" />
+            <LinearLayout
+                android:id="@+id/ll_cec_clubEventActions"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_cec_viewOnMap" />
+                android:orientation="horizontal">
+                <Button
+                    android:textSize="10dp"
+                    android:layout_margin="1dp"
+                    android:layout_height="40dp"
+                    android:text="Редактирай събитие"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_cec_editClubEvent" />
+                <Button
+                    android:text="Премахни събитие"
+                    android:textSize="10dp"
+                    android:layout_margin="1dp"
+                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_cec_removeClubEvent" />
+            </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

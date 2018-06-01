@@ -33,4 +33,10 @@
     <item name="tabIndicatorHeight">2dp</item>
     <item name="tabSelectedTextColor">#f9fdff</item>
    </style>
+  <!--<style name="CardViewButton">
+    <item name="android:layout_height">40dp</item>
+    <item nam="android:layout_margin">1dp</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:textSize">12dp</item>
+  </style>-->
 </resources>

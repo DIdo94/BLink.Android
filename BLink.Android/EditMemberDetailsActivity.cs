@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using Android.App;
@@ -34,6 +35,7 @@ namespace BLink.Droid
         private Button _pickImage;
         private LinearLayout _playerSection;
         private Spinner _positionsSpinner;
+        private Stream _imageStream;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -84,9 +86,9 @@ namespace BLink.Droid
         private void PickImage_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
-            Intent.SetType("image/*");
-            Intent.SetAction(Intent.ActionSend);
-            StartActivityForResult(Intent.CreateChooser(Intent, "Select Picture"), PickImageId);
+            intent.SetType("image/*");
+            intent.SetAction(Intent.ActionGetContent);
+            StartActivityForResult(Intent.CreateChooser(intent, Literals.SelectPicture), PickImageId);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -95,7 +97,7 @@ namespace BLink.Droid
             {
                 Android.Net.Uri uri = data.Data;
                 _userImage.SetImageURI(uri);
-                var imageStream = ContentResolver.OpenInputStream(uri);
+                _imageStream = ContentResolver.OpenInputStream(uri);
             }
         }
 
@@ -132,6 +134,11 @@ namespace BLink.Droid
             if (heightValue == 0 && role == Role.Player)
             {
                 _height.Error = "Това поле е задължително за играчи";
+                hasError = true;
+            }
+            if (_imageStream == null)
+            {
+                Toast.MakeText(this, Literals.SelectPicture, ToastLength.Long).Show();
                 hasError = true;
             }
 

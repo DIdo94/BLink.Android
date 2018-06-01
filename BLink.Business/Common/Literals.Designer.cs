@@ -61,6 +61,15 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Всички.
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Център.
         /// </summary>
         public static string Center {
@@ -102,6 +111,42 @@ namespace BLink.Business.Common {
         public static string Events {
             get {
                 return ResourceManager.GetString("Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За този месец.
+        /// </summary>
+        public static string ForTheMonth {
+            get {
+                return ResourceManager.GetString("ForTheMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За тази седмица.
+        /// </summary>
+        public static string ForTheWeek {
+            get {
+                return ResourceManager.GetString("ForTheWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За днес.
+        /// </summary>
+        public static string ForToday {
+            get {
+                return ResourceManager.GetString("ForToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мач.
+        /// </summary>
+        public static string Game {
+            get {
+                return ResourceManager.GetString("Game", resourceCulture);
             }
         }
         
@@ -160,6 +205,15 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Друг.
+        /// </summary>
+        public static string Other {
+            get {
+                return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Играч.
         /// </summary>
         public static string Player {
@@ -169,11 +223,47 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Моля, въведете описание.
+        /// </summary>
+        public static string PleaseEnterDescription {
+            get {
+                return ResourceManager.GetString("PleaseEnterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Моля, въведете локация.
+        /// </summary>
+        public static string PleaseEnterLocation {
+            get {
+                return ResourceManager.GetString("PleaseEnterLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Моля, въведете заглавие.
+        /// </summary>
+        public static string PleaseEnterTitle {
+            get {
+                return ResourceManager.GetString("PleaseEnterTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Тежко крило.
         /// </summary>
         public static string PowerForward {
             get {
                 return ResourceManager.GetString("PowerForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Избери снимка.
+        /// </summary>
+        public static string SelectPicture {
+            get {
+                return ResourceManager.GetString("SelectPicture", resourceCulture);
             }
         }
         
@@ -192,6 +282,15 @@ namespace BLink.Business.Common {
         public static string SmallForward {
             get {
                 return ResourceManager.GetString("SmallForward", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тренировка.
+        /// </summary>
+        public static string Training {
+            get {
+                return ResourceManager.GetString("Training", resourceCulture);
             }
         }
         

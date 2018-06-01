@@ -7,6 +7,8 @@ namespace BLink.Business.Models
     {
         public int ClubId { get; set; }
 
+        public int EventId { get; set; }
+
         public EventType EventType { get; set; }
 
         public string Title { get; set; }

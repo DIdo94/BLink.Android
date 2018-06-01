@@ -8,7 +8,6 @@ using Android.Widget;
 using BLink.Business.Common;
 using Android.Graphics;
 using Xamarin.Auth;
-using System;
 using System.Collections.Generic;
 using BLink.Business.Enums;
 
@@ -29,7 +28,6 @@ namespace BLink.Droid
             _account = account;
         }
 
-        // Create new views (invoked by the layout manager)
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             //Setup and inflate your layout here
@@ -39,7 +37,6 @@ namespace BLink.Droid
             return new PlayerAdapterViewHolder(itemView);
         }
 
-        // Replace the contents of a view (invoked by the layout manager)
         public override void OnBindViewHolder(RecyclerView.ViewHolder viewHolder, int position)
         {
             var player = _players[position];

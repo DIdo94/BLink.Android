@@ -29,6 +29,7 @@
             android:text="Избери емблема"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="400dp"
             android:id="@+id/btn_createClub_pickPhoto" />
         <ImageView
             android:src="@android:drawable/ic_menu_gallery"

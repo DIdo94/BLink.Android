@@ -10,6 +10,8 @@ namespace BLink.Droid
 
         public TextView Header { get; set; }
 
+        public ImageView Thumbnail { get; set; }
+
         public Button AcceptInvitation { get; set; }
 
         public Button RefuseInvitation { get; set; }
@@ -18,6 +20,7 @@ namespace BLink.Droid
         {
             Description = itemView.FindViewById<TextView>(Resource.Id.tv_ic_description);
             Header = itemView.FindViewById<TextView>(Resource.Id.tv_ic_header);
+            Thumbnail= itemView.FindViewById<ImageView>(Resource.Id.iv_ic_thumbnail);
             AcceptInvitation = itemView.FindViewById<Button>(Resource.Id.btn_ic_acceptInvitation);
             RefuseInvitation = itemView.FindViewById<Button>(Resource.Id.btn_ic_refuseInvitation);
         }

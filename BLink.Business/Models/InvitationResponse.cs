@@ -9,5 +9,7 @@
         public string ClubName { get; set; }
 
         public string PlayerName { get; set; }
+
+        public byte[] Thumbnail { get; set; }
     }
 }

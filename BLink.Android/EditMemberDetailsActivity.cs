@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
@@ -37,7 +38,7 @@ namespace BLink.Droid
         private Spinner _positionsSpinner;
         private Stream _imageStream;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override async void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
@@ -51,7 +52,12 @@ namespace BLink.Droid
             _height = FindViewById<EditText>(Resource.Id.et_editMemberDetails_height);
             _weight = FindViewById<EditText>(Resource.Id.et_editMemberDetails_weight);
             _toolbar = FindViewById<Toolbar>(Resource.Id.tbr_editMemberDetails_toolbar);
+
             _userImage = FindViewById<ImageView>(Resource.Id.iv_editMemberDetails_userImage);
+            var imagePath = await RestManager.GetMemberPhoto(_account.Username);
+            var bitmap = BitmapFactory.DecodeFile(imagePath);
+            _userImage.SetImageBitmap(bitmap);
+
             _pickImage = FindViewById<Button>(Resource.Id.btn_editMemberDetails_pickImage);
             _playerSection = FindViewById<LinearLayout>(Resource.Id.ll_editMemberDetails_playerSection);
             _positionsSpinner = FindViewById<Spinner>(Resource.Id.spn_editMemberDetails_preferedPosition);
@@ -76,8 +82,6 @@ namespace BLink.Droid
             SupportActionBar.SetHomeButtonEnabled(true);
 
             Button editDetails = FindViewById<Button>(Resource.Id.btn_editMemberDetails_editDetails);
-
-
 
             editDetails.Click += EditDetails_Click;
             _pickImage.Click += PickImage_Click;
@@ -136,11 +140,6 @@ namespace BLink.Droid
                 _height.Error = "Това поле е задължително за играчи";
                 hasError = true;
             }
-            if (_imageStream == null)
-            {
-                Toast.MakeText(this, Literals.SelectPicture, ToastLength.Long).Show();
-                hasError = true;
-            }
 
             if (hasError)
             {
@@ -155,7 +154,7 @@ namespace BLink.Droid
                 PreferedPosition = position,
                 Weight = position.HasValue ? weightValue : default(double?),
                 Height = position.HasValue ? heightValue : default(double?),
-                File = Assets.Open("person-placeholder.jpg") // TODO This should come from gallery
+                File = _imageStream
             };
 
             AndHUD.Shared.Show(this, "Промяна…");

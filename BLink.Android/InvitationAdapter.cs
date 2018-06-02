@@ -15,6 +15,7 @@ using Xamarin.Auth;
 using BLink.Business.Enums;
 using System.Net.Http;
 using BLink.Business.Managers;
+using Android.Graphics;
 
 namespace BLink.Droid
 {
@@ -48,6 +49,10 @@ namespace BLink.Droid
             // Replace the contents of the view with that element
             var holder = viewHolder as InvitationAdapterViewHolder;
             holder.Header.Text = _isCoach ? invitation.PlayerName : invitation.ClubName;
+
+            var img = BitmapFactory.DecodeByteArray(invitation.Thumbnail, 0, invitation.Thumbnail.Length);
+            holder.Thumbnail.SetImageBitmap(img);
+
             holder.Description.Text = invitation.Description;
             if (_isCoach)
             {

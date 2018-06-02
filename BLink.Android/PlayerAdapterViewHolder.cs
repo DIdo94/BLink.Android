@@ -6,7 +6,8 @@ namespace BLink.Droid
 {
     public class PlayerAdapterViewHolder : RecyclerView.ViewHolder
     {
-        //public ImageView Image { get; private set; }
+        public ImageView Image { get; private set; }
+
         public TextView Caption { get; set; }
 
         public TextView Weight { get; set; }
@@ -21,7 +22,7 @@ namespace BLink.Droid
 
         public PlayerAdapterViewHolder(View itemView) : base(itemView)
         {
-            //Image = itemView.FindViewById<ImageView>(Resource.Id.imageView);
+            Image = itemView.FindViewById<ImageView>(Resource.Id.iv_pc_thumbnail);
             Caption = itemView.FindViewById<TextView>(Resource.Id.tv_pc_name);
             Weight = itemView.FindViewById<TextView>(Resource.Id.tv_pc_weight);
             Height = itemView.FindViewById<TextView>(Resource.Id.tv_pc_height);

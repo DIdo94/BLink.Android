@@ -12,6 +12,8 @@ namespace BLink.Business.Models
 
         public string PhotoPath { get; set; }
 
+        public string Thumbnail { get; set; }
+
         public double? Weight { get; set; }
 
         public double? Height { get; set; }

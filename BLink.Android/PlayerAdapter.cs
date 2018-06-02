@@ -10,6 +10,7 @@ using Android.Graphics;
 using Xamarin.Auth;
 using System.Collections.Generic;
 using BLink.Business.Enums;
+using Android.Util;
 
 namespace BLink.Droid
 {
@@ -44,6 +45,11 @@ namespace BLink.Droid
             // Replace the contents of the view with that element
             var holder = viewHolder as PlayerAdapterViewHolder;
             holder.Caption.Text = $"{player.FirstName} {player.LastName}";
+
+            byte[] imageAsBytes = Base64.Decode(player.Thumbnail, Base64Flags.Default);
+            var img = BitmapFactory.DecodeByteArray(imageAsBytes, 0, imageAsBytes.Length);
+            holder.Image.SetImageBitmap(img);
+
             holder.Height.Text = player.Height.HasValue ?
                 string.Format(Literals.HeightCmFormat, _activity.GetString(Resource.String.iconRuler), player.Height.Value.ToString()) :
                 "0";

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using Android.App;
 using Android.Content;
@@ -6,6 +7,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using BLink.Business.Common;
 using BLink.Business.Managers;
 using BLink.Business.Models;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
@@ -19,6 +21,7 @@ namespace BLink.Droid
         private Button _pickImage;
         private ImageView _clubImage;
         private Toolbar _toolbar;
+        private Stream _imageStream;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -44,9 +47,9 @@ namespace BLink.Droid
         private void PickImage_Click(object sender, EventArgs e)
         {
             var intent = new Intent();
-            Intent.SetType("image/*");
-            Intent.SetAction(Intent.ActionSend);
-            StartActivityForResult(Intent.CreateChooser(Intent, "Select Picture"), PickImageId);
+            intent.SetType("image/*");
+            intent.SetAction(Intent.ActionGetContent);
+            StartActivityForResult(Intent.CreateChooser(intent, "Select Picture"), PickImageId);
         }
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
@@ -55,25 +58,35 @@ namespace BLink.Droid
             {
                 Android.Net.Uri uri = data.Data;
                 _clubImage.SetImageURI(uri);
-                var imageStream = ContentResolver.OpenInputStream(uri);
+                _imageStream = ContentResolver.OpenInputStream(uri);
             }
         }
 
-        private async void CreateClub_Click(object sender, System.EventArgs e)
+        private async void CreateClub_Click(object sender, EventArgs e)
         {
+            bool hasError = false;
             EditText clubName = FindViewById<EditText>(Resource.Id.et_createClub_clubName);
+
             if (string.IsNullOrWhiteSpace(clubName.Text))
             {
                 clubName.Error = "Въведете име";
+                hasError = true;
             }
-            else
+
+            if (_imageStream == null)
+            {
+                Toast.MakeText(this, Literals.SelectPicture, ToastLength.Long).Show();
+                hasError = true;
+            }
+
+            if (!hasError)
             {
                 string email = Intent.GetStringExtra("email");
-                HttpResponseMessage response =  await RestManager.CreateClub(new CreateClub
+                HttpResponseMessage response = await RestManager.CreateClub(new CreateClub
                 {
                     Email = email,
                     Name = clubName.Text,
-                    ClubPhoto = Assets.Open("club-main-photo.jpg") // TODO This should be user-picked 
+                    ClubPhoto = _imageStream
                 });
 
                 if (response.IsSuccessStatusCode)

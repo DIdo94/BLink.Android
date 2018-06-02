@@ -69,11 +69,14 @@ namespace BLink.Business.Managers
         public static async Task<HttpResponseMessage> EditClub(EditClub editClub)
         {
             var content = new MultipartFormDataContent();
-            HttpContent fileStreamContent = new StreamContent(editClub.ClubPhoto);
-            fileStreamContent.Headers.ContentDisposition =
-                new ContentDispositionHeaderValue("form-data") { Name = "clubImage", FileName = "club-main-photo.jpg" };
-            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
-            content.Add(fileStreamContent, "clubImage");
+            if (editClub.ClubPhoto != null)
+            {
+                HttpContent fileStreamContent = new StreamContent(editClub.ClubPhoto);
+                fileStreamContent.Headers.ContentDisposition =
+                    new ContentDispositionHeaderValue("form-data") { Name = "clubImage", FileName = "club-main-photo.jpg" };
+                fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
+                content.Add(fileStreamContent, "clubImage");
+            }
 
             AddStringContent(content, editClub);
 
@@ -216,11 +219,14 @@ namespace BLink.Business.Managers
         public static async Task<HttpResponseMessage> EditMemberDetails(EditMemberDetails editMemberDetails)
         {
             var content = new MultipartFormDataContent();
-            HttpContent fileStreamContent = new StreamContent(editMemberDetails.File);
-            fileStreamContent.Headers.ContentDisposition =
-                new ContentDispositionHeaderValue("form-data") { Name = "userImage", FileName = "person-placeholder.jpg" };
-            fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
-            content.Add(fileStreamContent, "userImage");
+            if (editMemberDetails.File != null)
+            {
+                HttpContent fileStreamContent = new StreamContent(editMemberDetails.File);
+                fileStreamContent.Headers.ContentDisposition =
+                    new ContentDispositionHeaderValue("form-data") { Name = "userImage", FileName = "person-placeholder.jpg" };
+                fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue("application/jpeg");
+                content.Add(fileStreamContent, "userImage");
+            }
             AddStringContent(content, editMemberDetails);
 
             return await _httpClient.PostAsync(

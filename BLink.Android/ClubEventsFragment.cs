@@ -52,6 +52,8 @@ namespace BLink.Droid
         public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
+            _noClubEvents = View.FindViewById<TextView>(Resource.Id.tv_clubEvent_noClubEvents);
+
             if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
             {
                 FloatingActionButton goToCreateClubEventButton = View.FindViewById<FloatingActionButton>(Resource.Id.btn_clubEvent_goToCreateClubEvent);
@@ -65,7 +67,6 @@ namespace BLink.Droid
             if (clubResponse != "null")
             {
                 _clubDetails = JsonConvert.DeserializeObject<ClubDetails>(clubResponse);
-
                 _clubEventFilterRequest = new ClubEventFilterRequest
                 {
                     MemberId = int.Parse(_account.Properties["memberId"]),
@@ -96,7 +97,6 @@ namespace BLink.Droid
                 }
                 else
                 {
-                    _noClubEvents = View.FindViewById<TextView>(Resource.Id.tv_clubEvent_noClubEvents);
                     _noClubEvents.Visibility = ViewStates.Visible;
                 }
             }
@@ -121,6 +121,10 @@ namespace BLink.Droid
             {
                 _noClubEvents = View.FindViewById<TextView>(Resource.Id.tv_clubEvent_noClubEvents);
                 _noClubEvents.Visibility = ViewStates.Visible;
+            }
+            else
+            {
+                _noClubEvents.Visibility = ViewStates.Gone;
             }
         }
 

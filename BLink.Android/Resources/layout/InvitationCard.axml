@@ -14,17 +14,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:background="@color/stylishColor"
-                android:padding="4dp"
-                android:textColor="#eeeeee"
-                android:singleLine="true"
-                android:text="Caption"
-                android:id="@+id/tv_ic_header"
-                android:gravity="center" />
+                android:padding="3dp"
+                android:orientation="horizontal">
+                <refractored.controls.CircleImageView
+                    android:src="@android:drawable/ic_menu_gallery"
+                    card_view:civ_border_width="2dp"
+                    card_view:civ_border_color="#FF000000"
+                    android:layout_marginLeft="8dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:id="@+id/iv_ic_thumbnail" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:padding="4dp"
+                    android:textColor="#eeeeee"
+                    android:singleLine="true"
+                    android:text="Caption"
+                    android:id="@+id/tv_ic_header"
+                    android:gravity="center_vertical" />
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

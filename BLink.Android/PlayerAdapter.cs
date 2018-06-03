@@ -11,6 +11,7 @@ using Xamarin.Auth;
 using System.Collections.Generic;
 using BLink.Business.Enums;
 using Android.Util;
+using System;
 
 namespace BLink.Droid
 {
@@ -64,6 +65,20 @@ namespace BLink.Droid
                 $"{_activity.GetString(Resource.String.iconMale)} {Literals.ResourceManager.GetString(player.PreferedPosition.Value.ToString())}" :
                 string.Empty;
             holder.PlayerPosition.Typeface = tf;
+
+            if (player.DateOfBirth.HasValue)
+            {
+                var date = DateTime.MinValue + (DateTime.Now - player.DateOfBirth.Value);
+                holder.Age.Typeface = tf;
+                holder.Age.Text = string.Format(
+                    Literals.AgeYearsFormat,
+                    _activity.GetString(Resource.String.iconCalendar),
+                    date.AddYears(-1).AddMonths(-1).AddDays(-1).Year.ToString());
+            }
+            else
+            {
+                holder.Age.Text = string.Empty;
+            }
 
             if (!_account.Properties["roles"].Contains(Role.Coach.ToString()))
             {
@@ -125,7 +140,7 @@ namespace BLink.Droid
         {
             AlertDialog.Builder alert = new AlertDialog.Builder(_activity);
             EditText description = new EditText(_activity);
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent, 
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WrapContent,
                 LinearLayout.LayoutParams.WrapContent);
 
             lp.LeftMargin = 60;

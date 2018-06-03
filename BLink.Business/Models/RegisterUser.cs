@@ -1,4 +1,5 @@
 ﻿using BLink.Business.Enums;
+using System;
 using System.IO;
 
 namespace BLink.Business.Models
@@ -24,5 +25,7 @@ namespace BLink.Business.Models
         public Position? PreferedPosition { get; set; }
 
         public Stream File { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
     }
 }

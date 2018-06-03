@@ -2858,8 +2858,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0041
 			public const int SYM = 2131361857;
 			
-			// aapt resource value: 0x7f0a011f
-			public const int action0 = 2131362079;
+			// aapt resource value: 0x7f0a0123
+			public const int action0 = 2131362083;
 			
 			// aapt resource value: 0x7f0a0085
 			public const int action_bar = 2131361925;
@@ -2882,17 +2882,17 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0063
 			public const int action_bar_title = 2131361891;
 			
-			// aapt resource value: 0x7f0a011c
-			public const int action_container = 2131362076;
+			// aapt resource value: 0x7f0a0120
+			public const int action_container = 2131362080;
 			
 			// aapt resource value: 0x7f0a0086
 			public const int action_context_bar = 2131361926;
 			
-			// aapt resource value: 0x7f0a0123
-			public const int action_divider = 2131362083;
+			// aapt resource value: 0x7f0a0127
+			public const int action_divider = 2131362087;
 			
-			// aapt resource value: 0x7f0a011d
-			public const int action_image = 2131362077;
+			// aapt resource value: 0x7f0a0121
+			public const int action_image = 2131362081;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -2909,11 +2909,11 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0065
 			public const int action_mode_close_button = 2131361893;
 			
-			// aapt resource value: 0x7f0a011e
-			public const int action_text = 2131362078;
+			// aapt resource value: 0x7f0a0122
+			public const int action_text = 2131362082;
 			
-			// aapt resource value: 0x7f0a012c
-			public const int actions = 2131362092;
+			// aapt resource value: 0x7f0a0130
+			public const int actions = 2131362096;
 			
 			// aapt resource value: 0x7f0a0066
 			public const int activity_chooser_view_content = 2131361894;
@@ -2951,8 +2951,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0047
 			public const int bottom = 2131361863;
 			
-			// aapt resource value: 0x7f0a0153
-			public const int btn_Register = 2131362131;
+			// aapt resource value: 0x7f0a015a
+			public const int btn_Register = 2131362138;
 			
 			// aapt resource value: 0x7f0a00ac
 			public const int btn_cec_editClubEvent = 2131361964;
@@ -3005,50 +3005,50 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00d7
 			public const int btn_editClub_pickPhoto = 2131362007;
 			
+			// aapt resource value: 0x7f0a00f8
+			public const int btn_editMemberDetails_editDetails = 2131362040;
+			
 			// aapt resource value: 0x7f0a00f6
-			public const int btn_editMemberDetails_editDetails = 2131362038;
+			public const int btn_editMemberDetails_pickImage = 2131362038;
 			
-			// aapt resource value: 0x7f0a00f4
-			public const int btn_editMemberDetails_pickImage = 2131362036;
+			// aapt resource value: 0x7f0a00fc
+			public const int btn_ic_acceptInvitation = 2131362044;
 			
-			// aapt resource value: 0x7f0a00fa
-			public const int btn_ic_acceptInvitation = 2131362042;
+			// aapt resource value: 0x7f0a00fd
+			public const int btn_ic_refuseInvitation = 2131362045;
 			
-			// aapt resource value: 0x7f0a00fb
-			public const int btn_ic_refuseInvitation = 2131362043;
+			// aapt resource value: 0x7f0a010a
+			public const int btn_login_linkRegister = 2131362058;
 			
-			// aapt resource value: 0x7f0a0108
-			public const int btn_login_linkRegister = 2131362056;
+			// aapt resource value: 0x7f0a0109
+			public const int btn_login_login = 2131362057;
 			
-			// aapt resource value: 0x7f0a0107
-			public const int btn_login_login = 2131362055;
+			// aapt resource value: 0x7f0a011e
+			public const int btn_memberDetails_edit = 2131362078;
 			
-			// aapt resource value: 0x7f0a011a
-			public const int btn_memberDetails_edit = 2131362074;
+			// aapt resource value: 0x7f0a011f
+			public const int btn_memberDetails_logout = 2131362079;
 			
-			// aapt resource value: 0x7f0a011b
-			public const int btn_memberDetails_logout = 2131362075;
+			// aapt resource value: 0x7f0a0141
+			public const int btn_pc_invitePlayer = 2131362113;
 			
-			// aapt resource value: 0x7f0a013c
-			public const int btn_pc_invitePlayer = 2131362108;
+			// aapt resource value: 0x7f0a0142
+			public const int btn_pc_kickPlayer = 2131362114;
 			
-			// aapt resource value: 0x7f0a013d
-			public const int btn_pc_kickPlayer = 2131362109;
+			// aapt resource value: 0x7f0a0158
+			public const int btn_register_pickImage = 2131362136;
 			
-			// aapt resource value: 0x7f0a0151
-			public const int btn_register_pickImage = 2131362129;
+			// aapt resource value: 0x7f0a0163
+			public const int btn_searchPlayers_resetFilters = 2131362147;
 			
-			// aapt resource value: 0x7f0a015b
-			public const int btn_searchPlayers_resetFilters = 2131362139;
-			
-			// aapt resource value: 0x7f0a015a
-			public const int btn_searchPlayers_searchPlayers = 2131362138;
+			// aapt resource value: 0x7f0a0162
+			public const int btn_searchPlayers_searchPlayers = 2131362146;
 			
 			// aapt resource value: 0x7f0a006c
 			public const int buttonPanel = 2131361900;
 			
-			// aapt resource value: 0x7f0a0120
-			public const int cancel_action = 2131362080;
+			// aapt resource value: 0x7f0a0124
+			public const int cancel_action = 2131362084;
 			
 			// aapt resource value: 0x7f0a004e
 			public const int center = 2131361870;
@@ -3062,8 +3062,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a007c
 			public const int checkbox = 2131361916;
 			
-			// aapt resource value: 0x7f0a0128
-			public const int chronometer = 2131362088;
+			// aapt resource value: 0x7f0a012c
+			public const int chronometer = 2131362092;
 			
 			// aapt resource value: 0x7f0a0057
 			public const int clip_horizontal = 2131361879;
@@ -3122,14 +3122,20 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00e2
 			public const int dp_editClubEvent_clubEventStartTimeDay = 2131362018;
 			
+			// aapt resource value: 0x7f0a00f5
+			public const int dp_editMemberDetails_dateOfBirth = 2131362037;
+			
+			// aapt resource value: 0x7f0a0157
+			public const int dp_register_dateOfBirth = 2131362135;
+			
 			// aapt resource value: 0x7f0a0087
 			public const int edit_query = 2131361927;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int end = 2131361850;
 			
-			// aapt resource value: 0x7f0a012e
-			public const int end_padder = 2131362094;
+			// aapt resource value: 0x7f0a0132
+			public const int end_padder = 2131362098;
 			
 			// aapt resource value: 0x7f0a0049
 			public const int enterAlways = 2131361865;
@@ -3167,35 +3173,35 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00f1
 			public const int et_editMemberDetails_weight = 2131362033;
 			
-			// aapt resource value: 0x7f0a0104
-			public const int et_login_email = 2131362052;
-			
 			// aapt resource value: 0x7f0a0106
-			public const int et_login_password = 2131362054;
+			public const int et_login_email = 2131362054;
 			
-			// aapt resource value: 0x7f0a0143
-			public const int et_registerConfirmPassword = 2131362115;
+			// aapt resource value: 0x7f0a0108
+			public const int et_login_password = 2131362056;
 			
-			// aapt resource value: 0x7f0a013f
-			public const int et_registerEmail = 2131362111;
+			// aapt resource value: 0x7f0a0148
+			public const int et_registerConfirmPassword = 2131362120;
 			
-			// aapt resource value: 0x7f0a0145
-			public const int et_registerFirstName = 2131362117;
+			// aapt resource value: 0x7f0a0144
+			public const int et_registerEmail = 2131362116;
 			
-			// aapt resource value: 0x7f0a0147
-			public const int et_registerLastName = 2131362119;
-			
-			// aapt resource value: 0x7f0a0141
-			public const int et_registerPassword = 2131362113;
+			// aapt resource value: 0x7f0a014a
+			public const int et_registerFirstName = 2131362122;
 			
 			// aapt resource value: 0x7f0a014c
-			public const int et_register_height = 2131362124;
+			public const int et_registerLastName = 2131362124;
 			
-			// aapt resource value: 0x7f0a014e
-			public const int et_register_weight = 2131362126;
+			// aapt resource value: 0x7f0a0146
+			public const int et_registerPassword = 2131362118;
 			
-			// aapt resource value: 0x7f0a0156
-			public const int et_searchPlayers_name = 2131362134;
+			// aapt resource value: 0x7f0a0151
+			public const int et_register_height = 2131362129;
+			
+			// aapt resource value: 0x7f0a0153
+			public const int et_register_weight = 2131362131;
+			
+			// aapt resource value: 0x7f0a015d
+			public const int et_searchPlayers_name = 2131362141;
 			
 			// aapt resource value: 0x7f0a004b
 			public const int exitUntilCollapsed = 2131361867;
@@ -3236,8 +3242,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a006b
 			public const int icon = 2131361899;
 			
-			// aapt resource value: 0x7f0a012d
-			public const int icon_group = 2131362093;
+			// aapt resource value: 0x7f0a0131
+			public const int icon_group = 2131362097;
 			
 			// aapt resource value: 0x7f0a0023
 			public const int icon_only = 2131361827;
@@ -3248,8 +3254,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0068
 			public const int image = 2131361896;
 			
-			// aapt resource value: 0x7f0a0129
-			public const int info = 2131362089;
+			// aapt resource value: 0x7f0a012d
+			public const int info = 2131362093;
 			
 			// aapt resource value: 0x7f0a0062
 			public const int italic = 2131361890;
@@ -3266,20 +3272,20 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00d8
 			public const int iv_editClub_clubPhoto = 2131362008;
 			
-			// aapt resource value: 0x7f0a00f5
-			public const int iv_editMemberDetails_userImage = 2131362037;
-			
 			// aapt resource value: 0x7f0a00f7
-			public const int iv_ic_thumbnail = 2131362039;
+			public const int iv_editMemberDetails_userImage = 2131362039;
 			
-			// aapt resource value: 0x7f0a0109
-			public const int iv_memberDetails_mainPhoto = 2131362057;
+			// aapt resource value: 0x7f0a00f9
+			public const int iv_ic_thumbnail = 2131362041;
 			
-			// aapt resource value: 0x7f0a0137
-			public const int iv_pc_thumbnail = 2131362103;
+			// aapt resource value: 0x7f0a010b
+			public const int iv_memberDetails_mainPhoto = 2131362059;
 			
-			// aapt resource value: 0x7f0a0152
-			public const int iv_register_userImage = 2131362130;
+			// aapt resource value: 0x7f0a013b
+			public const int iv_pc_thumbnail = 2131362107;
+			
+			// aapt resource value: 0x7f0a0159
+			public const int iv_register_userImage = 2131362137;
 			
 			// aapt resource value: 0x7f0a00c7
 			public const int largeLabel = 2131361991;
@@ -3287,20 +3293,23 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a009c
 			public const int lbl_club_clubPlayers = 2131361948;
 			
-			// aapt resource value: 0x7f0a010b
-			public const int lbl_memberDetails_firstName = 2131362059;
+			// aapt resource value: 0x7f0a011c
+			public const int lbl_memberDetails_dateOfBirth = 2131362076;
 			
-			// aapt resource value: 0x7f0a0112
-			public const int lbl_memberDetails_height = 2131362066;
+			// aapt resource value: 0x7f0a010d
+			public const int lbl_memberDetails_firstName = 2131362061;
 			
-			// aapt resource value: 0x7f0a010e
-			public const int lbl_memberDetails_lastName = 2131362062;
+			// aapt resource value: 0x7f0a0114
+			public const int lbl_memberDetails_height = 2131362068;
 			
-			// aapt resource value: 0x7f0a0118
-			public const int lbl_memberDetails_preferedPosition = 2131362072;
+			// aapt resource value: 0x7f0a0110
+			public const int lbl_memberDetails_lastName = 2131362064;
 			
-			// aapt resource value: 0x7f0a0115
-			public const int lbl_memberDetails_weight = 2131362069;
+			// aapt resource value: 0x7f0a011a
+			public const int lbl_memberDetails_preferedPosition = 2131362074;
+			
+			// aapt resource value: 0x7f0a0117
+			public const int lbl_memberDetails_weight = 2131362071;
 			
 			// aapt resource value: 0x7f0a0052
 			public const int left = 2131361874;
@@ -3338,47 +3347,47 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00ed
 			public const int ll_editMemberDetails_playerSection = 2131362029;
 			
-			// aapt resource value: 0x7f0a0110
-			public const int ll_memberDetails_playerSection = 2131362064;
+			// aapt resource value: 0x7f0a0112
+			public const int ll_memberDetails_playerSection = 2131362066;
 			
-			// aapt resource value: 0x7f0a014a
-			public const int ll_register_playerSection = 2131362122;
+			// aapt resource value: 0x7f0a014f
+			public const int ll_register_playerSection = 2131362127;
+			
+			// aapt resource value: 0x7f0a0103
+			public const int loadingImage = 2131362051;
 			
 			// aapt resource value: 0x7f0a0101
-			public const int loadingImage = 2131362049;
+			public const int loadingProgressBar = 2131362049;
 			
-			// aapt resource value: 0x7f0a00ff
-			public const int loadingProgressBar = 2131362047;
+			// aapt resource value: 0x7f0a0104
+			public const int loadingProgressWheel = 2131362052;
 			
-			// aapt resource value: 0x7f0a0102
-			public const int loadingProgressWheel = 2131362050;
+			// aapt resource value: 0x7f0a010c
+			public const int locSection = 2131362060;
 			
-			// aapt resource value: 0x7f0a010a
-			public const int locSection = 2131362058;
+			// aapt resource value: 0x7f0a010f
+			public const int locSection1 = 2131362063;
 			
-			// aapt resource value: 0x7f0a010d
-			public const int locSection1 = 2131362061;
+			// aapt resource value: 0x7f0a0113
+			public const int locSection2 = 2131362067;
 			
-			// aapt resource value: 0x7f0a0111
-			public const int locSection2 = 2131362065;
+			// aapt resource value: 0x7f0a0116
+			public const int locSection3 = 2131362070;
 			
-			// aapt resource value: 0x7f0a0114
-			public const int locSection3 = 2131362068;
-			
-			// aapt resource value: 0x7f0a0117
-			public const int locSection4 = 2131362071;
+			// aapt resource value: 0x7f0a0119
+			public const int locSection4 = 2131362073;
 			
 			// aapt resource value: 0x7f0a00c5
 			public const int map = 2131361989;
 			
-			// aapt resource value: 0x7f0a0163
-			public const int masked = 2131362147;
+			// aapt resource value: 0x7f0a016b
+			public const int masked = 2131362155;
 			
-			// aapt resource value: 0x7f0a0122
-			public const int media_actions = 2131362082;
+			// aapt resource value: 0x7f0a0126
+			public const int media_actions = 2131362086;
 			
-			// aapt resource value: 0x7f0a015f
-			public const int message = 2131362143;
+			// aapt resource value: 0x7f0a0167
+			public const int message = 2131362151;
 			
 			// aapt resource value: 0x7f0a003b
 			public const int middle = 2131361851;
@@ -3401,14 +3410,14 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a001e
 			public const int normal = 2131361822;
 			
-			// aapt resource value: 0x7f0a012b
-			public const int notification_background = 2131362091;
+			// aapt resource value: 0x7f0a012f
+			public const int notification_background = 2131362095;
 			
-			// aapt resource value: 0x7f0a0125
-			public const int notification_main_column = 2131362085;
+			// aapt resource value: 0x7f0a0129
+			public const int notification_main_column = 2131362089;
 			
-			// aapt resource value: 0x7f0a0124
-			public const int notification_main_column_container = 2131362084;
+			// aapt resource value: 0x7f0a0128
+			public const int notification_main_column_container = 2131362088;
 			
 			// aapt resource value: 0x7f0a0055
 			public const int parallax = 2131361877;
@@ -3422,32 +3431,32 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0056
 			public const int pin = 2131361878;
 			
-			// aapt resource value: 0x7f0a0131
-			public const int place_autocomplete_clear_button = 2131362097;
+			// aapt resource value: 0x7f0a0135
+			public const int place_autocomplete_clear_button = 2131362101;
 			
 			// aapt resource value: 0x7f0a00c4
 			public const int place_autocomplete_fragment = 2131361988;
 			
+			// aapt resource value: 0x7f0a0137
+			public const int place_autocomplete_powered_by_google = 2131362103;
+			
+			// aapt resource value: 0x7f0a0139
+			public const int place_autocomplete_prediction_primary_text = 2131362105;
+			
+			// aapt resource value: 0x7f0a013a
+			public const int place_autocomplete_prediction_secondary_text = 2131362106;
+			
+			// aapt resource value: 0x7f0a0138
+			public const int place_autocomplete_progress = 2131362104;
+			
 			// aapt resource value: 0x7f0a0133
-			public const int place_autocomplete_powered_by_google = 2131362099;
-			
-			// aapt resource value: 0x7f0a0135
-			public const int place_autocomplete_prediction_primary_text = 2131362101;
-			
-			// aapt resource value: 0x7f0a0136
-			public const int place_autocomplete_prediction_secondary_text = 2131362102;
+			public const int place_autocomplete_search_button = 2131362099;
 			
 			// aapt resource value: 0x7f0a0134
-			public const int place_autocomplete_progress = 2131362100;
+			public const int place_autocomplete_search_input = 2131362100;
 			
-			// aapt resource value: 0x7f0a012f
-			public const int place_autocomplete_search_button = 2131362095;
-			
-			// aapt resource value: 0x7f0a0130
-			public const int place_autocomplete_search_input = 2131362096;
-			
-			// aapt resource value: 0x7f0a0132
-			public const int place_autocomplete_separator = 2131362098;
+			// aapt resource value: 0x7f0a0136
+			public const int place_autocomplete_separator = 2131362102;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
@@ -3461,11 +3470,11 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0053
 			public const int right = 2131361875;
 			
-			// aapt resource value: 0x7f0a012a
-			public const int right_icon = 2131362090;
+			// aapt resource value: 0x7f0a012e
+			public const int right_icon = 2131362094;
 			
-			// aapt resource value: 0x7f0a0126
-			public const int right_side = 2131362086;
+			// aapt resource value: 0x7f0a012a
+			public const int right_side = 2131362090;
 			
 			// aapt resource value: 0x7f0a00a3
 			public const int rv_clubEvent_clubEvents = 2131361955;
@@ -3473,11 +3482,11 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a009d
 			public const int rv_club_clubPlayers = 2131361949;
 			
-			// aapt resource value: 0x7f0a00fe
-			public const int rv_invitations_invitations = 2131362046;
+			// aapt resource value: 0x7f0a0100
+			public const int rv_invitations_invitations = 2131362048;
 			
-			// aapt resource value: 0x7f0a015e
-			public const int rv_searchPlayers_players = 2131362142;
+			// aapt resource value: 0x7f0a0166
+			public const int rv_searchPlayers_players = 2131362150;
 			
 			// aapt resource value: 0x7f0a001f
 			public const int satellite = 2131361823;
@@ -3554,14 +3563,17 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a002f
 			public const int showTitle = 2131361839;
 			
-			// aapt resource value: 0x7f0a0157
-			public const int sld_searchPlayers_heightRange = 2131362135;
-			
-			// aapt resource value: 0x7f0a0158
-			public const int sld_searchPlayers_weightRange = 2131362136;
-			
 			// aapt resource value: 0x7f0a0160
-			public const int sliding_tabs = 2131362144;
+			public const int sld_searchPlayers_ageRange = 2131362144;
+			
+			// aapt resource value: 0x7f0a015e
+			public const int sld_searchPlayers_heightRange = 2131362142;
+			
+			// aapt resource value: 0x7f0a015f
+			public const int sld_searchPlayers_weightRange = 2131362143;
+			
+			// aapt resource value: 0x7f0a0168
+			public const int sliding_tabs = 2131362152;
 			
 			// aapt resource value: 0x7f0a00c6
 			public const int smallLabel = 2131361990;
@@ -3593,14 +3605,14 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00f3
 			public const int spn_editMemberDetails_preferedPosition = 2131362035;
 			
-			// aapt resource value: 0x7f0a0149
-			public const int spn_registerRoles = 2131362121;
+			// aapt resource value: 0x7f0a014e
+			public const int spn_registerRoles = 2131362126;
 			
-			// aapt resource value: 0x7f0a0150
-			public const int spn_register_preferedPosition = 2131362128;
+			// aapt resource value: 0x7f0a0155
+			public const int spn_register_preferedPosition = 2131362133;
 			
-			// aapt resource value: 0x7f0a0159
-			public const int spn_searchPlayers_preferedPosition = 2131362137;
+			// aapt resource value: 0x7f0a0161
+			public const int spn_searchPlayers_preferedPosition = 2131362145;
 			
 			// aapt resource value: 0x7f0a0033
 			public const int src_atop = 2131361843;
@@ -3617,8 +3629,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0054
 			public const int start = 2131361876;
 			
-			// aapt resource value: 0x7f0a0121
-			public const int status_bar_latest_event_content = 2131362081;
+			// aapt resource value: 0x7f0a0125
+			public const int status_bar_latest_event_content = 2131362085;
 			
 			// aapt resource value: 0x7f0a007f
 			public const int submenuarrow = 2131361919;
@@ -3638,8 +3650,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00ae
 			public const int tbr_register_toolbar = 2131361966;
 			
-			// aapt resource value: 0x7f0a0154
-			public const int tbr_searchPlayers_toolbar = 2131362132;
+			// aapt resource value: 0x7f0a015b
+			public const int tbr_searchPlayers_toolbar = 2131362139;
 			
 			// aapt resource value: 0x7f0a0020
 			public const int terrain = 2131361824;
@@ -3656,14 +3668,14 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0072
 			public const int textSpacerNoTitle = 2131361906;
 			
-			// aapt resource value: 0x7f0a0103
-			public const int textView1 = 2131362051;
-			
 			// aapt resource value: 0x7f0a0105
-			public const int textView2 = 2131362053;
+			public const int textView1 = 2131362053;
 			
-			// aapt resource value: 0x7f0a0100
-			public const int textViewStatus = 2131362048;
+			// aapt resource value: 0x7f0a0107
+			public const int textView2 = 2131362055;
+			
+			// aapt resource value: 0x7f0a0102
+			public const int textViewStatus = 2131362050;
 			
 			// aapt resource value: 0x7f0a00d3
 			public const int text_input_password_toggle = 2131362003;
@@ -3674,8 +3686,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0015
 			public const int textinput_error = 2131361813;
 			
-			// aapt resource value: 0x7f0a0127
-			public const int time = 2131362087;
+			// aapt resource value: 0x7f0a012b
+			public const int time = 2131362091;
 			
 			// aapt resource value: 0x7f0a001b
 			public const int title = 2131361819;
@@ -3686,8 +3698,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0078
 			public const int title_template = 2131361912;
 			
-			// aapt resource value: 0x7f0a0155
-			public const int tl_searchPlayers_filters = 2131362133;
+			// aapt resource value: 0x7f0a015c
+			public const int tl_searchPlayers_filters = 2131362140;
 			
 			// aapt resource value: 0x7f0a0048
 			public const int top = 2131361864;
@@ -3794,6 +3806,9 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00d5
 			public const int tv_editClub_clubName = 2131362005;
 			
+			// aapt resource value: 0x7f0a00f4
+			public const int tv_editMemberDetails_dateOfBirth = 2131362036;
+			
 			// aapt resource value: 0x7f0a00e9
 			public const int tv_editMemberDetails_firstName = 2131362025;
 			
@@ -3809,77 +3824,86 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a00f0
 			public const int tv_editMemberDetails_weight = 2131362032;
 			
-			// aapt resource value: 0x7f0a00f9
-			public const int tv_ic_description = 2131362041;
+			// aapt resource value: 0x7f0a00fb
+			public const int tv_ic_description = 2131362043;
 			
-			// aapt resource value: 0x7f0a00f8
-			public const int tv_ic_header = 2131362040;
+			// aapt resource value: 0x7f0a00fa
+			public const int tv_ic_header = 2131362042;
 			
-			// aapt resource value: 0x7f0a00fc
-			public const int tv_invitations_header = 2131362044;
+			// aapt resource value: 0x7f0a00fe
+			public const int tv_invitations_header = 2131362046;
 			
-			// aapt resource value: 0x7f0a00fd
-			public const int tv_invitations_noInvitations = 2131362045;
+			// aapt resource value: 0x7f0a00ff
+			public const int tv_invitations_noInvitations = 2131362047;
 			
-			// aapt resource value: 0x7f0a010c
-			public const int tv_memberDetails_firstName = 2131362060;
+			// aapt resource value: 0x7f0a011d
+			public const int tv_memberDetails_dateOfBirth = 2131362077;
 			
-			// aapt resource value: 0x7f0a0113
-			public const int tv_memberDetails_height = 2131362067;
+			// aapt resource value: 0x7f0a010e
+			public const int tv_memberDetails_firstName = 2131362062;
 			
-			// aapt resource value: 0x7f0a010f
-			public const int tv_memberDetails_lastName = 2131362063;
+			// aapt resource value: 0x7f0a0115
+			public const int tv_memberDetails_height = 2131362069;
 			
-			// aapt resource value: 0x7f0a0119
-			public const int tv_memberDetails_preferedPosition = 2131362073;
+			// aapt resource value: 0x7f0a0111
+			public const int tv_memberDetails_lastName = 2131362065;
 			
-			// aapt resource value: 0x7f0a0116
-			public const int tv_memberDetails_weight = 2131362070;
+			// aapt resource value: 0x7f0a011b
+			public const int tv_memberDetails_preferedPosition = 2131362075;
 			
-			// aapt resource value: 0x7f0a0139
-			public const int tv_pc_height = 2131362105;
-			
-			// aapt resource value: 0x7f0a0138
-			public const int tv_pc_name = 2131362104;
-			
-			// aapt resource value: 0x7f0a013b
-			public const int tv_pc_position = 2131362107;
-			
-			// aapt resource value: 0x7f0a013a
-			public const int tv_pc_weight = 2131362106;
-			
-			// aapt resource value: 0x7f0a0142
-			public const int tv_registerConfirmPassword = 2131362114;
-			
-			// aapt resource value: 0x7f0a013e
-			public const int tv_registerEmail = 2131362110;
-			
-			// aapt resource value: 0x7f0a0144
-			public const int tv_registerFirstName = 2131362116;
-			
-			// aapt resource value: 0x7f0a0146
-			public const int tv_registerLastName = 2131362118;
+			// aapt resource value: 0x7f0a0118
+			public const int tv_memberDetails_weight = 2131362072;
 			
 			// aapt resource value: 0x7f0a0140
-			public const int tv_registerPassword = 2131362112;
+			public const int tv_pc_age = 2131362112;
 			
-			// aapt resource value: 0x7f0a0148
-			public const int tv_registerRoles = 2131362120;
+			// aapt resource value: 0x7f0a013d
+			public const int tv_pc_height = 2131362109;
 			
-			// aapt resource value: 0x7f0a014f
-			public const int tv_register_ = 2131362127;
+			// aapt resource value: 0x7f0a013c
+			public const int tv_pc_name = 2131362108;
+			
+			// aapt resource value: 0x7f0a013f
+			public const int tv_pc_position = 2131362111;
+			
+			// aapt resource value: 0x7f0a013e
+			public const int tv_pc_weight = 2131362110;
+			
+			// aapt resource value: 0x7f0a0147
+			public const int tv_registerConfirmPassword = 2131362119;
+			
+			// aapt resource value: 0x7f0a0143
+			public const int tv_registerEmail = 2131362115;
+			
+			// aapt resource value: 0x7f0a0149
+			public const int tv_registerFirstName = 2131362121;
 			
 			// aapt resource value: 0x7f0a014b
-			public const int tv_register_height = 2131362123;
+			public const int tv_registerLastName = 2131362123;
+			
+			// aapt resource value: 0x7f0a0145
+			public const int tv_registerPassword = 2131362117;
 			
 			// aapt resource value: 0x7f0a014d
-			public const int tv_register_weight = 2131362125;
+			public const int tv_registerRoles = 2131362125;
 			
-			// aapt resource value: 0x7f0a015d
-			public const int tv_searchPlayers_noPlayersFound = 2131362141;
+			// aapt resource value: 0x7f0a0154
+			public const int tv_register_ = 2131362132;
 			
-			// aapt resource value: 0x7f0a015c
-			public const int tv_searchPlayers_toggleFilters = 2131362140;
+			// aapt resource value: 0x7f0a0156
+			public const int tv_register_dateOfBirth = 2131362134;
+			
+			// aapt resource value: 0x7f0a0150
+			public const int tv_register_height = 2131362128;
+			
+			// aapt resource value: 0x7f0a0152
+			public const int tv_register_weight = 2131362130;
+			
+			// aapt resource value: 0x7f0a0165
+			public const int tv_searchPlayers_noPlayersFound = 2131362149;
+			
+			// aapt resource value: 0x7f0a0164
+			public const int tv_searchPlayers_toggleFilters = 2131362148;
 			
 			// aapt resource value: 0x7f0a0037
 			public const int uniform = 2131361847;
@@ -3893,11 +3917,11 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f0a0016
 			public const int view_offset_helper = 2131361814;
 			
-			// aapt resource value: 0x7f0a0161
-			public const int viewpager = 2131362145;
+			// aapt resource value: 0x7f0a0169
+			public const int viewpager = 2131362153;
 			
-			// aapt resource value: 0x7f0a0162
-			public const int visible = 2131362146;
+			// aapt resource value: 0x7f0a016a
+			public const int visible = 2131362154;
 			
 			// aapt resource value: 0x7f0a0025
 			public const int wide = 2131361829;
@@ -4400,6 +4424,9 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f060045
 			public const int confirmPassword = 2131099717;
 			
+			// aapt resource value: 0x7f06005d
+			public const int dateOfBirth = 2131099741;
+			
 			// aapt resource value: 0x7f060002
 			public const int demo_max_label = 2131099650;
 			
@@ -4424,20 +4451,23 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f06004c
 			public const int iam = 2131099724;
 			
+			// aapt resource value: 0x7f060055
+			public const int iconCalendar = 2131099733;
+			
 			// aapt resource value: 0x7f060052
 			public const int iconChevronDown = 2131099730;
 			
 			// aapt resource value: 0x7f060051
 			public const int iconChevronUp = 2131099729;
 			
+			// aapt resource value: 0x7f060058
+			public const int iconClock = 2131099736;
+			
 			// aapt resource value: 0x7f060057
-			public const int iconClock = 2131099735;
+			public const int iconDescription = 2131099735;
 			
 			// aapt resource value: 0x7f060056
-			public const int iconDescription = 2131099734;
-			
-			// aapt resource value: 0x7f060055
-			public const int iconMale = 2131099733;
+			public const int iconMale = 2131099734;
 			
 			// aapt resource value: 0x7f060053
 			public const int iconRuler = 2131099731;
@@ -4454,14 +4484,14 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f060046
 			public const int login = 2131099718;
 			
+			// aapt resource value: 0x7f06005c
+			public const int noClubEvents = 2131099740;
+			
 			// aapt resource value: 0x7f06005b
-			public const int noClubEvents = 2131099739;
+			public const int noInvitationsMessage = 2131099739;
 			
-			// aapt resource value: 0x7f06005a
-			public const int noInvitationsMessage = 2131099738;
-			
-			// aapt resource value: 0x7f060058
-			public const int noPlayersFound = 2131099736;
+			// aapt resource value: 0x7f060059
+			public const int noPlayersFound = 2131099737;
 			
 			// aapt resource value: 0x7f060044
 			public const int password = 2131099716;
@@ -4496,8 +4526,8 @@ namespace BLink.Droid
 			// aapt resource value: 0x7f060047
 			public const int register = 2131099719;
 			
-			// aapt resource value: 0x7f060059
-			public const int resetFilters = 2131099737;
+			// aapt resource value: 0x7f06005a
+			public const int resetFilters = 2131099738;
 			
 			// aapt resource value: 0x7f060029
 			public const int search_menu_title = 2131099689;

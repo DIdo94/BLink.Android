@@ -17,5 +17,9 @@ namespace BLink.Business.Models
         public double MaxWeight { get; set; }
 
         public Position Position { get; set; }
+
+        public double MinAge { get; set; }
+
+        public double MaxAge { get; set; }
     }
 }

@@ -34,7 +34,8 @@ namespace BLink.Droid
             _searchPlayersCritera = new SearchPlayersCritera
             {
                 MaxHeight = int.MaxValue,
-                MaxWeight = int.MaxValue
+                MaxWeight = int.MaxValue,
+                MaxAge = int.MaxValue
             };
         }
 

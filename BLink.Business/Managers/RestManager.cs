@@ -3,6 +3,7 @@ using BLink.Business.Enums;
 using BLink.Business.Models;
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -239,14 +240,21 @@ namespace BLink.Business.Managers
             var props = data.GetType().GetProperties();
             foreach (var prop in props)
             {
-                if (prop.GetType() != typeof(Stream))
+                string value = null;
+                if (prop.PropertyType == typeof(DateTime?))
                 {
-                    var value = prop.GetValue(data)?.ToString();
-                    if (value != null)
-                    {
-                        var propName = prop.Name;
-                        content.Add(new StringContent(value), propName);
-                    }
+                    var date = DateTime.Parse(prop.GetValue(data).ToString());
+                    value = date.ToString("MM/dd/yyyy");
+                }
+                else if (prop.PropertyType != typeof(Stream))
+                {
+                    value = prop.GetValue(data)?.ToString();
+                }
+
+                if (value != null)
+                {
+                    var propName = prop.Name;
+                    content.Add(new StringContent(value), propName);
                 }
             }
         }
@@ -257,10 +265,16 @@ namespace BLink.Business.Managers
             var props = data.GetType().GetProperties();
             foreach (var prop in props)
             {
-                var value = prop.GetValue(data)?.ToString();
+                var value = prop.GetValue(data);
+                
                 if (value != null)
                 {
-                    queryString.Append($"{prop.Name}={value}&");
+                    if (prop.PropertyType == typeof(double))
+                    {
+                        var s = Convert.ToInt32(value);
+                        value = s.ToString();
+                    }
+                    queryString.Append($"{prop.Name}={value.ToString()}&");
                 }
             }
 

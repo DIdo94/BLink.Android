@@ -144,6 +144,29 @@
                     android:gravity="left"
                     android:id="@+id/tv_memberDetails_preferedPosition" />
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locSection4">
+                <TextView
+                    android:text="@string/dateOfBirth"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
+                    android:gravity="left"
+                    android:id="@+id/lbl_memberDetails_dateOfBirth" />
+                <TextView
+                    android:text=""
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:gravity="left"
+                    android:id="@+id/tv_memberDetails_dateOfBirth" />
+            </LinearLayout>
         </LinearLayout>
         <Button
             android:background="@drawable/stylishButton"

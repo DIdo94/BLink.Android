@@ -39,6 +39,7 @@ namespace BLink.Droid
         private Spinner _positionsSpinner;
         private RangeSliderControl _heightRange;
         private RangeSliderControl _weightRange;
+        private RangeSliderControl _ageRange;
         private Button _search;
         private Button _resetFilters;
         private TextView _noPlayersFound;
@@ -48,7 +49,8 @@ namespace BLink.Droid
             _searchPlayersCritera = new SearchPlayersCritera
             {
                 MaxHeight = int.MaxValue,
-                MaxWeight = int.MaxValue
+                MaxWeight = int.MaxValue,
+                MaxAge = int.MaxValue
             };
         }
 
@@ -71,6 +73,8 @@ namespace BLink.Droid
             _weightRange = FindViewById<RangeSliderControl>(Resource.Id.sld_searchPlayers_weightRange);
             _weightRange.SetSelectedMinValue(0);
             _weightRange.SetSelectedMaxValue(300);
+
+            _ageRange = FindViewById<RangeSliderControl>(Resource.Id.sld_searchPlayers_ageRange);
 
             _search = FindViewById<Button>(Resource.Id.btn_searchPlayers_searchPlayers);
             _search.Click += Search_Click;
@@ -137,10 +141,15 @@ namespace BLink.Droid
             _weightRange.SetSelectedMinValue(0);
             _weightRange.SetSelectedMaxValue(300);
 
+            _ageRange.SetSelectedMinValue(_ageRange.AbsoluteMinValue);
+            _ageRange.SetSelectedMaxValue(_ageRange.AbsoluteMaxValue);
+
             _searchPlayersCritera.MaxHeight = int.MaxValue;
             _searchPlayersCritera.MinHeight = 0;
             _searchPlayersCritera.MaxWeight = int.MaxValue;
             _searchPlayersCritera.MinWeight = 0;
+            _searchPlayersCritera.MinAge = 0;
+            _searchPlayersCritera.MaxAge = int.MaxValue;
             _searchPlayersCritera.Position = 0;
             _searchPlayersCritera.Name = string.Empty;
 
@@ -175,12 +184,14 @@ namespace BLink.Droid
         private async void Search_Click(object sender, EventArgs e)
         {
             _searchPlayersCritera.Name = _name.Text;
-
             _searchPlayersCritera.MinHeight = _heightRange.GetSelectedMinValue();
             _searchPlayersCritera.MaxHeight = _heightRange.GetSelectedMaxValue();
 
             _searchPlayersCritera.MinWeight = _weightRange.GetSelectedMinValue();
             _searchPlayersCritera.MaxWeight = _weightRange.GetSelectedMaxValue();
+
+            _searchPlayersCritera.MinAge = _ageRange.GetSelectedMinValue();
+            _searchPlayersCritera.MaxAge = _ageRange.GetSelectedMaxValue();
 
             int postitionIndex = _positionsSpinner.SelectedItemPosition + 1;
             _searchPlayersCritera.Position = (Position)postitionIndex;

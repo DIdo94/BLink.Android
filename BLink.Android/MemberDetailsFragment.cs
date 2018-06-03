@@ -53,6 +53,7 @@ namespace BLink.Droid
             TextView lastName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_lastName);
             TextView height = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_height);
             TextView weight = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_weight);
+            TextView dateOfBirth = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_dateOfBirth);
             TextView preferedPosition = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_preferedPosition);
             LinearLayout playerSection = View.FindViewById<LinearLayout>(Resource.Id.ll_memberDetails_playerSection);
 
@@ -70,6 +71,9 @@ namespace BLink.Droid
                 weight.Text = _memberDetails.Weight.HasValue ?
                     _memberDetails.Weight.Value.ToString() :
                     "0";
+                dateOfBirth.Text = _memberDetails.DateOfBirth.HasValue ?
+                    _memberDetails.DateOfBirth.Value.ToString() :
+                    string.Empty;
                 preferedPosition.Text = Literals.ResourceManager.GetString(_memberDetails.PreferedPosition.Value.ToString());
                 playerSection.Visibility = ViewStates.Visible;
             }

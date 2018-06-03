@@ -74,6 +74,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="32.5dp"
                 android:id="@+id/spn_editMemberDetails_preferedPosition" />
+            <TextView
+                android:text="@string/dateOfBirth"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_editMemberDetails_dateOfBirth" />
+            <DatePicker
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:minDate="1/1/1960"
+                android:maxDate="1/1/2018"
+                android:id="@+id/dp_editMemberDetails_dateOfBirth" />
         </LinearLayout>
         <Button
             android:id="@+id/btn_editMemberDetails_pickImage"

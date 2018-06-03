@@ -20,6 +20,7 @@
   <string name="iconChevronDown">&#xf078;</string>
   <string name="iconRuler">&#xf548;</string>
   <string name="iconWeight">&#xf496;</string>
+  <string name="iconCalendar">&#xf073;</string>
   <string name="iconMale">&#xf183;</string>
   <string name="iconDescription">&#xf15c;</string>
   <string name="iconClock">&#xf017;</string>
@@ -27,4 +28,5 @@
   <string name="resetFilters">Изчисти филтрите</string>
   <string name="noInvitationsMessage">Няма намерени покани</string>
   <string name="noClubEvents">Няма намерени събития</string>
+  <string name="dateOfBirth">Дата на раждане</string>
 </resources>

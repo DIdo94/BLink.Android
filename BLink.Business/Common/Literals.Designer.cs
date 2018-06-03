@@ -61,6 +61,15 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} {1} г..
+        /// </summary>
+        public static string AgeYearsFormat {
+            get {
+                return ResourceManager.GetString("AgeYearsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Всички.
         /// </summary>
         public static string All {

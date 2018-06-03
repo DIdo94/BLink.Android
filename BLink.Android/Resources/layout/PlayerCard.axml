@@ -78,6 +78,15 @@
                         android:paddingBottom="5dp"
                         android:paddingLeft="20dp"
                         android:id="@+id/tv_pc_position" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#333333"
+                        android:singleLine="true"
+                        android:text="Caption"
+                        android:textSize="15dp"
+                        android:paddingTop="10dp"
+                        android:id="@+id/tv_pc_age" />
                 </TableRow>
             </TableLayout>
             <LinearLayout

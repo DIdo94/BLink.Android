@@ -66,6 +66,24 @@
         </TableRow>
         <TableRow>
             <TextView
+                android:text="Възраст(кг.)"
+                android:layout_gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <xamarin.rangeslider.RangeSliderControl
+                android:id="@+id/sld_searchPlayers_ageRange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                local:activeColor="@color/stylishColor"
+                local:textAboveThumbsColor="@color/stylishColor"
+                local:absoluteMinValue="1"
+                local:absoluteMaxValue="80"
+                local:showRangeLabels="false"
+                local:barHeight="3dp"
+                local:valuesAboveThumbs="true" />
+        </TableRow>
+        <TableRow>
+            <TextView
                 android:text="Позиция"
                 android:padding="3dp" />
             <Spinner

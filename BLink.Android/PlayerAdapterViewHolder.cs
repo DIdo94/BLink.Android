@@ -14,6 +14,8 @@ namespace BLink.Droid
 
         public TextView Height { get; set; }
 
+        public TextView Age { get; set; }
+
         public TextView PlayerPosition { get; set; }
 
         public Button InvitePlayer { get; set; }
@@ -26,6 +28,7 @@ namespace BLink.Droid
             Caption = itemView.FindViewById<TextView>(Resource.Id.tv_pc_name);
             Weight = itemView.FindViewById<TextView>(Resource.Id.tv_pc_weight);
             Height = itemView.FindViewById<TextView>(Resource.Id.tv_pc_height);
+            Age = itemView.FindViewById<TextView>(Resource.Id.tv_pc_age);
             PlayerPosition = itemView.FindViewById<TextView>(Resource.Id.tv_pc_position);
             InvitePlayer = itemView.FindViewById<Button>(Resource.Id.btn_pc_invitePlayer);
             KickPlayer = itemView.FindViewById<Button>(Resource.Id.btn_pc_kickPlayer);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -36,6 +37,7 @@ namespace BLink.Droid
         private Button _pickImage;
         private LinearLayout _playerSection;
         private Spinner _positionsSpinner;
+        private DatePicker _dateOfBirth;
         private Stream _imageStream;
 
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -52,6 +54,7 @@ namespace BLink.Droid
             _height = FindViewById<EditText>(Resource.Id.et_editMemberDetails_height);
             _weight = FindViewById<EditText>(Resource.Id.et_editMemberDetails_weight);
             _toolbar = FindViewById<Toolbar>(Resource.Id.tbr_editMemberDetails_toolbar);
+            _dateOfBirth = FindViewById<DatePicker>(Resource.Id.dp_editMemberDetails_dateOfBirth);
 
             _userImage = FindViewById<ImageView>(Resource.Id.iv_editMemberDetails_userImage);
             var imagePath = await RestManager.GetMemberPhoto(_account.Username);
@@ -154,7 +157,8 @@ namespace BLink.Droid
                 PreferedPosition = position,
                 Weight = position.HasValue ? weightValue : default(double?),
                 Height = position.HasValue ? heightValue : default(double?),
-                File = _imageStream
+                File = _imageStream,
+                DateOfBirth = _dateOfBirth.DateTime
             };
 
             AndHUD.Shared.Show(this, "Промяна…");

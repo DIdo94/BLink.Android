@@ -37,6 +37,7 @@ namespace BLink.Droid
         private EditText _weight;
         private ImageView _userImage;
         private Button _pickImage;
+        private DatePicker _dateOfBirth;
         private LinearLayout _playerSection;
         private Spinner _positionsSpinner;
         private Stream _imageStream;
@@ -59,6 +60,7 @@ namespace BLink.Droid
             _pickImage = FindViewById<Button>(Resource.Id.btn_register_pickImage);
             _playerSection = FindViewById<LinearLayout>(Resource.Id.ll_register_playerSection);
             _positionsSpinner = FindViewById<Spinner>(Resource.Id.spn_register_preferedPosition);
+            _dateOfBirth = FindViewById<DatePicker>(Resource.Id.dp_register_dateOfBirth);
 
             SetSupportActionBar(_toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -189,7 +191,8 @@ namespace BLink.Droid
                 PreferedPosition = position,
                 Weight = position.HasValue ? weightValue : default(double?),
                 Height = position.HasValue ? heightValue : default(double?),
-                File = Assets.Open("person-placeholder.jpg") // TODO This should come from gallery
+                File = _imageStream,
+                DateOfBirth = _dateOfBirth.DateTime
             };
 
             AndHUD.Shared.Show(this, "Регистрация…");

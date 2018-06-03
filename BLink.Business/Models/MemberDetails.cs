@@ -1,4 +1,5 @@
 ﻿using BLink.Business.Enums;
+using System;
 
 namespace BLink.Business.Models
 {
@@ -17,6 +18,8 @@ namespace BLink.Business.Models
         public double? Weight { get; set; }
 
         public double? Height { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
 
         public int? ClubId { get; set; }
 

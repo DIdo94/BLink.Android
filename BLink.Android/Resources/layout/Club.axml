@@ -14,7 +14,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:padding="15dp"
+            android:padding="8dp"
             android:background="#ccc9c9"
             android:gravity="center"
             android:layout_height="wrap_content">
@@ -41,22 +41,22 @@
             android:layout_height="wrap_content">
             <LinearLayout
                 android:orientation="horizontal"
-                android:padding="10dp"
+                android:padding="6dp"
                 android:id="@+id/ll_club_coachActions"
                 android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
                     android:text="Промени клуба"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:id="@+id/btn_club_editClubDetails" />
                 <Button
                     android:text="Търси играчи"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
                     android:id="@+id/btn_club_searchPlayers" />
             </LinearLayout>
             <LinearLayout
@@ -68,9 +68,9 @@
                 android:layout_height="wrap_content">
                 <Button
                     android:text="Напусни клуба"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="40dp"
                     android:id="@+id/btn_club_leaveClub" />
             </LinearLayout>
             <TextView
@@ -91,6 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:padding="10dp"
         android:id="@+id/tv_club_noClubMessage"
         android:visibility="gone" />
     <Button

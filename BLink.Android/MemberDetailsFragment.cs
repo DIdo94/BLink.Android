@@ -29,14 +29,10 @@ namespace BLink.Droid
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Create your fragment here
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.MemberDetails, null);
 
@@ -66,13 +62,13 @@ namespace BLink.Droid
             if (string.Compare(_account.Properties["roles"], Role.Player.ToString(), true) == 0)
             {
                 height.Text = _memberDetails.Height.HasValue ?
-                    _memberDetails.Height.Value.ToString() :
+                   string.Format(Literals.HeightCmFormat, string.Empty, _memberDetails.Height.Value.ToString()) :
                     "0";
                 weight.Text = _memberDetails.Weight.HasValue ?
-                    _memberDetails.Weight.Value.ToString() :
+                    string.Format(Literals.WeightKgFormat, string.Empty, _memberDetails.Weight.Value.ToString()) :
                     "0";
                 dateOfBirth.Text = _memberDetails.DateOfBirth.HasValue ?
-                    _memberDetails.DateOfBirth.Value.ToString() :
+                    _memberDetails.DateOfBirth.Value.ToShortDateString() :
                     string.Empty;
                 preferedPosition.Text = Literals.ResourceManager.GetString(_memberDetails.PreferedPosition.Value.ToString());
                 playerSection.Visibility = ViewStates.Visible;

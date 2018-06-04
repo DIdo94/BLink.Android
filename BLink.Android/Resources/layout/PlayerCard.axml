@@ -91,19 +91,22 @@
             </TableLayout>
             <LinearLayout
                 android:orientation="horizontal"
+                android:id="@+id/ll_pc_actionsToPlayer"
+                android:visibility="gone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="35dp">
                 <Button
                     android:text="Покани играч"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="10dp"
                     android:id="@+id/btn_pc_invitePlayer"
                     android:layout_marginRight="0.0dp"
-                    style="?android:attr/buttonStyleSmall"
-                    android:height="5dp"
-                    android:layout_height="wrap_content" />
+                    style="?android:attr/buttonStyleSmall" />
                 <Button
                     android:text="Изгони играч"
                     style="?android:attr/buttonStyleSmall"
+                    android:textSize="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/btn_pc_kickPlayer"

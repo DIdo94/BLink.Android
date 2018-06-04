@@ -26,6 +26,6 @@ namespace BLink.Business.Models
 
         public Stream File { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
     }
 }

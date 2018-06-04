@@ -18,6 +18,8 @@ namespace BLink.Droid
 
         public TextView PlayerPosition { get; set; }
 
+        public LinearLayout ActionsToPLayer { get; set; }
+
         public Button InvitePlayer { get; set; }
 
         public Button KickPlayer { get; set; }
@@ -32,6 +34,7 @@ namespace BLink.Droid
             PlayerPosition = itemView.FindViewById<TextView>(Resource.Id.tv_pc_position);
             InvitePlayer = itemView.FindViewById<Button>(Resource.Id.btn_pc_invitePlayer);
             KickPlayer = itemView.FindViewById<Button>(Resource.Id.btn_pc_kickPlayer);
+            ActionsToPLayer = itemView.FindViewById<LinearLayout>(Resource.Id.ll_pc_actionsToPlayer);
         }
     }
 }

@@ -243,8 +243,11 @@ namespace BLink.Business.Managers
                 string value = null;
                 if (prop.PropertyType == typeof(DateTime?))
                 {
-                    var date = DateTime.Parse(prop.GetValue(data).ToString());
-                    value = date.ToString("MM/dd/yyyy");
+                    if (prop.GetValue(data) != null)
+                    {
+                        var date = DateTime.Parse(prop.GetValue(data).ToString());
+                        value = date.ToString("dd/MM/yyyy");
+                    }
                 }
                 else if (prop.PropertyType != typeof(Stream))
                 {
@@ -269,6 +272,10 @@ namespace BLink.Business.Managers
                 
                 if (value != null)
                 {
+                    if (prop.PropertyType == typeof(DateTime))
+                    {
+
+                    }
                     if (prop.PropertyType == typeof(double))
                     {
                         var s = Convert.ToInt32(value);

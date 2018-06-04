@@ -80,13 +80,9 @@ namespace BLink.Droid
                 holder.Age.Text = string.Empty;
             }
 
-            if (!_account.Properties["roles"].Contains(Role.Coach.ToString()))
+            if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
             {
-                holder.KickPlayer.Visibility = ViewStates.Gone;
-                holder.InvitePlayer.Visibility = ViewStates.Gone;
-            }
-            else
-            {
+                holder.ActionsToPLayer.Visibility = ViewStates.Visible;
                 if (!player.ClubId.HasValue)
                 {
                     holder.InvitePlayer.Click += (sender, eventArgs) =>

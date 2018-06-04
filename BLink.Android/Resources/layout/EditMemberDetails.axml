@@ -1,110 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbr_editMemberDetails_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tbr_editMemberDetails_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-        <TextView
-            android:text="@string/firstName"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_editMemberDetails_firstName"
-            android:layout_marginBottom="15.0dp" />
-        <EditText
-            android:inputType="textPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_editMemberDetails_firstName" />
-        <TextView
-            android:text="@string/lastName"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tv_editMemberDetails_lastName"
-            android:layout_marginBottom="5.5dp" />
-        <EditText
-            android:inputType="textPersonName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/et_editMemberDetails_lastName" />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:id="@+id/ll_editMemberDetails_playerSection">
+            android:layout_height="match_parent">
             <TextView
-                android:text="@string/heightCm"
+                android:text="@string/firstName"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_editMemberDetails_height" />
+                android:id="@+id/tv_editMemberDetails_firstName"
+                android:layout_marginBottom="15.0dp" />
             <EditText
-                android:inputType="number"
+                android:inputType="textPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_editMemberDetails_height" />
+                android:id="@+id/et_editMemberDetails_firstName" />
             <TextView
-                android:text="@string/weightCm"
+                android:text="@string/lastName"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_editMemberDetails_weight" />
+                android:id="@+id/tv_editMemberDetails_lastName"
+                android:layout_marginBottom="5.5dp" />
             <EditText
-                android:inputType="number"
+                android:inputType="textPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/et_editMemberDetails_weight" />
-            <TextView
-                android:text="@string/preferedPosition"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/et_editMemberDetails_lastName" />
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_editMemberDetails_preferedPosition" />
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="32.5dp"
-                android:id="@+id/spn_editMemberDetails_preferedPosition" />
-            <TextView
-                android:text="@string/dateOfBirth"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone"
+                android:id="@+id/ll_editMemberDetails_playerSection">
+                <TextView
+                    android:text="@string/heightCm"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_editMemberDetails_height" />
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_editMemberDetails_height" />
+                <TextView
+                    android:text="@string/weightCm"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_editMemberDetails_weight" />
+                <EditText
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/et_editMemberDetails_weight" />
+                <TextView
+                    android:text="@string/preferedPosition"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_editMemberDetails_preferedPosition" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="32.5dp"
+                    android:id="@+id/spn_editMemberDetails_preferedPosition" />
+                <TextView
+                    android:text="@string/dateOfBirth"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_editMemberDetails_dateOfBirth" />
+                <DatePicker
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
+                    android:minDate="1/1/1960"
+                    android:maxDate="1/1/2012"
+                    android:id="@+id/dp_editMemberDetails_dateOfBirth" />
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_editMemberDetails_pickImage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pickImage" />
+            <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/iv_editMemberDetails_userImage" />
+            <Button
+                android:background="@drawable/stylishButton"
+                android:textColor="#eeeeee"
+                android:text="@string/editDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_editMemberDetails_dateOfBirth" />
-            <DatePicker
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:minDate="1/1/1960"
-                android:maxDate="1/1/2018"
-                android:id="@+id/dp_editMemberDetails_dateOfBirth" />
+                android:id="@+id/btn_editMemberDetails_editDetails" />
         </LinearLayout>
-        <Button
-            android:id="@+id/btn_editMemberDetails_pickImage"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pickImage" />
-        <ImageView
-            android:src="@android:drawable/ic_menu_gallery"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/iv_editMemberDetails_userImage" />
-        <Button
-            android:background="@drawable/stylishButton"
-            android:textColor="#eeeeee"
-            android:text="@string/editDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_editMemberDetails_editDetails" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

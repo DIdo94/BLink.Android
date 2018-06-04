@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:background="#eeeeee">
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:background="#eeeeee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minWidth="25px"
@@ -42,7 +42,7 @@
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="30dp"
                 android:gravity="left"
                 android:id="@+id/tv_memberDetails_firstName" />
         </LinearLayout>
@@ -65,7 +65,7 @@
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="30dp"
                 android:gravity="left"
                 android:id="@+id/tv_memberDetails_lastName" />
         </LinearLayout>
@@ -94,7 +94,7 @@
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="30dp"
                     android:gravity="left"
                     android:id="@+id/tv_memberDetails_height" />
             </LinearLayout>
@@ -117,7 +117,7 @@
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="30dp"
                     android:gravity="left"
                     android:id="@+id/tv_memberDetails_weight" />
             </LinearLayout>
@@ -140,7 +140,7 @@
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="30dp"
                     android:gravity="left"
                     android:id="@+id/tv_memberDetails_preferedPosition" />
             </LinearLayout>
@@ -155,30 +155,32 @@
                 <TextView
                     android:text="@string/dateOfBirth"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16dp"
                     android:layout_width="120dp"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:gravity="left"
                     android:id="@+id/lbl_memberDetails_dateOfBirth" />
                 <TextView
                     android:text=""
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="30dp"
                     android:gravity="left"
                     android:id="@+id/tv_memberDetails_dateOfBirth" />
             </LinearLayout>
         </LinearLayout>
         <Button
             android:background="@drawable/stylishButton"
+            android:layout_marginTop="20dp"
             android:textColor="#eeeeee"
             android:text="Редактиране на профила"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/btn_memberDetails_edit" />
         <Button
             android:text="Излез от профила"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:visibility="gone"
             android:id="@+id/btn_memberDetails_logout" />
     </LinearLayout>

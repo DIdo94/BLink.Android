@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Icu.Text;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
@@ -11,7 +10,6 @@ using BLink.Business.Common;
 using BLink.Business.Enums;
 using BLink.Business.Managers;
 using BLink.Business.Models;
-using Java.Util;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
@@ -25,10 +23,6 @@ namespace BLink.Droid
         private Coordinates _markerPosition;
         private Toolbar _toolbar;
         private DatePicker _startTimeDay;
-        bool headerChangeFlag = true;
-        TextView headerTextView;
-        string headerDatePatternLocale;
-        SimpleDateFormat monthDayFormatLocale;
         private TimePicker _startTimeHour;
         private Spinner _eventTypesSpinner;
         private EditText _title;
@@ -195,13 +189,11 @@ namespace BLink.Droid
             AndHUD.Shared.Dismiss(this);
             if (response.IsSuccessStatusCode)
             {
-                Toast.MakeText(this, "Успешна промяна събитие!", ToastLength.Short).Show();
-                //var intent = new Intent(this, typeof(ClubEventsFragment));
-                //StartActivity(intent);
+                Toast.MakeText(this, "Успешна промяна на събитие!", ToastLength.Short).Show();
             }
             else
             {
-                Toast.MakeText(this, "Неуспешна промяна събитие!", ToastLength.Short).Show();
+                Toast.MakeText(this, "Неуспешна промяна на събитие!", ToastLength.Short).Show();
             }
         }
 
@@ -223,37 +215,6 @@ namespace BLink.Droid
                 _placeInfo.Text =
                     $"Ширина:{_markerPosition.Latitude}, Дължина:{_markerPosition.Longtitute}";
             }
-        }
-        //protected override void AttachBaseContext(Context @base)
-        //{
-        //    Locale locale = new Locale("bg");
-        //    Locale.SetDefault(Locale.Category.Format, locale);
-        //    @base.Resources.Configuration.SetLocale(locale);
-        //    var newContext = @base.CreateConfigurationContext(@base.Resources.Configuration);
-        //    base.AttachBaseContext(newContext);
-        //}
-
-        void SetHeaderMonthDay(DatePickerDialog dialog, Locale locale)
-        {
-            if (headerTextView == null)
-            {
-                // Material Design formatted CalendarView being used, need to do API level check and skip on older APIs
-                var id = base.Resources.GetIdentifier("date_picker_header_date", "id", "android");
-                headerTextView = dialog.DatePicker.FindViewById<TextView>(id);
-                headerDatePatternLocale = Android.Text.Format.DateFormat.GetBestDateTimePattern(locale, "EMMMd");
-                monthDayFormatLocale = new SimpleDateFormat(headerDatePatternLocale, locale);
-                headerTextView.SetTextColor(Android.Graphics.Color.Red);
-                headerTextView.TextChanged += (sender, e) =>
-                {
-                    headerChangeFlag = !headerChangeFlag;
-                    if (!headerChangeFlag)
-                        return;
-                    SetHeaderMonthDay(dialog, locale);
-                };
-            }
-            var selectedDateLocale = monthDayFormatLocale.Format(new Date((long)dialog.DatePicker.DateTime.ToUniversalTime().Subtract(
-                      new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds));
-            headerTextView.Text = selectedDateLocale;
         }
     }
 }

@@ -134,7 +134,7 @@
                     android:calendarViewShown="false"
                     android:datePickerMode="spinner"
                     android:minDate="1/1/1960"
-                    android:maxDate="1/1/2018"
+                    android:maxDate="1/1/2012"
                     android:id="@+id/dp_register_dateOfBirth" />
             </LinearLayout>
             <Button

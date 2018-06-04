@@ -5,26 +5,23 @@
     <item name="windowNoTitle">false</item>
     <item name="windowActionBar">true</item>
     <item name="colorPrimary">@color/primaryColor</item>
-    <!--<item name="colorPrimaryLight">@color/primaryColorLight</item>-->
     <item name="colorPrimaryDark">@color/primaryColor</item>
     <item name="android:textColor">#455a64</item>
+    <item name="android:colorControlNormal">#455a64</item>
     <item name="android:colorControlActivated">#455a64</item>
-    <!--<item name="colorSecondary">@color/secondaryColor</item>
-    <item name="colorSecondaryLight">@color/secondaryLightColor</item>
-    <item name="colorSecondaryDark">@color/secondaryDarkColor</item>-->
+    <item name="actionMenuTextColor">#455a64</item>
   </style>
   <style name="PrimaryTheme" parent="Theme.AppCompat.Light">
     <item name="android:fontFamily">sans-serif-medium</item>
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
     <item name="colorPrimary">@color/primaryColor</item>
-    <!--<item name="colorPrimaryLight">@color/primaryColorLight</item>-->
     <item name="colorPrimaryDark">@color/primaryColor</item>
     <item name="android:textColor">#455a64</item>
     <item name="android:colorControlActivated">#455a64</item>
-    <!--<item name="colorSecondary">@color/secondaryColor</item>
-    <item name="colorSecondaryLight">@color/secondaryLightColor</item>
-    <item name="colorSecondaryDark">@color/secondaryDarkColor</item>-->
+  </style>
+  <style name="App_EditTextStyle" parent="@android:style/Widget.EditText">
+    <item name="android:textColor">#455a64</item>
   </style>
   <!--TabLayout Theme-->
 
@@ -32,11 +29,5 @@
     <item name="tabIndicatorColor">#455a64</item>
     <item name="tabIndicatorHeight">2dp</item>
     <item name="tabSelectedTextColor">#f9fdff</item>
-   </style>
-  <!--<style name="CardViewButton">
-    <item name="android:layout_height">40dp</item>
-    <item nam="android:layout_margin">1dp</item>
-    <item name="android:layout_width">match_parent</item>
-    <item name="android:textSize">12dp</item>
-  </style>-->
+  </style>
 </resources>

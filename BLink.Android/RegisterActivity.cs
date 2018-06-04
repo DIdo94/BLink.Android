@@ -71,12 +71,12 @@ namespace BLink.Droid
             string[] roles = Enum
                 .GetNames(typeof(Role))
                 .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
-            _rolesSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, roles);
+            _rolesSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, roles);
 
             string[] positions = Enum
                 .GetNames(typeof(Position))
                 .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
-            _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, positions);
+            _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, positions);
 
             _rolesSpinner.ItemSelected += RolesSpinner_ItemSelected;
             registerButton.Click += RegisterButton_Click;
@@ -180,6 +180,9 @@ namespace BLink.Droid
             Position? position = role == Role.Player ?
                 (Position)selectedPosition :
                 default(Position?);
+            var dateOfBirth = role == Role.Player ?
+                _dateOfBirth.DateTime :
+                default(DateTime?);
             var registerUser = new RegisterUser
             {
                 Email = _email.Text,
@@ -192,7 +195,7 @@ namespace BLink.Droid
                 Weight = position.HasValue ? weightValue : default(double?),
                 Height = position.HasValue ? heightValue : default(double?),
                 File = _imageStream,
-                DateOfBirth = _dateOfBirth.DateTime
+                DateOfBirth = dateOfBirth
             };
 
             AndHUD.Shared.Show(this, "Регистрация…");

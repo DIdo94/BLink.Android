@@ -54,7 +54,15 @@ namespace BLink.Droid
             _height = FindViewById<EditText>(Resource.Id.et_editMemberDetails_height);
             _weight = FindViewById<EditText>(Resource.Id.et_editMemberDetails_weight);
             _toolbar = FindViewById<Toolbar>(Resource.Id.tbr_editMemberDetails_toolbar);
+
             _dateOfBirth = FindViewById<DatePicker>(Resource.Id.dp_editMemberDetails_dateOfBirth);
+            if (_memberDetails.DateOfBirth.HasValue)
+            {
+                int year = _memberDetails.DateOfBirth.Value.Year;
+                int month = _memberDetails.DateOfBirth.Value.Month - 1;
+                int day = _memberDetails.DateOfBirth.Value.Day;
+                _dateOfBirth.UpdateDate(year, month, day);
+            }
 
             _userImage = FindViewById<ImageView>(Resource.Id.iv_editMemberDetails_userImage);
             var imagePath = await RestManager.GetMemberPhoto(_account.Username);
@@ -75,7 +83,7 @@ namespace BLink.Droid
                 string[] positions = Enum
                    .GetNames(typeof(Position))
                    .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
-                _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, positions);
+                _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, positions);
                 _positionsSpinner.SetSelection((int)_memberDetails.PreferedPosition.Value - 1);
                 _playerSection.Visibility = ViewStates.Visible;
             }

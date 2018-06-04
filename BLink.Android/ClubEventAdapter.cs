@@ -84,7 +84,7 @@ namespace BLink.Droid
                         NotifyItemRangeChanged(position, ItemCount);
                     }
 
-                    Toast.MakeText(_activity, "Успешено премахване на събитие!", ToastLength.Long).Show();
+                    Toast.MakeText(_activity, "Успешно премахване на събитие!", ToastLength.Long).Show();
                 }
             });
 

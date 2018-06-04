@@ -75,6 +75,8 @@ namespace BLink.Droid
             _weightRange.SetSelectedMaxValue(300);
 
             _ageRange = FindViewById<RangeSliderControl>(Resource.Id.sld_searchPlayers_ageRange);
+            _ageRange.SetSelectedMinValue(_ageRange.AbsoluteMinValue);
+            _ageRange.SetSelectedMaxValue(_ageRange.AbsoluteMaxValue);
 
             _search = FindViewById<Button>(Resource.Id.btn_searchPlayers_searchPlayers);
             _search.Click += Search_Click;

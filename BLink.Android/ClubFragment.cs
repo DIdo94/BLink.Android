@@ -28,9 +28,8 @@ namespace BLink.Droid
         private ImageView _mainPhoto;
         private SearchPlayersCritera _searchPlayersCritera;
 
-        public ClubFragment(Account account)
+        public ClubFragment()
         {
-            _account = account;
             _searchPlayersCritera = new SearchPlayersCritera
             {
                 MaxHeight = int.MaxValue,
@@ -58,6 +57,10 @@ namespace BLink.Droid
         {
             base.OnActivityCreated(OnActivityCreated);
 
+            _account = AccountStore
+              .Create(Context)
+              .FindAccountsForService(GetString(Resource.String.app_name))
+              .FirstOrDefault();
             HttpResponseMessage httpResponse = await RestManager.GetMemberClub(_account.Username);
             string response = await httpResponse.Content.ReadAsStringAsync();
             bool isCoach = _account.Properties["roles"].Contains(Role.Coach.ToString());

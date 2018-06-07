@@ -16,7 +16,8 @@
         android:id="@+id/tl_searchPlayers_filters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:visibility="gone"
+        android:padding="5dp"
         android:stretchColumns="1, 3">
         <TableRow>
             <TextView
@@ -25,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <EditText
-                android:layout_margin="3dp"
                 android:id="@+id/et_searchPlayers_name" />
         </TableRow>
         <TableRow>
@@ -41,10 +41,13 @@
                 local:activeColor="@color/stylishColor"
                 local:textAboveThumbsColor="@color/stylishColor"
                 local:valuesAboveThumbs="true"
+                local:internalPadding="0dp"
                 local:absoluteMinValue="0"
+                local:thumbShadow="false"
                 local:absoluteMaxValue="300"
                 local:showRangeLabels="false"
-                local:barHeight="3dp" />
+                local:textSize="9"
+                local:barHeight="2dp" />
         </TableRow>
         <TableRow>
             <TextView
@@ -61,7 +64,9 @@
                 local:absoluteMinValue="0"
                 local:absoluteMaxValue="300"
                 local:showRangeLabels="false"
-                local:barHeight="3dp"
+                local:barHeight="2dp"
+                local:internalPadding="0dp"
+                local:textSize="9"
                 local:valuesAboveThumbs="true" />
         </TableRow>
         <TableRow>
@@ -79,7 +84,9 @@
                 local:absoluteMinValue="1"
                 local:absoluteMaxValue="80"
                 local:showRangeLabels="false"
-                local:barHeight="3dp"
+                local:internalPadding="0dp"
+                local:textSize="9"
+                local:barHeight="2dp"
                 local:valuesAboveThumbs="true" />
         </TableRow>
         <TableRow>
@@ -87,9 +94,8 @@
                 android:text="Позиция"
                 android:padding="3dp" />
             <Spinner
-                android:layout_margin="3dp"
                 android:layout_width="match_parent"
-                android:layout_height="32.5dp"
+                android:layout_height="25dp"
                 android:id="@+id/spn_searchPlayers_preferedPosition" />
         </TableRow>
         <TableRow>
@@ -98,17 +104,17 @@
                 android:textSize="10dp"
                 android:id="@+id/btn_searchPlayers_searchPlayers"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="35dp" />
             <Button
                 android:text="@string/resetFilters"
                 android:textSize="10dp"
                 android:id="@+id/btn_searchPlayers_resetFilters"
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="35dp" />
         </TableRow>
     </TableLayout>
     <TextView
-        android:text="@string/iconChevronUp"
+        android:text="@string/iconChevronDown"
         android:padding="3dp"
         android:textSize="15dp"
         android:gravity="center"

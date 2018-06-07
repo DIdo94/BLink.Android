@@ -33,7 +33,7 @@
                     android:layout_height="32dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#eeeeee"
-                    android:textSize="15dp"
+                    android:textSize="12dp"
                     android:paddingLeft="8dp"
                     android:gravity="center_vertical"
                     android:singleLine="true"
@@ -44,14 +44,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"
-                android:padding="4dp">
+                android:padding="8dp">
                 <TableRow>
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textColor="#333333"
-                        android:textSize="15dp"
-                        android:paddingTop="10dp"
+                        android:textSize="12dp"
                         android:paddingLeft="20dp"
                         android:singleLine="true"
                         android:text="Height"
@@ -62,8 +61,7 @@
                         android:textColor="#333333"
                         android:singleLine="true"
                         android:text="Caption"
-                        android:textSize="15dp"
-                        android:paddingTop="10dp"
+                        android:textSize="12dp"
                         android:id="@+id/tv_pc_weight" />
                 </TableRow>
                 <TableRow>
@@ -73,9 +71,8 @@
                         android:textColor="#333333"
                         android:singleLine="true"
                         android:text="Caption"
-                        android:textSize="15dp"
-                        android:paddingTop="10dp"
-                        android:paddingBottom="5dp"
+                        android:textSize="12dp"
+                        android:paddingTop="8dp"
                         android:paddingLeft="20dp"
                         android:id="@+id/tv_pc_position" />
                     <TextView
@@ -84,8 +81,8 @@
                         android:textColor="#333333"
                         android:singleLine="true"
                         android:text="Caption"
-                        android:textSize="15dp"
-                        android:paddingTop="10dp"
+                        android:textSize="12dp"
+                        android:paddingTop="8dp"
                         android:id="@+id/tv_pc_age" />
                 </TableRow>
             </TableLayout>

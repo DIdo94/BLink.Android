@@ -79,6 +79,15 @@ namespace BLink.Business.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Всички позиции.
+        /// </summary>
+        public static string AllPositions {
+            get {
+                return ResourceManager.GetString("AllPositions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Център.
         /// </summary>
         public static string Center {

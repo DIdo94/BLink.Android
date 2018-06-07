@@ -14,16 +14,16 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:padding="8dp"
+            android:padding="5dp"
             android:background="#ccc9c9"
             android:gravity="center"
             android:layout_height="wrap_content">
             <refractored.controls.CircleImageView
                 android:src="@android:drawable/ic_menu_gallery"
-                app:civ_border_width="2dp"
+                app:civ_border_width="1dp"
                 app:civ_border_color="#FF000000"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:id="@+id/iv_club_mainPhoto" />
             <TextView
                 android:text=""
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textSize="20dp"
+                android:textSize="15dp"
                 android:id="@+id/tv_club_clubName" />
         </LinearLayout>
         <LinearLayout
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content">
             <LinearLayout
                 android:orientation="horizontal"
-                android:padding="6dp"
+                android:padding="4dp"
                 android:id="@+id/ll_club_coachActions"
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -50,13 +50,13 @@
                     android:text="Промени клуба"
                     android:textSize="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:id="@+id/btn_club_editClubDetails" />
                 <Button
                     android:text="Търси играчи"
                     android:textSize="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:id="@+id/btn_club_searchPlayers" />
             </LinearLayout>
             <LinearLayout
@@ -70,13 +70,12 @@
                     android:text="Напусни клуба"
                     android:textSize="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:id="@+id/btn_club_leaveClub" />
             </LinearLayout>
             <TextView
                 android:text="Играчи"
                 android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lbl_club_clubPlayers" />

@@ -62,14 +62,14 @@ namespace BLink.Droid
 
         private void InitializeFragments()
         {
-            _detailsFragment = new MemberDetailsFragment(_account, _memberDetails);
-            _clubFragment = new ClubFragment(_account);
+            _detailsFragment = new MemberDetailsFragment();
+            _clubFragment = new ClubFragment();
             if (!_memberDetails.ClubId.HasValue || _account.Properties["roles"].Contains(Role.Coach.ToString()))
             {
-                _invitationsFragment = new InvitationsFragment(_account);
+                _invitationsFragment = new InvitationsFragment();
             }
 
-            _clubEventsFragment = new ClubEventsFragment(_account);
+            _clubEventsFragment = new ClubEventsFragment();
         }
 
         public void SetupViewPager(ViewPager viewPager)

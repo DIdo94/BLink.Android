@@ -123,6 +123,9 @@
   <data name="All" xml:space="preserve">
     <value>Всички</value>
   </data>
+  <data name="AllPositions" xml:space="preserve">
+    <value>Всички позиции</value>
+  </data>
   <data name="Center" xml:space="preserve">
     <value>Център</value>
   </data>

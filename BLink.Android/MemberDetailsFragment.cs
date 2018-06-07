@@ -11,6 +11,8 @@ using Android.Graphics;
 using Android.App;
 using BLink.Business.Enums;
 using BLink.Business.Common;
+using System.Net.Http;
+using System.Linq;
 
 namespace BLink.Droid
 {
@@ -19,12 +21,6 @@ namespace BLink.Droid
         private MemberDetails _memberDetails;
         private Account _account;
         private ImageView _mainPhoto;
-
-        public MemberDetailsFragment(Account account, MemberDetails memberDetails)
-        {
-            _account = account;
-            _memberDetails = memberDetails;
-        }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -43,6 +39,18 @@ namespace BLink.Droid
         {
             base.OnActivityCreated(savedInstanceState);
 
+            _account = AccountStore
+              .Create(Context)
+              .FindAccountsForService(GetString(Resource.String.app_name))
+              .FirstOrDefault();
+
+            RestManager.SetAccessToken(_account.Properties["token"]);
+            HttpResponseMessage httpResponse = await RestManager.GetMemberDetails(_account.Username);
+            string response = await httpResponse.Content.ReadAsStringAsync();
+            if (!string.IsNullOrWhiteSpace(response) && response != "null")
+            {
+                _memberDetails = JsonConvert.DeserializeObject<MemberDetails>(response);
+            }
             var imagePath = await RestManager.GetMemberPhoto(_account.Username);
 
             TextView firstName = View.FindViewById<TextView>(Resource.Id.tv_memberDetails_firstName);

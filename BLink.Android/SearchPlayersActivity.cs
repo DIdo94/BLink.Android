@@ -50,7 +50,8 @@ namespace BLink.Droid
             {
                 MaxHeight = int.MaxValue,
                 MaxWeight = int.MaxValue,
-                MaxAge = int.MaxValue
+                MaxAge = int.MaxValue,
+                Position = 0
             };
         }
 
@@ -98,10 +99,11 @@ namespace BLink.Droid
 
             _filters = FindViewById<TableLayout>(Resource.Id.tl_searchPlayers_filters);
 
-            string[] positions = Enum
-                .GetNames(typeof(Position))
-                .Select(r => Literals.ResourceManager.GetString(r)).ToArray();
-            _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, positions);
+            var positions = new List<string> { Literals.AllPositions };
+            positions.AddRange(Enum
+                 .GetNames(typeof(Position))
+                 .Select(r => Literals.ResourceManager.GetString(r)));
+            _positionsSpinner.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerDropDownItem, positions.ToArray());
 
             _resetFilters = FindViewById<Button>(Resource.Id.btn_searchPlayers_resetFilters);
             _resetFilters.Click += ResetFilters_Click;
@@ -135,7 +137,7 @@ namespace BLink.Droid
         {
             _name.Text = string.Empty;
 
-            _positionsSpinner.SetSelection(-1);
+            _positionsSpinner.SetSelection(0);
 
             _heightRange.SetSelectedMinValue(0);
             _heightRange.SetSelectedMaxValue(300);
@@ -170,7 +172,7 @@ namespace BLink.Droid
             {
                 _memberDetails = JsonConvert.DeserializeObject<IEnumerable<MemberDetails>>(getPlayersResponse);
                 _adapter = new PlayerAdapter(this, _memberDetails.ToArray(), _clubDetails, _account);
-                _recyclerView.SwapAdapter(_adapter, true);
+                _recyclerView.SetAdapter(_adapter);
                 AndHUD.Shared.Dismiss(this);
                 if (_memberDetails.Any())
                 {
@@ -195,13 +197,13 @@ namespace BLink.Droid
             _searchPlayersCritera.MinAge = _ageRange.GetSelectedMinValue();
             _searchPlayersCritera.MaxAge = _ageRange.GetSelectedMaxValue();
 
-            int postitionIndex = _positionsSpinner.SelectedItemPosition + 1;
+            int postitionIndex = _positionsSpinner.SelectedItemPosition;
             _searchPlayersCritera.Position = (Position)postitionIndex;
 
             await FilterPlayers();
         }
 
-        private void ToggleFilters_Click(object sender, System.EventArgs e)
+        private void ToggleFilters_Click(object sender, EventArgs e)
         {
             if (_filters.Visibility == ViewStates.Gone)
             {

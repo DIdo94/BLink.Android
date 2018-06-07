@@ -9,6 +9,7 @@ using BLink.Business.Enums;
 using BLink.Business.Managers;
 using BLink.Business.Models;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using Xamarin.Auth;
@@ -55,13 +56,12 @@ namespace BLink.Droid
             holder.StartTimeIcon.Typeface = tf;
 
             holder.StartTime.Text = clubEvent.StartTime.ToString();
-
             holder.ViewLocation.Click += (sender, e) => ViewLocation_Click(sender, e, clubEvent);
             if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
             {
                 holder.ClubEventActions.Visibility = ViewStates.Visible;
-                holder.EditClubEvent.Click += (sender, e) => EditClubEvent_Click(sender, e, clubEvent);
 
+                holder.EditClubEvent.Click += (sender, e) => EditClubEvent_Click(sender, e, clubEvent);
                 holder.RemoveClubEvent.Click += (sender, e) => RemoveClubEvent_Click(sender, e, clubEvent.Id, position);
             }
         }
@@ -102,7 +102,7 @@ namespace BLink.Droid
             var content = JsonConvert.SerializeObject(clubEvent);
             var intent = new Intent(_activity, typeof(EditClubEventActivity));
             intent.PutExtra("clubEvent", content);
-            _activity.BaseContext.StartActivity(intent);
+            _activity.StartActivity(intent);
         }
 
         private void ViewLocation_Click(object sender, System.EventArgs e, ClubEventFilterResult clubEvent)
@@ -110,14 +110,14 @@ namespace BLink.Droid
             var content = JsonConvert.SerializeObject(clubEvent.Coordinates);
             var intent = new Intent(_activity, typeof(GoogleMapActivity));
             intent.PutExtra("place", content);
-            _activity.BaseContext.StartActivity(intent);
+            _activity.StartActivity(intent);
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
         {
             var id = Resource.Layout.ClubEventCard;
             var itemView = LayoutInflater.From(parent.Context).Inflate(id, parent, false);
-
+            
             return new ClubEventAdapterViewHolder(itemView);
         }
 

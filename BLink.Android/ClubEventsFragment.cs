@@ -31,11 +31,6 @@ namespace BLink.Droid
         private TextView _noClubEvents;
         private LinearLayout _eventsFilter;
 
-        public ClubEventsFragment(Account account)
-        {
-            _account = account;
-        }
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -52,6 +47,10 @@ namespace BLink.Droid
         public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
+            _account = AccountStore
+              .Create(Context)
+              .FindAccountsForService(GetString(Resource.String.app_name))
+              .FirstOrDefault();
             _noClubEvents = View.FindViewById<TextView>(Resource.Id.tv_clubEvent_noClubEvents);
 
             if (_account.Properties["roles"].Contains(Role.Coach.ToString()))
@@ -115,7 +114,7 @@ namespace BLink.Droid
 
             AndHUD.Shared.Dismiss(Context);
             _adapter = new ClubEventAdapter(Activity, _clubEvents.ToArray(), _clubDetails, _account);
-            _recyclerView.SwapAdapter(_adapter, true);
+            _recyclerView.SetAdapter(_adapter);
 
             if (!_clubEvents.Any())
             {

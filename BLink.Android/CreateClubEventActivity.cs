@@ -203,7 +203,9 @@ namespace BLink.Droid
         {
             //Back button pressed -> toggle event
             if (item.ItemId == Android.Resource.Id.Home)
+            {
                 OnBackPressed();
+            }
 
             return base.OnOptionsItemSelected(item);
         }

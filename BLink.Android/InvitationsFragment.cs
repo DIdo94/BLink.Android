@@ -24,11 +24,6 @@ namespace BLink.Droid
         private TextView _header;
         private TextView _noInvitations;
 
-        public InvitationsFragment(Account account)
-        {
-            _account = account;
-        }
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -48,6 +43,10 @@ namespace BLink.Droid
         public override async void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
+            _account = AccountStore
+              .Create(Context)
+              .FindAccountsForService(GetString(Resource.String.app_name))
+              .FirstOrDefault();
             HttpResponseMessage httpResponse = await RestManager.GetMemberInvitations(_account.Username);
             _header = View.FindViewById<TextView>(Resource.Id.tv_invitations_header);
             _noInvitations = View.FindViewById<TextView>(Resource.Id.tv_invitations_noInvitations);

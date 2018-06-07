@@ -122,7 +122,7 @@ namespace BLink.Droid
         public void OnMapReady(GoogleMap googleMap)
         {
             _googleMap = googleMap;
-           
+
             //_mapFragment.View.LayoutParameters.Height = 900;
 
             MapsInitializer.Initialize(this);
@@ -172,7 +172,9 @@ namespace BLink.Droid
         {
             //Back button pressed -> toggle event
             if (item.ItemId == Android.Resource.Id.Home)
+            {
                 OnBackPressed();
+            }
 
             return base.OnOptionsItemSelected(item);
         }
